@@ -1,11 +1,11 @@
 {
   "id": "profile",
-  "version": "initial",
+  "version": "c7aab138-7f2c-4a23-9687-b2b348c6c29b",
   "siteName": "风经过的小站",
-  "nickname": "小站站长",
+  "nickname": "凉宫洺雪",
   "signature": "把日子写成手记，把风景收进相册。",
   "bio": "欢迎来到这个安静的小角落。这里收藏文字、画面，以及值得慢慢翻看的日常。",
-  "avatar": "art/avatar.webp",
+  "avatar": "art/avatar-mingxue.webp",
   "cover": "art/meadow.webp",
   "links": []
 }
