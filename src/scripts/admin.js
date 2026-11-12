@@ -5,7 +5,7 @@ import {prepareImage} from './media.js';
 const $=id=>document.getElementById(id);
 const app=$('editor-app'),base=app.dataset.base;
 const url=path=>base+'/'+path.replace(/^\/+/, '');
-const typeNames={posts:'文章',albums:'相册',profile:'个人资料'};
+const typeNames={posts:'空间',albums:'相册',profile:'个人资料'};
 let catalog,section='posts',draft,auth=false,busy=false,sequence=0,pendingWrites=Promise.resolve();
 const today=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai'}).format(new Date());
 const status=message=>{$('publish-status').textContent=message};
@@ -83,7 +83,7 @@ function renderFields(){
   if(section==='profile'){field('站名','siteName');field('昵称','nickname');field('签名','signature');field('个人介绍','bio','textarea');imageField('avatar','更换头像');imageField('cover','更换首页封面');field('社交链接（每行填写 名称 | 完整网址）','links','textarea');return;}
   field('标题','title');field('日期','date','date');
   if(section==='posts'){
-    field('标签（逗号分隔）','tags');field('摘要','summary','textarea',2);imageField('cover','选择文章封面');const tools=element('div',null,'toolbar');host.append(tools);
+    field('标签（逗号分隔）','tags');field('摘要','summary','textarea',2);imageField('cover','选择空间封面');const tools=element('div',null,'toolbar');host.append(tools);
     const body=field('正文','body','textarea',12);
     function insert(prefix,suffix='',sample=''){
       const start=body.selectionStart,selected=body.value.slice(start,body.selectionEnd);body.setRangeText(prefix+(selected||sample)+suffix,start,body.selectionEnd,'end');body.dispatchEvent(new Event('input'));body.focus();
@@ -111,7 +111,7 @@ function preview(){
     const container=element('div');
     container.innerHTML=DOMPurify.sanitize(marked.parse(data.body),{ALLOWED_TAGS:['p','br','h2','h3','h4','blockquote','ul','ol','li','strong','em','a','img','pre','code','hr','del','table','thead','tbody','tr','td','th'],ALLOWED_ATTR:['alt','href','src']});
     for(const img of container.querySelectorAll('img')){const p=img.getAttribute('src')||'';if(/^(art|media)\/[\w-]+\.webp$/.test(p))img.src=asset(p);else img.remove()}
-    if(data.cover){const cover=element('img');cover.src=asset(data.cover);cover.alt='文章封面';body.append(cover)}
+    if(data.cover){const cover=element('img');cover.src=asset(data.cover);cover.alt='空间封面';body.append(cover)}
     body.append(container);
   }else if(section==='albums'){body.append(element('p',data.description));for(const p of data.photos){const img=element('img');img.src=asset(p.thumb);img.alt=p.caption;body.append(img,element('p',p.caption))}}
   else{if(data.avatar){const img=element('img',null,'avatar');img.src=asset(data.avatar);body.append(img)}body.append(element('h3',data.nickname),element('p',data.signature),element('p',data.bio));}

@@ -1,11 +1,68 @@
 ---
 import Layout from '../components/Layout.astro';
 import PostRow from '../components/PostRow.astro';
-import Icon from '../components/Icon.astro';
 import AlbumCard from '../components/AlbumCard.astro';
-import {href,profile,posts,albums} from '../lib/blog.mjs';
+import Icon from '../components/Icon.astro';
+import { href, profile, posts, albums } from '../lib/blog.mjs';
+const tags = [...new Set(posts.flatMap(post => post.tags))];
 ---
-<Layout><section class="hero" aria-labelledby="site-title"><img class="hero-art" src={href(profile.cover||'art/meadow.webp')} fetchpriority="high" alt="绿荫下的小路穿过草坡，通向红瓦小屋"/><div class="hero-shade"></div><div class="hero-copy"><div class="hero-kicker"><span></span> 乡野生活手记</div><h1 id="site-title">{profile.siteName}</h1><p>{profile.signature}</p><a class="hero-btn" href={href('posts/')}>翻开手记 <Icon name="arrow" size={16}/></a></div></section>
-<div class="home-grid"><section><div class="section-head"><h2><i><Icon name="quill" size={23}/></i>最新手记</h2><a href={href('posts/')}>全部文章 <Icon name="arrow" size={15}/></a></div><div class="post-list">{posts.slice(0,5).map(post=><PostRow post={post}/>)}{!posts.length&&<p class="empty">第一篇手记正在酝酿中。</p>}</div></section>
-<aside><div class="section-head"><h2><i><Icon name="leaf" size={22}/></i>站主名片</h2></div><div class="profile-card"><div class="postmark" aria-hidden="true"><Icon name="sun" size={23}/></div><img class="avatar" src={href(profile.avatar||'art/avatar.webp')} alt="站主头像"/><h3>{profile.nickname}</h3><p>{profile.signature}</p><div class="stats"><a href={href('posts/')}><b>{posts.length}</b> 篇手记</a><span>·</span><a href={href('albums/')}><b>{albums.length}</b> 本相册</a></div><a class="profile-link" href={href('about/')}>关于我 <Icon name="arrow" size={14}/></a></div>
-<div class="section-head album-head"><h2><i><Icon name="camera" size={21}/></i>最近相册</h2><a href={href('albums/')}>更多 <Icon name="arrow" size={14}/></a></div><div class="mini-albums">{albums.slice(0,2).map(album=><AlbumCard album={album}/>)}{!albums.length&&<p>相册准备中。</p>}</div></aside></div></Layout>
+<Layout>
+  <section class="welcome">
+    <div class="welcome-copy">
+      <span class="welcome-label">{profile.nickname} 的个人主页</span>
+      <h1>{profile.siteName}</h1>
+      <p>{profile.signature}</p>
+      <a href={href('about/')} class="welcome-link">认识一下站主 <Icon name="arrow" size={14} /></a>
+    </div>
+    <a class="welcome-avatar" href={href('about/')} aria-label="查看站主资料">
+      <img src={href(profile.avatar || 'art/avatar.webp')} alt={profile.nickname + '的头像'} fetchpriority="high" />
+    </a>
+  </section>
+  <div class="home-grid">
+    <div class="main-column">
+      <section>
+        <div class="section-head">
+          <h2>空间<span>最近更新</span></h2>
+          <a href={href('posts/')}>全部空间 <Icon name="arrow" size={13} /></a>
+        </div>
+        <div class="feed-caption"><span>记录此刻，也收藏喜欢的日常。</span><span>发布时间</span></div>
+        <div class="post-list">{posts.slice(0, 5).map(post => <PostRow post={post} />)}</div>
+        {!posts.length && <p class="empty">还没有公开的空间内容。</p>}
+        {posts.length > 0 && <a class="more-row" href={href('posts/')}>浏览全部 {posts.length} 篇空间 <Icon name="arrow" size={13} /></a>}
+      </section>
+      <section class="home-albums">
+        <div class="section-head">
+          <h2>相册<span>一些画面，一些瞬间</span></h2>
+          <a href={href('albums/')}>全部相册 <Icon name="arrow" size={13} /></a>
+        </div>
+        <div class="album-grid">{albums.slice(0, 3).map(album => <AlbumCard album={album} />)}</div>
+        {!albums.length && <p class="empty">第一本相册正在准备中。</p>}
+      </section>
+    </div>
+    <aside class="sidebar">
+      <section class="profile-card">
+        <div class="profile-heading"><span>这里的主人</span><Icon name="user" size={15} /></div>
+        <div class="profile-identity">
+          <a href={href('about/')}><img class="avatar" src={href(profile.avatar || 'art/avatar.webp')} alt="站主头像" /></a>
+          <div><h2><a href={href('about/')}>{profile.nickname}</a></h2><span class="owner-label">站主</span></div>
+        </div>
+        <p>{profile.bio}</p>
+        <div class="stats">
+          <a href={href('posts/')}><b>{posts.length}</b><span>空间</span></a>
+          <a href={href('albums/')}><b>{albums.length}</b><span>相册</span></a>
+          <a href={href('albums/')}><b>{albums.reduce((total, album) => total + album.photos.length, 0)}</b><span>照片</span></a>
+        </div>
+        <a class="profile-link" href={href('about/')}>查看完整资料 <Icon name="arrow" size={13} /></a>
+      </section>
+      <section class="side-section">
+        <h2>空间分类</h2>
+        <div class="tag-cloud">{tags.map(tag => <a href={href('posts/') + '?tag=' + encodeURIComponent(tag)}>{tag}<small>{posts.filter(post => post.tags.includes(tag)).length}</small></a>)}</div>
+        {!tags.length && <p class="muted">还没有分类。</p>}
+      </section>
+      <section class="side-section">
+        <h2>相册一览</h2>
+        <div class="side-albums">{albums.map(album => <a href={href('albums/' + album.id + '/')}><img src={href(album.photos[0]?.thumb || 'art/meadow.webp')} alt="" loading="lazy" /><span>{album.title}<small>{album.photos.length} 张照片</small></span></a>)}</div>
+      </section>
+    </aside>
+  </div>
+</Layout>

@@ -1,7 +1,33 @@
 ---
 import Layout from '../../components/Layout.astro';
 import PostRow from '../../components/PostRow.astro';
-import {posts} from '../../lib/blog.mjs';
-const tags=[...new Set(posts.flatMap(p=>p.tags))];
+import { posts } from '../../lib/blog.mjs';
+const tags = [...new Set(posts.flatMap(post => post.tags))];
 ---
-<Layout active="文章" title="文章空间"><div class="page-head"><h1>文章空间</h1><p>共 {posts.length} 篇手记</p></div><div class="filters" aria-label="按标签筛选">{['全部',...tags].map((t,i)=><button aria-pressed={!i} data-filter={i?t:''}>{t}</button>)}</div><div class="post-list archive">{posts.map(post=><PostRow post={post}/>)}{!posts.length&&<p class="empty">暂时没有手记。</p>}</div><script>document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('[data-filter]').forEach(el=>el.setAttribute('aria-pressed',String(el===btn)));document.querySelectorAll<HTMLElement>('[data-tags]').forEach(el=>el.hidden=!!btn.dataset.filter&&!JSON.parse(el.dataset.tags||'[]').includes(btn.dataset.filter))})</script></Layout>
+<Layout active="空间" title="空间">
+  <div class="page-head"><h1>空间</h1><p>共 {posts.length} 篇记录</p></div>
+  <div class="filters" aria-label="按标签筛选">
+    {['全部', ...tags].map((tag, index) => <button aria-pressed={index === 0} data-filter={index ? tag : ''}>{tag}</button>)}
+  </div>
+  <div class="post-list archive">{posts.map(post => <PostRow post={post} />)}</div>
+  {!posts.length && <p class="empty">暂时没有公开的空间内容。</p>}
+  <script>
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    function filter(tag: string) {
+      buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === tag)));
+      document.querySelectorAll<HTMLElement>('[data-tags]').forEach(element => {
+        element.hidden = Boolean(tag) && !JSON.parse(element.dataset.tags || '[]').includes(tag);
+      });
+    }
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const tag = button.dataset.filter || '';
+      filter(tag);
+      const url = new URL(location.href);
+      if (tag) url.searchParams.set('tag', tag);
+      else url.searchParams.delete('tag');
+      history.replaceState(null, '', url);
+    }));
+    const initial = new URLSearchParams(location.search).get('tag') || '';
+    filter(buttons.some(button => button.dataset.filter === initial) ? initial : '');
+  </script>
+</Layout>

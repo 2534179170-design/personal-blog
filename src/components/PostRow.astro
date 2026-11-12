@@ -1,6 +1,19 @@
 ---
-import {href} from '../lib/blog.mjs';
-import Icon from './Icon.astro';
-const {post}=Astro.props;
+import { href, profile } from '../lib/blog.mjs';
+const { post } = Astro.props;
 ---
-<article class="post-row" data-tags={JSON.stringify(post.tags)}><a href={href('posts/'+post.id+'/')} class="post-image" tabindex="-1" aria-hidden="true"><img src={href(post.cover||'art/meadow.webp')} alt="" loading="lazy"/></a><div class="post-copy"><div class="post-meta"><span class="tag">{post.tags[0]||'手记'}</span><time>{post.date.replaceAll('-','.')}</time></div><h3><a href={href('posts/'+post.id+'/')}>{post.title}</a></h3><p>{post.summary}</p><a class="read" href={href('posts/'+post.id+'/')}>阅读全文 <Icon name="arrow" size={14}/></a></div></article>
+<article class="post-row" data-tags={JSON.stringify(post.tags)}>
+  <a class="post-author" href={href('about/')} aria-label={profile.nickname + '的个人资料'}>
+    <img src={href(profile.avatar || 'art/avatar.webp')} alt="" loading="lazy" />
+  </a>
+  <div class="post-copy">
+    <h3><a href={href('posts/' + post.id + '/')}>{post.title}</a></h3>
+    <p>{post.summary}</p>
+    <div class="post-meta">
+      <a class="author-name" href={href('about/')}>{profile.nickname}</a>
+      {post.tags.map(tag => <span class="tag">{tag}</span>)}
+    </div>
+  </div>
+  {post.cover && <a href={href('posts/' + post.id + '/')} class="post-image" tabindex="-1" aria-hidden="true"><img src={href(post.cover)} alt="" loading="lazy" /></a>}
+  <time datetime={post.date}>{post.date.replaceAll('-', '.')}</time>
+</article>
