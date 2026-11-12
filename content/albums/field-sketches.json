@@ -1,0 +1,24 @@
+{
+  "id": "field-sketches",
+  "version": "initial",
+  "title": "原野的色彩",
+  "date": "2026-11-12",
+  "description": "为小站绘制的风景插画集。",
+  "photos": [
+    {
+      "src": "art/meadow.webp",
+      "thumb": "art/meadow.webp",
+      "caption": "草坡尽头的小屋"
+    },
+    {
+      "src": "art/railway.webp",
+      "thumb": "art/railway.webp",
+      "caption": "树影里的小站"
+    },
+    {
+      "src": "art/sea.webp",
+      "thumb": "art/sea.webp",
+      "caption": "海岸的午后"
+    }
+  ]
+}

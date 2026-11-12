@@ -1,0 +1,1 @@
+<button class="button share" type="button">复制分享链接</button><span role="status" class="share-status"></span><script>document.querySelectorAll('.share').forEach(btn=>btn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);btn.nextElementSibling!.textContent=' 链接已复制'}catch{window.prompt('复制此链接分享',location.href)}}))</script>

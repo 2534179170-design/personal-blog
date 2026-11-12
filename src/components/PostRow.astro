@@ -1,0 +1,6 @@
+---
+import {href} from '../lib/blog.mjs';
+import Icon from './Icon.astro';
+const {post}=Astro.props;
+---
+<article class="post-row" data-tags={JSON.stringify(post.tags)}><a href={href('posts/'+post.id+'/')} class="post-image" tabindex="-1" aria-hidden="true"><img src={href(post.cover||'art/meadow.webp')} alt="" loading="lazy"/></a><div class="post-copy"><div class="post-meta"><span class="tag">{post.tags[0]||'手记'}</span><time>{post.date.replaceAll('-','.')}</time></div><h3><a href={href('posts/'+post.id+'/')}>{post.title}</a></h3><p>{post.summary}</p><a class="read" href={href('posts/'+post.id+'/')}>阅读全文 <Icon name="arrow" size={14}/></a></div></article>

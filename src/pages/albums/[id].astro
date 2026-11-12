@@ -1,0 +1,11 @@
+---
+import Layout from '../../components/Layout.astro';
+import Share from '../../components/Share.astro';
+import {albums,href} from '../../lib/blog.mjs';
+export function getStaticPaths() {
+  return albums.map(album => ({ params: { id: album.id }, props: { album } }));
+}
+const {album}=Astro.props;
+---
+<Layout active="相册" title={album.title}><div class="page-head"><a class="back" href={href('albums/')}>← 全部相册</a><h1>{album.title}</h1><p>{album.description}</p><Share/></div><div class="photo-grid">{album.photos.map((p,i)=><button data-photo={i} data-src={href(p.src)} data-caption={p.caption}><img loading="lazy" src={href(p.thumb)} alt={p.caption||'相片 '+(i+1)}/><span>{p.caption}</span></button>)}</div><dialog id="viewer"><div class="split"><span id="photo-counter"></span><button id="exit" aria-label="关闭大图">×</button></div><img id="full"/><div class="split"><button id="prev" aria-label="上一张">←</button><span id="caption"></span><button id="next" aria-label="下一张">→</button></div></dialog>
+<script>const pics=[...document.querySelectorAll<HTMLButtonElement>('[data-photo]')];const dlg=document.querySelector('#viewer') as HTMLDialogElement;let n=0;function show(i:number){n=(i+pics.length)%pics.length;const data=pics[n].dataset;const img=document.querySelector('#full') as HTMLImageElement;img.src=data.src!;img.alt=data.caption||'相片';document.querySelector('#caption')!.textContent=data.caption||'';document.querySelector('#photo-counter')!.textContent=(n+1)+' / '+pics.length;}pics.forEach((b,i)=>b.onclick=()=>{show(i);dlg.showModal()});document.querySelector('#exit')!.addEventListener('click',()=>dlg.close());document.querySelector('#next')!.addEventListener('click',()=>show(n+1));document.querySelector('#prev')!.addEventListener('click',()=>show(n-1));dlg.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(n+1);if(e.key==='ArrowLeft')show(n-1)});let x=0;dlg.addEventListener('touchstart',e=>x=e.changedTouches[0].clientX);dlg.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x;if(Math.abs(dx)>45)show(n+(dx<0?1:-1))});</script></Layout>

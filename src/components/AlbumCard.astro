@@ -1,0 +1,6 @@
+---
+import {href} from '../lib/blog.mjs';
+import Icon from './Icon.astro';
+const {album}=Astro.props;
+---
+<a class="album-card" href={href('albums/'+album.id+'/')}><div><img src={href(album.photos[0]?.thumb||'art/meadow.webp')} alt="" loading="lazy"/><span><Icon name="image" size={13}/>{album.photos.length}</span></div><strong>{album.title}</strong></a>

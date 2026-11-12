@@ -1,0 +1,10 @@
+---
+import Layout from '../../components/Layout.astro';
+import Share from '../../components/Share.astro';
+import {posts,href,markdown} from '../../lib/blog.mjs';
+export function getStaticPaths() {
+  return posts.map(post => ({ params: { id: post.id }, props: { post } }));
+}
+const {post}=Astro.props;
+---
+<Layout active="文章" title={post.title} description={post.summary}><article class="paper detail"><a class="back" href={href('posts/')}>← 文章空间</a><div class="post-meta"><span class="tag">{post.tags.join(' · ')||'手记'}</span><time>{post.date}</time></div><h1>{post.title}</h1>{post.cover&&<img class="detail-cover" src={href(post.cover)} alt="文章封面"/>}<div class="prose" set:html={markdown(post.body)}/><Share/></article></Layout>

@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+import {href,profile,posts,albums,adminUrl} from '../lib/blog.mjs';
+import '../styles/site.css';
+const {title,active='首页',description=profile.signature}=Astro.props;
+const nav=[['首页','','home'],['文章','posts/','book'],['相册','albums/','image'],['关于我','about/','user']];
+const items=[...posts.map(p=>({title:p.title,kind:'文章',path:href('posts/'+p.id+'/')})),...albums.map(p=>({title:p.title,kind:'相册',path:href('albums/'+p.id+'/')}))];
+---
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><meta name="theme-color" content="#fbfaf4"/><link rel="icon" href={href('sprout.svg')}/><title>{title?title+' · '+profile.siteName:profile.siteName}</title></head>
+<body><header class="top"><div class="top-inner"><a class="brand" href={href('')}><img src={href('sprout.svg')} alt="" width="37" height="37"/>{profile.siteName}</a><nav aria-label="主导航">{nav.map(([label,route,icon])=><a class:list={['nav-item',{active:active===label}]} aria-current={active===label?'page':undefined} href={href(route)}><Icon name={icon} size={16}/>{label}</a>)}</nav><button class="search-toggle" aria-label="搜索本站" title="搜索本站"><Icon name="search" size={20}/></button></div></header>
+<main class="shell"><slot/></main><footer><span>© {new Date().getFullYear()} {profile.siteName}</span><a href={adminUrl}>站主管理</a></footer>
+<dialog id="search-dialog"><div class="split"><h2>搜索小站</h2><button data-close aria-label="关闭搜索">×</button></div><input type="search" id="site-search" placeholder="搜索文章或相册" aria-label="搜索文章或相册"/><ul>{items.map(i=><li data-search={i.title}><a href={i.path}><small>{i.kind}</small> {i.title}</a></li>)}</ul><p id="no-results" hidden>没有找到相关内容。</p></dialog>
+<script>
+const dlg=document.querySelector('#search-dialog') as HTMLDialogElement;
+const field=document.querySelector('#site-search') as HTMLInputElement;
+document.querySelector('.search-toggle')?.addEventListener('click',()=>{dlg.showModal();field.focus()});
+dlg.querySelector('[data-close]')?.addEventListener('click',()=>dlg.close());
+field.addEventListener('input',()=>{let count=0;dlg.querySelectorAll<HTMLElement>('[data-search]').forEach(el=>{el.hidden=!el.dataset.search?.toLowerCase().includes(field.value.trim().toLowerCase());if(!el.hidden)count++});(document.querySelector('#no-results') as HTMLElement).hidden=!!count});
+</script></body></html>

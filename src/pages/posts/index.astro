@@ -1,0 +1,7 @@
+---
+import Layout from '../../components/Layout.astro';
+import PostRow from '../../components/PostRow.astro';
+import {posts} from '../../lib/blog.mjs';
+const tags=[...new Set(posts.flatMap(p=>p.tags))];
+---
+<Layout active="文章" title="文章空间"><div class="page-head"><h1>文章空间</h1><p>共 {posts.length} 篇手记</p></div><div class="filters" aria-label="按标签筛选">{['全部',...tags].map((t,i)=><button aria-pressed={!i} data-filter={i?t:''}>{t}</button>)}</div><div class="post-list archive">{posts.map(post=><PostRow post={post}/>)}{!posts.length&&<p class="empty">暂时没有手记。</p>}</div><script>document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('[data-filter]').forEach(el=>el.setAttribute('aria-pressed',String(el===btn)));document.querySelectorAll<HTMLElement>('[data-tags]').forEach(el=>el.hidden=!!btn.dataset.filter&&!JSON.parse(el.dataset.tags||'[]').includes(btn.dataset.filter))})</script></Layout>
