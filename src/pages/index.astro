@@ -11,7 +11,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
     <div class="welcome-copy">
       <span class="welcome-label">{profile.nickname} 的个人主页</span>
       <h1>{profile.siteName}</h1>
-      <p>{profile.signature}</p>
+      {profile.signature && <p>{profile.signature}</p>}
       <a href={href('about/')} class="welcome-link">认识一下站主 <Icon name="arrow" size={14} /></a>
     </div>
     <a class="welcome-avatar" href={href('about/')} aria-label="查看站主资料">
