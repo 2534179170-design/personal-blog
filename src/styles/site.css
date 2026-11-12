@@ -149,7 +149,9 @@ img { max-width: 100%; }
 .profile-identity h2 { margin: 0 0 7px; font-size: 17px; }
 .profile-identity h2 a { color: var(--pink); }
 .owner-label { color: #a97485; background: var(--pink-light); font-size: 10px; padding: 2px 7px; border-radius: 3px; }
-.profile-card > p { color: #888; line-height: 1.9; font-size: 12px; margin: 17px 0 13px; }
+.profile-bio { color: #888; line-height: 1.9; font-size: 12px; margin: 17px 0 13px; }
+.profile-bio p { margin: 0; }
+.profile-bio strong { color: #666; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); padding-block: 12px 15px; }
 .stats a { display: grid; gap: 5px; text-align: center; color: #999; font-size: 11px; border-right: 1px solid #eee; }
 .stats a:last-child { border-right: 0; }

@@ -3,7 +3,7 @@ import Layout from '../components/Layout.astro';
 import PostRow from '../components/PostRow.astro';
 import AlbumCard from '../components/AlbumCard.astro';
 import Icon from '../components/Icon.astro';
-import { href, profile, posts, albums } from '../lib/blog.mjs';
+import { href, profile, posts, albums, markdown } from '../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
 ---
 <Layout>
@@ -46,7 +46,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
           <a href={href('about/')}><img class="avatar" src={href(profile.avatar || 'art/avatar.webp')} alt="站主头像" /></a>
           <div><h2><a href={href('about/')}>{profile.nickname}</a></h2><span class="owner-label">站主</span></div>
         </div>
-        <p>{profile.bio}</p>
+        <div class="profile-bio" set:html={markdown(profile.bio)} />
         <div class="stats">
           <a href={href('posts/')}><b>{posts.length}</b><span>空间</span></a>
           <a href={href('albums/')}><b>{albums.length}</b><span>相册</span></a>
