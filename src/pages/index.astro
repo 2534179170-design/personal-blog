@@ -26,7 +26,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
           <a href={href('posts/')}>全部空间 <Icon name="arrow" size={13} /></a>
         </div>
         <div class="feed-caption"><span>记录此刻，也收藏喜欢的日常。</span><span>发布时间</span></div>
-        <div class="post-list">{posts.slice(0, 5).map(post => <PostRow post={post} />)}</div>
+        <div class="post-list">{posts.slice(0, 5).map(post => <PostRow post={post} showAvatar={false} />)}</div>
         {!posts.length && <p class="empty">还没有公开的空间内容。</p>}
         {posts.length > 0 && <a class="more-row" href={href('posts/')}>浏览全部 {posts.length} 篇空间 <Icon name="arrow" size={13} /></a>}
       </section>

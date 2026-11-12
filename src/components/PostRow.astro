@@ -1,11 +1,11 @@
 ---
 import { href, profile } from '../lib/blog.mjs';
-const { post } = Astro.props;
+const { post, showAvatar = true } = Astro.props;
 ---
-<article class="post-row" data-tags={JSON.stringify(post.tags)}>
-  <a class="post-author" href={href('about/')} aria-label={profile.nickname + '的个人资料'}>
+<article class:list={['post-row', { 'no-avatar': !showAvatar }]} data-tags={JSON.stringify(post.tags)}>
+  {showAvatar && <a class="post-author" href={href('about/')} aria-label={profile.nickname + '的个人资料'}>
     <img src={href(profile.avatar || 'art/avatar.webp')} alt="" loading="lazy" />
-  </a>
+  </a>}
   <div class="post-copy">
     <h3><a href={href('posts/' + post.id + '/')}>{post.title}</a></h3>
     <p>{post.summary}</p>
