@@ -1,0 +1,42 @@
+name: 更新主站
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: blog-primary
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: 检查免费托管部署凭据
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$TOKEN" ] || [ -z "$ACCOUNT" ]; then
+            echo "::error::主站自动部署尚未配置。请按维护指南添加账号编号和部署密钥，再重新运行。"
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+        env:
+          SITE_ORIGIN: ${{ vars.PRIMARY_ORIGIN }}
+      - name: 发布网页与后台
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PROJECT: ${{ vars.CLOUDFLARE_PROJECT }}
+        run: pnpm dlx wrangler@4.160.0 pages deploy dist --project-name "$PROJECT" --branch main

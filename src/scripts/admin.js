@@ -79,7 +79,7 @@ function imageField(key,label){
 }
 function renderFields(){
   const data=draft.data,host=$('fields');host.replaceChildren();$('form-title').textContent='编辑'+typeNames[section];
-  $('withdraw').hidden=!draft.expected||section==='profile';$('publish').disabled=!auth;
+  $('withdraw').hidden=!auth||!draft.expected||section==='profile';$('publish').disabled=!auth;
   if(section==='profile'){field('站名','siteName');field('昵称','nickname');field('签名','signature');field('个人介绍','bio','textarea');imageField('avatar','更换头像');imageField('cover','更换首页封面');field('社交链接（每行填写 名称 | 完整网址）','links','textarea');return;}
   field('标题','title');field('日期','date','date');
   if(section==='posts'){
@@ -127,11 +127,11 @@ async function send(remove=false){
     const text=JSON.stringify(draft.data);const files=remove?[]:draft.files.filter(f=>text.includes(f.path));
     if(files.length>36||files.reduce((n,f)=>n+f.base64.length,0)>26e6)throw new Error('本次图片过多，请分批发布（每批最多 18 张新相片、约 20 MB）。');
     const payload={type:section,id:draft.data.id,expected:draft.expected,requestId:draft.requestId,remove,data:draft.data,files};
-    await request('publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    draft.accepted={remove};await keep(false);await monitor(draft.accepted);
+    const receipt=await request('publish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    draft.accepted={remove,commit:receipt.commit};await keep(false);await monitor(draft.accepted);
   }catch(e){status('发布失败。'+e.message);lock(false)}
 }
-async function monitor({remove}){
+async function monitor({remove,commit}){
   lock(true);status('正在上线，已提交到仓库。可以关闭页面，稍后继续查看。');
   const snapshot=draft;
   for(let i=0;i<60;i++){
@@ -141,6 +141,13 @@ async function monitor({remove}){
       if(remove?!v:v===snapshot.requestId){
         await freshCatalog();await deleteDraft(snapshot.key);lock(false);await openSection(section);status(remove?'已上线 · 内容已撤下':'已上线');
         if(!remove){const a=element('a','打开并分享','share-out');a.href=url(section==='profile'?'about/':section+'/'+snapshot.data.id+'/');$('published-link').append(a)}return;
+      }
+      if(commit && i%5===0){
+        const deployment=await request('deployment?commit='+encodeURIComponent(commit));
+        if(deployment.failed){
+          lock(false);status('发布失败。已保留草稿及上一次成功上线的版本。修复后请重新运行部署。');
+          const a=element('a','查看部署记录','share-out');a.href=deployment.log;a.target='_blank';a.rel='noopener';$('published-link').replaceChildren(a);return;
+        }
       }
     }catch{}
     await new Promise(r=>setTimeout(r,4000));

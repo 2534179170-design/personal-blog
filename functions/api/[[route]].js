@@ -81,6 +81,14 @@ export async function onRequest({request,env}){
     if(!owner)throw new Problem(401,'请先用站主账号登录。');
     if(route==='logout'&&request.method==='POST'){const response=json({ok:true});response.headers.append('Set-Cookie',cookie('blog_session','',0));return response;}
     if(route==='capacity'&&request.method==='GET'){const r=await github(session.token,'/repos/'+env.BLOG_REPO);return json({kilobytes:r.size});}
+    if(route==='deployment'&&request.method==='GET'){
+      const sha=url.searchParams.get('commit');
+      if(!/^[a-f0-9]{40}$/.test(sha||''))throw new Problem(400,'版本编号无效。');
+      // 部署记录来自公开仓库，无需扩展博客应用的写入权限。
+      const response=await fetch('https://api.github.com/repos/'+env.BLOG_REPO+'/actions/workflows/primary.yml/runs?head_sha='+sha+'&per_page=1',{headers:{'User-Agent':'wind-journal-blog'}});
+      const run=response.ok?(await response.json()).workflow_runs?.[0]:null;
+      return json({failed:!!run&&['failure','cancelled','timed_out','action_required'].includes(run.conclusion),log:run?.html_url});
+    }
     if(route==='publish'&&request.method==='POST'){
       if(!request.headers.get('Content-Type')?.includes('application/json'))throw new Problem(415,'请求格式无效。');
       const body=await request.text();if(body.length>29000000)throw new Problem(413,'请分批添加照片。');
