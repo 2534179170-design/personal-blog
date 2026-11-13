@@ -113,16 +113,27 @@ const results = document.querySelector('#anime-results');
 const query = document.querySelector('#anime-query');
 const searchStatus = document.querySelector('#search-status');
 const selectedSlotLabel = document.querySelector('#selected-slot');
+const gridMain = document.querySelector('#grid-main');
+const picker = document.querySelector('#anime-picker');
 const gridItems = Array(9).fill(null);
 let activeSlot = null;
 let searchRequest;
 
+function closePicker() {
+  picker.hidden = true;
+  gridMain.hidden = false;
+  if (activeSlot !== null) slots[activeSlot].querySelector('.cell-select').focus();
+}
 function selectSlot(index) {
   activeSlot = index;
   slots.forEach((slot, i) => slot.classList.toggle('active', i === index));
   selectedSlotLabel.textContent = `正在填写第 ${index + 1} 格：${slots[index].querySelector('.cell-label').value}`;
+  gridMain.hidden = true;
+  picker.hidden = false;
   query.focus();
 }
+document.querySelector('#picker-back').addEventListener('click', closePicker);
+picker.addEventListener('keydown', event => { if (event.key === 'Escape') closePicker(); });
 slots.forEach((slot, index) => {
   slot.querySelector('.cell-select').addEventListener('click', () => selectSlot(index));
   slot.querySelector('.cell-remove').addEventListener('click', () => {
@@ -178,6 +189,7 @@ async function searchAnime() {
         slot.querySelector('.cell-title').textContent = item.title;
         slot.querySelector('.cell-remove').hidden = false;
         searchStatus.textContent = `已填入第 ${activeSlot + 1} 格：${item.title}`;
+        closePicker();
       });
       li.append(button);
       results.append(li);
