@@ -1,0 +1,53 @@
+name: 同步番组计划动态
+on:
+  schedule:
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: blog-pages
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: 读取公开动态
+        run: node scripts/sync-bangumi-activity.mjs
+      - name: 提交变化
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain -- public/data/bangumi-activity.json)" ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add public/data/bangumi-activity.json
+            git commit -m '同步番组计划公开动态'
+            git push
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: pnpm/action-setup@v4
+        if: steps.changes.outputs.changed == 'true'
+        with:
+          version: 11.25.0
+      - run: pnpm install --frozen-lockfile
+        if: steps.changes.outputs.changed == 'true'
+      - run: pnpm build
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          BLOG_BASE: /${{ github.event.repository.name }}/
+          SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
+          PRIMARY_ORIGIN: ${{ vars.PRIMARY_ORIGIN }}
+      - uses: actions/configure-pages@v5
+        if: steps.changes.outputs.changed == 'true'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.changes.outputs.changed == 'true'
+        with:
+          path: dist
+      - uses: actions/deploy-pages@v4
+        if: steps.changes.outputs.changed == 'true'

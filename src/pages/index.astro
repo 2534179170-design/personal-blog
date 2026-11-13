@@ -1,6 +1,7 @@
 ---
 import Layout from '../components/Layout.astro';
 import Watching from '../components/Watching.astro';
+import Activity from '../components/Activity.astro';
 import PostRow from '../components/PostRow.astro';
 import Icon from '../components/Icon.astro';
 import { href, profile, posts, albums, markdown } from '../lib/blog.mjs';
@@ -20,6 +21,7 @@ const cover = profile.cover || 'art/winter-piano.webp';
     </div>
   </section>
   <Watching/>
+  <Activity/>
   <div class="home-grid">
     <div class="main-column">
       <section>

@@ -1,4 +1,5 @@
 import { Problem, recordPath, validateRecord, serialize, versionFrom, decideChange } from '../../src/lib/validate.mjs';
+import {normalizeTimeline, TIMELINE_API} from '../../src/lib/bangumi-activity.mjs';
 const encoder=new TextEncoder(), decoder=new TextDecoder();
 const as64=bytes=>{let s='';for(let i=0;i<bytes.length;i+=8192)s+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(s).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'')};
 const bytes64=s=>Uint8Array.from(atob(s.replaceAll('-','+').replaceAll('_','/')),c=>c.charCodeAt(0));
@@ -68,9 +69,21 @@ async function publish(session,env,input){
   await gh('/git/refs/heads/main','PATCH',{sha:next.sha,force:false});
   return {accepted:true,commit:next.sha};
 }
-export async function onRequest({request,env}){
+export async function onRequest({request,env,waitUntil}){
   try{
     const url=new URL(request.url),route=url.pathname.replace(/^\/api\//,'').replace(/\/$/,'');
+    if(route==='activity'&&request.method==='GET'){
+      const cache=typeof caches==='undefined'?null:caches.default;
+      const key=new Request(url.origin+'/api/activity');
+      try{const cached=await cache?.match(key);if(cached)return cached;}catch{}
+      const upstream=await fetch(TIMELINE_API,{headers:{Accept:'application/json','User-Agent':'2534179170-design/personal-blog (https://github.com/2534179170-design/personal-blog)'},signal:AbortSignal.timeout(10000)});
+      if(!upstream.ok)throw new Problem(502,'番组计划动态暂时不可用。');
+      const events=normalizeTimeline(await upstream.json());
+      if(!events.length)throw new Problem(502,'番组计划动态暂时不可用。');
+      const response=Response.json({updatedAt:new Date().toISOString(),events},{headers:{'Cache-Control':'public, max-age=300, stale-while-revalidate=600'}});
+      if(cache&&waitUntil)waitUntil(cache.put(key,response.clone()).catch(()=>{}));
+      return response;
+    }
     if(request.method==='POST'&&request.headers.get('Origin')!==url.origin)throw new Problem(403,'请求来源无效。');
     const configured=['SESSION_KEY','GH_CLIENT_ID','GH_CLIENT_SECRET','BLOG_OWNER_ID','BLOG_REPO'].every(k=>env[k]);
     if(!configured){if(route==='session')return json({configured:false});throw new Problem(503,'站主登录尚待配置。');}

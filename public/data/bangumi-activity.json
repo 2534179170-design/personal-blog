@@ -1,0 +1,59 @@
+{
+  "updatedAt": "2026-11-13T04:37:38.529Z",
+  "events": [
+    {
+      "id": 74395298,
+      "action": "想看",
+      "title": "夏色奇迹",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/20/ab/26825_5W8p6.jpg",
+      "url": "https://chii.in/subject/26825",
+      "createdAt": "2026-11-11T15:51:42.000Z"
+    },
+    {
+      "id": 74395123,
+      "action": "在看",
+      "title": "归宅部活动记录",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/e0/75702_1RxLZ.jpg",
+      "url": "https://chii.in/subject/75702",
+      "createdAt": "2026-11-11T15:47:17.000Z"
+    },
+    {
+      "id": 74394019,
+      "action": "看过",
+      "title": "青涩宝贝",
+      "detail": "我的评分 7/10",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
+      "url": "https://chii.in/subject/33118",
+      "createdAt": "2026-11-11T15:17:19.000Z"
+    },
+    {
+      "id": 74393965,
+      "action": "追番进度",
+      "title": "青涩宝贝",
+      "detail": "第 12 话 · 泽渡穗香〜小小的恋爱故事〜",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
+      "url": "https://chii.in/subject/33118",
+      "createdAt": "2026-11-11T15:16:16.000Z"
+    },
+    {
+      "id": 74313061,
+      "action": "追番进度",
+      "title": "学生会也有洞！",
+      "detail": "第 6 话 · 玩完了／梅与老师／驹絽的世界",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/17/c7/554779_oPitO.jpg",
+      "url": "https://chii.in/subject/554779",
+      "createdAt": "2026-11-08T15:08:53.000Z"
+    },
+    {
+      "id": 74311230,
+      "action": "追番进度",
+      "title": "魔法姐妹露露特莉莉 第2部分",
+      "detail": "第 18 话 · 不可思议的岛上暴风雨",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/44/ed/634210_O7aNK.jpg",
+      "url": "https://chii.in/subject/634210",
+      "createdAt": "2026-11-08T14:26:43.000Z"
+    }
+  ]
+}
