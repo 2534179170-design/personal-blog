@@ -4,9 +4,6 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 let scrollScheduled = false;
 
 function updateScroll() {
-  const distance = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-  const progress = Math.min(100, Math.max(0, scrollY / distance * 100));
-  document.documentElement.style.setProperty('--page-progress', progress + '%');
   header?.classList.toggle('is-scrolled', scrollY > 14);
   backToTop?.classList.toggle('is-visible', scrollY > 480);
   scrollScheduled = false;
