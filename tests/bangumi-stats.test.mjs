@@ -12,6 +12,7 @@ test('收藏统计过滤私密记录并计算分数分布',()=>{
   const groups=summarizeCollections(entries);
   assert.equal(groups.all.total,3);
   assert.equal(groups.all.completed,2);
+  assert.equal(groups.anime.states.doing,1);
   assert.equal(groups.anime.average,7);
   assert.equal(groups.anime.deviation,1);
   assert.equal(groups.anime.histogram[2],1);

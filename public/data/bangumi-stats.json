@@ -1,10 +1,17 @@
 {
-  "updatedAt": "2026-11-13T08:26:32.007Z",
+  "updatedAt": "2026-11-13T12:06:16.843Z",
   "groups": {
     "all": {
-      "total": 1540,
+      "total": 1541,
       "completed": 1179,
-      "completionRate": 76.6,
+      "states": {
+        "want": 314,
+        "completed": 1179,
+        "doing": 30,
+        "onHold": 5,
+        "dropped": 13
+      },
+      "completionRate": 76.5,
       "average": 6.11,
       "deviation": 1.51,
       "rated": 991,
@@ -24,6 +31,13 @@
     "book": {
       "total": 34,
       "completed": 28,
+      "states": {
+        "want": 0,
+        "completed": 28,
+        "doing": 6,
+        "onHold": 0,
+        "dropped": 0
+      },
       "completionRate": 82.4,
       "average": 5,
       "deviation": 2,
@@ -42,9 +56,16 @@
       ]
     },
     "anime": {
-      "total": 1300,
+      "total": 1301,
       "completed": 1042,
-      "completionRate": 80.2,
+      "states": {
+        "want": 227,
+        "completed": 1042,
+        "doing": 14,
+        "onHold": 5,
+        "dropped": 13
+      },
+      "completionRate": 80.1,
       "average": 6,
       "deviation": 1.5,
       "rated": 894,
@@ -64,6 +85,13 @@
     "game": {
       "total": 194,
       "completed": 97,
+      "states": {
+        "want": 87,
+        "completed": 97,
+        "doing": 10,
+        "onHold": 0,
+        "dropped": 0
+      },
       "completionRate": 50,
       "average": 7.18,
       "deviation": 1.16,
@@ -84,6 +112,13 @@
     "real": {
       "total": 12,
       "completed": 12,
+      "states": {
+        "want": 0,
+        "completed": 12,
+        "doing": 0,
+        "onHold": 0,
+        "dropped": 0
+      },
       "completionRate": 100,
       "average": 0,
       "deviation": 0,
