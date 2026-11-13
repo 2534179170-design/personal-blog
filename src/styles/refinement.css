@@ -1,0 +1,114 @@
+/* 更明确的留白、图片舞台和字体层级，保留小站原有的冬日配色。 */
+:root {
+  --ink:#1f2025;
+  --muted:#6e6e76;
+  --rule:#e7e7eb;
+  --pink:#79516b;
+  --headline:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  --editorial-ink:#1f2025;
+  --editorial-muted:#6e6e76;
+  --editorial-line:#e6e6ea;
+}
+body { background:linear-gradient(180deg,#fff 0%,#fbfbfd 56%,#fff 100%); }
+.top-inner { background:linear-gradient(120deg,rgba(255,255,255,.8),rgba(247,247,251,.68)); border-color:rgba(255,255,255,.9); box-shadow:inset 0 1px rgba(255,255,255,.98),0 14px 38px -25px rgba(31,35,51,.34); }
+.nav-item { color:#4b4b53; font-weight:600; }
+.nav-item.active { color:#543d55; background:rgba(255,255,255,.7); }
+.search-toggle { color:#6e6e76; }
+.shell { max-width:1200px; }
+
+/* 首页：让图片先说话，再用短标题引导阅读。 */
+.welcome { min-height:clamp(420px,41vw,520px); margin:28px 0 clamp(62px,7vw,94px); border:1px solid #f1eff2; border-radius:26px; box-shadow:0 26px 62px -48px rgba(36,39,54,.35); }
+.welcome-copy { max-width:min(510px,100%); padding:clamp(28px,4vw,48px); border:1px solid rgba(255,255,255,.88); border-radius:20px; background:rgba(255,255,255,.77); box-shadow:0 20px 55px -39px rgba(24,27,43,.42); -webkit-backdrop-filter:blur(28px) saturate(1.2); backdrop-filter:blur(28px) saturate(1.2); }
+.welcome-copy h1 { font-family:var(--headline); font-size:clamp(34px,4vw,55px); font-weight:730; letter-spacing:-.075em; line-height:1.15; margin:0 0 19px; }
+.welcome-copy .hero-kicker { margin-bottom:16px; color:#766277; font-size:11px; letter-spacing:.16em; }
+.welcome-copy p { color:#53525b; line-height:1.7; }
+.hero-actions { margin-top:27px; gap:20px; }
+.welcome-link { padding:11px 19px; border-radius:999px; background:#24242c; box-shadow:none; transition:transform .25s ease,background-color .25s ease; }
+.welcome-link:hover { background:#41404d; transform:translateY(-2px); }
+.hero-actions > a:not(.welcome-link) { color:#4d6688; font-weight:600; }
+.hero-actions > a:not(.welcome-link):hover { color:#334e74; }
+.hero-caption { border-radius:999px; }
+
+.section-head { padding-bottom:17px; }
+.section-head h2 { font-family:var(--headline); font-size:clamp(26px,2.8vw,36px); font-weight:700; letter-spacing:-.065em; line-height:1.22; }
+.section-head h2::before { display:none; }
+.section-head h2 > span { font-size:12px; font-weight:500; letter-spacing:0; color:#85858c; }
+.section-head > a { color:#536d91; font-size:12px; font-weight:600; }
+.section-head > a:hover { color:#334e74; }
+.watching { margin-bottom:clamp(52px,6vw,78px); }
+.watching .section-head { border-top:0; padding-top:0; }
+.watching #watch-list { margin-top:28px; }
+.watching #watch-list .watch-cover { border-radius:14px; box-shadow:0 19px 32px -26px rgba(29,34,54,.48); }
+.watching #watch-list strong { color:#272831; font-size:13px; }
+
+/* 统计和动态保持紧凑，作为追番后的次级信息。 */
+.home-panels { gap:0; padding:27px 30px; margin-bottom:clamp(62px,7vw,90px); border:1px solid #edecf0; border-radius:22px; background:#f7f7f9; }
+.home-panels .activity.compact { padding-left:29px; border-left-color:#e4e3e8; }
+.home-panels .collection-stats.compact { padding-right:29px; }
+.home-panels .section-head h2 { font-size:21px; letter-spacing:-.045em; }
+.home-panels .stats-cards { gap:5px; }
+.home-panels .collection-stats .stats-tile { border-top-color:#dedee4; }
+.home-panels .collection-stats .stats-tile strong { color:#40404a; font-size:21px; }
+.home-panels .collection-stats .stats-tile span { color:#777780; }
+.home-panels .collection-stats .stats-bar { background:linear-gradient(#9cb4cb,#728da9); }
+.home-panels .activity .activity-card:hover { background:rgba(255,255,255,.58); }
+
+.home-grid { gap:clamp(38px,5vw,60px); }
+.home-space .section-head { border-top:0; padding-top:0; }
+.home-space .post-row:first-child { border:1px solid #ecebef; border-radius:18px; background:#f7f7f9; }
+.home-space .post-row:first-child .post-copy h3 { font-size:19px; }
+.home-space .post-row:not(:first-child) { border-bottom-color:#e9e9ed; }
+.home-space .post-copy h3 { letter-spacing:-.025em; }
+.sidebar .profile-card { padding:23px 22px 0; border:1px solid #edecf0; border-radius:20px; background:#f7f7f9; }
+.sidebar .profile-identity h2 { font-size:19px; letter-spacing:-.035em; }
+.sidebar .side-section { margin-top:26px; }
+.sidebar .tag-cloud a { background:#f4f4f6; color:#62636e; }
+
+/* 二级页：大标题、更安静的筛选栏和统一的内容边角。 */
+.archive-head,.album-head,.friend-head { padding:58px 0 34px; }
+.archive-head h1,.album-head h1,.friend-head h1 { font-family:var(--headline); font-size:clamp(44px,5vw,64px); font-weight:750; letter-spacing:-.08em; }
+.archive-head p,.album-head p,.friend-head p { color:#6e6e76; font-size:15px; }
+.archive-toolbar,.album-filters { margin-bottom:32px; }
+.archive .post-row.no-avatar { border:1px solid #ecebef; border-radius:16px; background:#fff; }
+.archive .post-row.no-avatar.featured { border-color:#e5e4e9; border-radius:22px; background:#f7f7f9; }
+.archive .post-copy h3 { letter-spacing:-.035em; }
+.archive .post-row.featured .post-copy h3 { font-family:var(--headline); font-weight:700; letter-spacing:-.05em; }
+.album-grid { gap:19px; }
+.album-grid .album-card { border-radius:20px; }
+.album-grid .album-label { border-color:rgba(255,255,255,.78); border-radius:13px; background:rgba(255,255,255,.79); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); }
+.album-grid .album-label strong { letter-spacing:-.035em; }
+.profile-hero { border:1px solid #eeedf1; border-radius:24px; background:#f7f7f9; }
+.shell #collection.collection-panel { margin-top:48px; }
+.paper.detail { border-radius:22px; }
+.detail h1 { font-family:var(--headline); font-size:clamp(30px,4vw,46px); font-weight:700; letter-spacing:-.055em; line-height:1.3; }
+.detail .prose { max-width:72ch; margin-inline:auto; color:#32333b; font-size:16px; line-height:1.95; }
+.shell .tool-switch button,.shell .tool-panel,.friend-grid a { border-radius:20px; }
+.friend-grid a { min-height:130px; }
+footer { color:#85858c; }
+
+@media(max-width:850px) {
+  .home-panels { padding:25px; }
+  .home-panels .collection-stats.compact { padding:0; }
+  .home-panels .activity.compact { border-left:0; border-top:1px solid #e4e3e8; padding:25px 0 0; }
+}
+@media(max-width:760px) {
+  .welcome { min-height:340px; margin:17px 0 54px; border-radius:20px; }
+  .welcome-copy { padding:24px; border-radius:16px; }
+  .welcome-copy h1 { font-size:34px; }
+  .watching { margin-bottom:56px; }
+  .home-panels { margin-bottom:62px; }
+  .archive-head,.album-head,.friend-head { padding:35px 0 24px; }
+}
+@media(max-width:480px) {
+  .welcome { min-height:320px; }
+  .welcome-copy { padding:20px; }
+  .welcome-copy h1 { font-size:30px; }
+  .section-head h2 { font-size:25px; }
+  .home-panels { padding:20px; border-radius:18px; }
+  .home-panels .section-head h2 { font-size:20px; }
+  .archive-head h1,.album-head h1,.friend-head h1 { font-size:42px; }
+  .album-grid .album-card { border-radius:16px; }
+}
+@media(prefers-reduced-transparency:reduce),(forced-colors:active) {
+  .top-inner,.welcome-copy,.album-grid .album-label { background:#fff; -webkit-backdrop-filter:none; backdrop-filter:none; }
+}
