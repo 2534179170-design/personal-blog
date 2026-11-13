@@ -1,15 +1,9 @@
 import {readFile, mkdir, writeFile} from 'node:fs/promises';
 import {dirname, resolve} from 'node:path';
-import {normalizeTimeline, TIMELINE_API} from '../src/lib/bangumi-activity.mjs';
+import {fetchActivity} from '../src/lib/bangumi-activity.mjs';
 
 const target = resolve('public/data/bangumi-activity.json');
-const response = await fetch(TIMELINE_API, {
-  headers: {'User-Agent': '2534179170-design/personal-blog (https://github.com/2534179170-design/personal-blog)', Accept: 'application/json'},
-  signal: AbortSignal.timeout(20000),
-});
-if (!response.ok) throw new Error(`番组计划动态请求失败：${response.status}`);
-const events = normalizeTimeline(await response.json());
-if (!events.length) throw new Error('番组计划没有返回可展示的公开动态。');
+const events = await fetchActivity();
 let previous;
 try { previous = JSON.parse(await readFile(target, 'utf8')); } catch { previous = null; }
 if (JSON.stringify(previous?.events) === JSON.stringify(events)) {

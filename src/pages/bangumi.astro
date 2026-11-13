@@ -1,12 +1,14 @@
 ---
 import Layout from '../components/Layout.astro';
-import {href,workIndex} from '../lib/blog.mjs';
+import Activity from '../components/Activity.astro';
+import stats from '../../public/data/bangumi-stats.json';
+import {href,workIndex,profile} from '../lib/blog.mjs';
 ---
 <Layout active="收藏" title="追番与游戏">
-  <header class="page-head">
-    <h1>追番与游戏</h1>
-    <p>来自<a href="https://chii.in/user/828732">凉宫洺雪的 Bangumi（番组计划）</a>公开收藏。浏览时每分钟检查更新。</p>
-  </header>
+  <header class="bangumi-head"><img src={href(profile.avatar || 'art/avatar-mingxue.webp')} alt="" width="72" height="72"/><div><p>Bangumi / 我的时光机</p><h1>{profile.nickname}的追番与游戏</h1><a href="https://chii.in/user/828732" target="_blank" rel="noopener noreferrer">打开番组计划主页 ↗</a></div></header>
+  <div class="bangumi-layout"><div class="bangumi-main">
+  <Activity/>
+  <section class="collection-panel"><div class="section-head"><h2>收藏列表 <span>按最近更新排序</span></h2></div>
   <div class="controls">
     <div class="filters" aria-label="作品类型" role="group">
       <button data-kind="2" aria-pressed="true">动画</button>
@@ -21,18 +23,33 @@ import {href,workIndex} from '../lib/blog.mjs';
   <p id="sync-status" class="muted" role="status"></p>
   <ul id="collection-list" data-works={JSON.stringify(Object.fromEntries([...workIndex.keys()].map(id=>[id,href('works/'+id+'/')])))} aria-label="作品列表"></ul>
   <div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button><button id="refresh">刷新记录</button></div>
+  </section></div><aside class="bangumi-side"><h2>收藏概览</h2><p><strong>{stats.groups.all.total.toLocaleString('zh-CN')}</strong> 部公开收藏</p><p><strong>{stats.groups.all.completed.toLocaleString('zh-CN')}</strong> 部已完成</p><p><strong>{stats.groups.all.rated.toLocaleString('zh-CN')}</strong> 部已评分</p><a href={href('')}>返回小站首页 ↗</a></aside></div>
 </Layout>
 <style>
+  .bangumi-head { display:flex; align-items:center; gap:18px; margin:25px 0 24px; padding:22px; border:1px solid var(--rule); border-radius:24px; background:linear-gradient(130deg,#f5f3fa,#fff); }
+  .bangumi-head img { width:72px; height:72px; object-fit:cover; border-radius:16px; }
+  .bangumi-head p { margin:0 0 5px; color:var(--pink); font-size:11px; letter-spacing:.09em; }
+  .bangumi-head h1 { margin:0 0 6px; font-size:clamp(21px,3vw,30px); font-family:var(--headline); }
+  .bangumi-head a,.bangumi-side a { color:var(--pink); font-size:12px; }
+  .bangumi-layout { display:grid; grid-template-columns:minmax(0,1fr) 220px; gap:22px; align-items:start; }
+  .bangumi-main { min-width:0; }
+  .bangumi-main :global(.activity) { margin-bottom:20px; }
+  .collection-panel,.bangumi-side { border:1px solid var(--rule); border-radius:22px; padding:20px; background:#fff; }
+  .bangumi-side h2 { margin:0 0 16px; font-size:17px; }
+  .bangumi-side p { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--rule); padding:10px 0; color:var(--muted); font-size:12px; }
+  .bangumi-side strong { color:var(--ink); font-size:22px; }
   .controls, .pager {display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+  .controls { margin-top:15px; }
   .controls .filters {margin:0}
   .controls label, .pager {font-size:13px;color:#666}
   select, .pager button {border:1px solid var(--rule);border-radius:5px;background:white;padding:6px 10px}
-  #collection-list {list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:10px 24px}
-  #collection-list :global(li) {display:flex;align-items:center;gap:13px;min-width:0;border-top:1px solid var(--rule);padding:12px 0}
+  #collection-list {list-style:none;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+  #collection-list :global(li) {display:flex;align-items:center;gap:13px;min-width:0;border-bottom:1px solid var(--rule);padding:11px 0}
   #collection-list :global(img) {width:50px;height:68px;object-fit:cover;border-radius:4px;background:#faf6f8}
   #collection-list :global(a) {font-size:14px;font-weight:600;overflow-wrap:anywhere}
   #collection-list :global(small) {display:block;color:#777;margin-top:5px}
   .pager {margin:16px 0 32px}
+  @media(max-width:760px){.bangumi-layout{grid-template-columns:minmax(0,1fr)}.bangumi-side{display:none}.bangumi-head{padding:16px}.bangumi-head img{width:56px;height:56px}}
 </style>
 <script>
   import '../scripts/bangumi.js';

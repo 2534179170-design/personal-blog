@@ -20,14 +20,16 @@ jobs:
           node-version: 24
       - name: 读取公开动态
         run: node scripts/sync-bangumi-activity.mjs
+      - name: 统计公开收藏
+        run: node scripts/sync-bangumi-stats.mjs
       - name: 提交变化
         id: changes
         run: |
-          if [ -n "$(git status --porcelain -- public/data/bangumi-activity.json)" ]; then
+          if [ -n "$(git status --porcelain -- public/data/bangumi-activity.json public/data/bangumi-stats.json)" ]; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add public/data/bangumi-activity.json
-            git commit -m '同步番组计划公开动态'
+            git add public/data/bangumi-activity.json public/data/bangumi-stats.json
+            git commit -m '同步番组计划公开动态与收藏统计'
             git push
             echo 'changed=true' >> "$GITHUB_OUTPUT"
           fi

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {normalizeTimeline} from '../src/lib/bangumi-activity.mjs';
+import {normalizeTimeline,normalizeCollections,mergeActivity} from '../src/lib/bangumi-activity.mjs';
 import {onRequest} from '../functions/api/[[route]].js';
 
 const subject = {id:123, name:'雪夜', type:2, images:{small:'https://lain.bgm.tv/pic/cover.jpg'}};
@@ -25,12 +25,15 @@ test('动态只展示站主公开记录，并保留作品链接和追番进度',
 
 test('公开动态接口不依赖站主登录配置',async()=>{
   const originalFetch=globalThis.fetch;
-  globalThis.fetch=async()=>Response.json([row(6)]);
+  const latest={subject_id:456,subject_type:2,type:3,updated_at:'2026-11-13T08:20:49Z',subject:{name_cn:'起风了',images:{small:'https://lain.bgm.tv/pic/new.jpg'}},private:false};
+  assert.equal(normalizeCollections({data:[latest,{...latest,private:true}]}).length,1);
+  assert.equal(mergeActivity(normalizeCollections({data:[latest]}),normalizeTimeline([row(6)]))[0].title,'起风了');
+  globalThis.fetch=async url=>Response.json(url.includes('/collections?')?{data:[latest]}:[row(6)]);
   try {
     const response=await onRequest({request:new Request('https://example.test/api/activity'),env:{}});
     assert.equal(response.status,200);
     const data=await response.json();
-    assert.equal(data.events.length,1);
-    assert.equal(data.events[0].title,'雪夜');
+    assert.equal(data.events.length,2);
+    assert.equal(data.events[0].title,'起风了');
   } finally { globalThis.fetch=originalFetch; }
 });

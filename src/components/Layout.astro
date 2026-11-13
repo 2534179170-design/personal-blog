@@ -16,13 +16,13 @@ const items = [
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" href={href('snowbook.svg')} />
+    <link rel="icon" href={href('album-snowflake.svg')} />
     <title>{title ? title + ' · ' + profile.siteName : profile.siteName}</title>
   </head>
   <body id="top">
     <header class="top">
       <div class="top-inner">
-        <a class="brand" href={href('')}><img class="brand-mark" src={href('snowbook.svg')} width="35" height="35" alt="" /><span>{profile.siteName}</span></a>
+        <a class="brand" href={href('')}><img class="brand-mark" src={href('album-snowflake.svg')} width="35" height="35" alt="" /><span>{profile.siteName}</span></a>
         <nav aria-label="主导航">
           {nav.map(([label, route, icon]) => <a class:list={['nav-item', { active: active === label }]} aria-current={active === label ? 'page' : undefined} href={href(route)}><Icon name={icon} size={15} />{label}</a>)}
         </nav>

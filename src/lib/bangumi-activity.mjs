@@ -1,5 +1,6 @@
 export const TIMELINE_URL = 'https://chii.in/user/828732/timeline';
 export const TIMELINE_API = 'https://next.bgm.tv/p1/users/828732/timeline?limit=20';
+export const COLLECTION_API = 'https://api.bgm.tv/v0/users/828732/collections?limit=20&offset=0';
 
 const short = (value, length) => typeof value === 'string'
   ? value.replace(/\s+/g, ' ').trim().slice(0, length)
@@ -85,5 +86,39 @@ export function normalizeTimeline(rows, limit = 8) {
     });
     if (events.length >= limit) break;
   }
+  return events;
+}
+
+export function normalizeCollections(page) {
+  if (!Array.isArray(page?.data)) throw new Error('番组计划收藏格式无效。');
+  const actions = {1:['想看','想玩'],2:['看过','玩过'],3:['在看','在玩'],4:['搁置','搁置'],5:['抛弃','抛弃']};
+  return page.data.flatMap(entry => {
+    const id=Number(entry.subject_id), kind=Number(entry.subject_type), state=Number(entry.type);
+    const subject=entry.subject;
+    const date=new Date(entry.updated_at);
+    if(entry.private || !validId(id) || ![2,4].includes(kind) || !actions[state] || !subject || subject.nsfw || Number.isNaN(date.valueOf()))return [];
+    const title=short(subject.name_cn || subject.name,80);
+    if(!title)return [];
+    const rate=Number(entry.rate), progress=Number(entry.ep_status);
+    return [{id:`collection-${id}-${date.valueOf()}`,action:actions[state][kind===4?1:0],title,
+      detail:short(entry.comment,100) || (progress>0&&kind===2?`已看 ${progress} 集`:rate>0&&rate<=10?`我的评分 ${rate}/10`:''),
+      cover:coverOf(subject),url:`https://chii.in/subject/${id}`,createdAt:date.toISOString()}];
+  });
+}
+
+export function mergeActivity(collections, timeline, limit=8) {
+  const combined=[...collections,...timeline.filter(event=>!collections.some(item=>item.url===event.url&&item.action===event.action&&Math.abs(new Date(item.createdAt)-new Date(event.createdAt))<600000))];
+  return combined.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0,limit);
+}
+
+export async function fetchActivity(fetcher=fetch) {
+  const options={headers:{Accept:'application/json','User-Agent':'2534179170-design/personal-blog (https://github.com/2534179170-design/personal-blog)'},signal:AbortSignal.timeout(10000)};
+  const results=await Promise.allSettled([fetcher(COLLECTION_API,options),fetcher(TIMELINE_API,options)]);
+  const json=async result=>result.status==='fulfilled'&&result.value.ok?result.value.json():null;
+  const [collectionPage,timelineRows]=await Promise.all(results.map(json));
+  const collections=collectionPage?normalizeCollections(collectionPage):[];
+  const timeline=timelineRows?normalizeTimeline(timelineRows,20):[];
+  const events=mergeActivity(collections,timeline);
+  if(!events.length)throw new Error('番组计划没有返回可展示的公开动态。');
   return events;
 }

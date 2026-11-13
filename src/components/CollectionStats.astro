@@ -1,0 +1,65 @@
+---
+import snapshot from '../../public/data/bangumi-stats.json';
+const labels=[['all','全部'],['book','书籍'],['anime','动画'],['game','游戏'],['real','电视剧']];
+const all=snapshot.groups.all;
+const cards=[['total','收藏'],['completed','完成'],['completionRate','完成率'],['average','平均分'],['deviation','标准差'],['rated','评分数']];
+const value=(key,data)=>key==='completionRate'?`${data[key].toFixed(1)}%`:['average','deviation'].includes(key)?data[key].toFixed(2):data[key].toLocaleString('zh-CN');
+const peak=Math.max(...all.histogram,1);
+---
+<section class="collection-stats" id="collection-stats" data-live={import.meta.env.BASE_URL === '/'} data-groups={JSON.stringify(snapshot.groups)} aria-labelledby="stats-heading">
+  <div class="section-head"><h2 id="stats-heading">收藏统计 <span>我的 Bangumi 记录</span></h2><a href="https://chii.in/user/828732" target="_blank" rel="noopener noreferrer">查看我的时光机 ↗</a></div>
+  <div class="stats-tabs" role="group" aria-label="收藏类型">{labels.map(([key,label],index)=><button type="button" data-stat-kind={key} aria-pressed={index===0}>{label}</button>)}</div>
+  <div class="stats-cards">{cards.map(([key,label])=><div class:list={['stats-tile',`stats-${key}`]}><strong data-stat-value={key}>{value(key,all)}</strong><span>{label}</span></div>)}</div>
+  <div class="stats-chart" role="img" aria-label="评分分布，从 10 分到 1 分">
+    {all.histogram.map((count,index)=><div class="stats-bin"><div class="stats-bar" data-stat-bar={10-index} style={`height:${count/peak*100}%`} title={`${10-index} 分：${count} 部`}></div><span>{10-index}</span></div>)}
+  </div>
+  <p class="stats-updated" id="stats-updated">统计更新：{new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(snapshot.updatedAt))}</p>
+</section>
+<script>
+  const root=document.querySelector<HTMLElement>('#collection-stats');
+  if(root){
+    let groups=JSON.parse(root.dataset.groups || '{}');
+    let selected='all';
+    const format=(key:string,data:Record<string,number>)=>key==='completionRate'?`${data[key].toFixed(1)}%`:['average','deviation'].includes(key)?data[key].toFixed(2):data[key].toLocaleString('zh-CN');
+    function render(){
+      const data=groups[selected];if(!data)return;
+      root.querySelectorAll<HTMLElement>('[data-stat-value]').forEach(element=>{const key=element.dataset.statValue!;element.textContent=format(key,data);});
+      const peak=Math.max(...data.histogram,1);
+      root.querySelectorAll<HTMLElement>('[data-stat-bar]').forEach((bar,index)=>{const count=data.histogram[index];bar.style.height=`${count/peak*100}%`;bar.title=`${10-index} 分：${count} 部`;});
+      root.querySelectorAll<HTMLButtonElement>('[data-stat-kind]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.statKind===selected)));
+    }
+    root.querySelectorAll<HTMLButtonElement>('[data-stat-kind]').forEach(button=>button.addEventListener('click',()=>{selected=button.dataset.statKind!;render();}));
+    async function refresh(){
+      if(root?.dataset.live!=='true'||document.hidden)return;
+      try{
+        const response=await fetch('/api/stats',{signal:AbortSignal.timeout(20000)});
+        if(!response.ok)throw new Error('统计暂时不可用');
+        const data=await response.json();
+        if(!data.groups?.all?.histogram)throw new Error('统计格式无效');
+        groups=data.groups;render();
+        const label=root.querySelector('#stats-updated');
+        if(label)label.textContent=`统计更新：${new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(data.updatedAt))}`;
+      }catch{}
+    }
+    refresh();document.addEventListener('visibilitychange',refresh);setInterval(refresh,1800000);
+  }
+</script>
+<style>
+  .collection-stats { margin: 0 0 20px; padding: clamp(16px,2.5vw,28px); border: 1px solid rgba(31,29,36,.13); border-radius: 28px; background: linear-gradient(145deg,#fff,#f9f8fc); box-shadow: 0 16px 36px -27px rgba(20,18,25,.2); }
+  .stats-tabs { display:flex; flex-wrap:wrap; gap:6px; margin:16px 0 13px; }
+  .stats-tabs button { border:1px solid transparent; border-radius:999px; padding:6px 14px; background:#f5f3f7; color:#615a69; font-size:12px; }
+  .stats-tabs button[aria-pressed=true] { border-color:#cbb9d0; background:#e9dfea; color:#5b435f; font-weight:700; }
+  .stats-cards { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:9px; }
+  .stats-tile { min-width:0; border:1px solid #e9e5ed; border-radius:13px; padding:13px 12px; background:#fff; }
+  .stats-tile strong { display:block; overflow:hidden; text-overflow:ellipsis; font-size:clamp(17px,2vw,24px); font-variant-numeric:tabular-nums; line-height:1.25; }
+  .stats-tile span { display:block; margin-top:4px; color:var(--muted); font-size:11px; }
+  .stats-total strong,.stats-rated strong { color:#a25f80; }.stats-completed strong,.stats-completionRate strong { color:#629674; }.stats-average strong,.stats-deviation strong { color:#628cba; }
+  .stats-chart { display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); align-items:end; gap:clamp(4px,1.5vw,14px); height:126px; margin:20px 5px 0; padding-top:6px; border-bottom:1px solid #e7e2e9; }
+  .stats-bin { min-width:0; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:4px; }
+  .stats-bar { width:min(100%,34px); min-height:2px; border-radius:5px 5px 1px 1px; background:linear-gradient(#90b8da,#6d99c3); transition:height .3s ease; }
+  .stats-bin span { font-size:10px; color:#85808b; font-variant-numeric:tabular-nums; }
+  .stats-updated { margin:15px 0 0; text-align:right; color:#98929d; font-size:11px; }
+  @media(max-width:760px){.stats-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.collection-stats{border-radius:22px}}
+  @media(max-width:420px){.stats-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(prefers-reduced-motion:reduce){.stats-bar{transition:none}}
+</style>

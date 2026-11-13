@@ -1,0 +1,105 @@
+{
+  "updatedAt": "2026-11-13T08:26:32.007Z",
+  "groups": {
+    "all": {
+      "total": 1540,
+      "completed": 1179,
+      "completionRate": 76.6,
+      "average": 6.11,
+      "deviation": 1.51,
+      "rated": 991,
+      "histogram": [
+        7,
+        37,
+        125,
+        242,
+        272,
+        141,
+        133,
+        23,
+        8,
+        3
+      ]
+    },
+    "book": {
+      "total": 34,
+      "completed": 28,
+      "completionRate": 82.4,
+      "average": 5,
+      "deviation": 2,
+      "rated": 2,
+      "histogram": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    "anime": {
+      "total": 1300,
+      "completed": 1042,
+      "completionRate": 80.2,
+      "average": 6,
+      "deviation": 1.5,
+      "rated": 894,
+      "histogram": [
+        6,
+        23,
+        105,
+        210,
+        247,
+        138,
+        132,
+        22,
+        8,
+        3
+      ]
+    },
+    "game": {
+      "total": 194,
+      "completed": 97,
+      "completionRate": 50,
+      "average": 7.18,
+      "deviation": 1.16,
+      "rated": 95,
+      "histogram": [
+        1,
+        14,
+        20,
+        31,
+        25,
+        3,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    "real": {
+      "total": 12,
+      "completed": 12,
+      "completionRate": 100,
+      "average": 0,
+      "deviation": 0,
+      "rated": 0,
+      "histogram": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

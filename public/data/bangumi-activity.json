@@ -1,6 +1,60 @@
 {
-  "updatedAt": "2026-11-13T07:01:08.030Z",
+  "updatedAt": "2026-11-13T08:24:11.004Z",
   "events": [
+    {
+      "id": "collection-56846-1794558049000",
+      "action": "在看",
+      "title": "起风了",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/a0/2a/56846_9P9zW.jpg",
+      "url": "https://chii.in/subject/56846",
+      "createdAt": "2026-11-13T08:20:49.000Z"
+    },
+    {
+      "id": "collection-665390-1794546799000",
+      "action": "在看",
+      "title": "冰之城墙 第二季",
+      "detail": "已看 7 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e4/41/665390_UCHPM.jpg",
+      "url": "https://chii.in/subject/665390",
+      "createdAt": "2026-11-13T05:13:19.000Z"
+    },
+    {
+      "id": "collection-362335-1794546050000",
+      "action": "想看",
+      "title": "古立特宇宙",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/76/b8/362335_VhtRE.jpg",
+      "url": "https://chii.in/subject/362335",
+      "createdAt": "2026-11-13T05:00:50.000Z"
+    },
+    {
+      "id": "collection-26825-1794538562000",
+      "action": "在看",
+      "title": "夏色奇迹",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/20/ab/26825_5W8p6.jpg",
+      "url": "https://chii.in/subject/26825",
+      "createdAt": "2026-11-13T02:56:02.000Z"
+    },
+    {
+      "id": "collection-584847-1794499055000",
+      "action": "在看",
+      "title": "弹珠汽水瓶里的千岁同学 第2部分",
+      "detail": "已看 5 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/83/49/584847_5nM0F.jpg",
+      "url": "https://chii.in/subject/584847",
+      "createdAt": "2026-11-12T15:57:35.000Z"
+    },
+    {
+      "id": "collection-622288-1794494408000",
+      "action": "在看",
+      "title": "FX战士久留美",
+      "detail": "已看 7 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/d3/99/622288_nmbC3.jpg",
+      "url": "https://chii.in/subject/622288",
+      "createdAt": "2026-11-12T14:40:08.000Z"
+    },
     {
       "id": 74395298,
       "action": "想看",
@@ -11,67 +65,13 @@
       "createdAt": "2026-11-11T15:51:42.000Z"
     },
     {
-      "id": 74395123,
+      "id": "collection-75702-1794412037000",
       "action": "在看",
       "title": "归宅部活动记录",
       "detail": "",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/e0/75702_1RxLZ.jpg",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/12/e0/75702_1RxLZ.jpg",
       "url": "https://chii.in/subject/75702",
       "createdAt": "2026-11-11T15:47:17.000Z"
-    },
-    {
-      "id": 74394019,
-      "action": "看过",
-      "title": "青涩宝贝",
-      "detail": "我的评分 7/10",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
-      "url": "https://chii.in/subject/33118",
-      "createdAt": "2026-11-11T15:17:19.000Z"
-    },
-    {
-      "id": 74393965,
-      "action": "追番进度",
-      "title": "青涩宝贝",
-      "detail": "第 12 话 · 泽渡穗香〜小小的恋爱故事〜",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
-      "url": "https://chii.in/subject/33118",
-      "createdAt": "2026-11-11T15:16:16.000Z"
-    },
-    {
-      "id": 74391980,
-      "action": "追番进度",
-      "title": "青涩宝贝",
-      "detail": "更新了 11 话",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
-      "url": "https://chii.in/subject/33118",
-      "createdAt": "2026-11-11T14:26:00.000Z"
-    },
-    {
-      "id": 74369216,
-      "action": "追番进度",
-      "title": "青涩宝贝",
-      "detail": "第 9 话 · 保坂美由纪〜迈向更像自己的明天〜",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
-      "url": "https://chii.in/subject/33118",
-      "createdAt": "2026-11-10T15:39:53.000Z"
-    },
-    {
-      "id": 74339912,
-      "action": "追番进度",
-      "title": "青涩宝贝",
-      "detail": "第 7 话 · 山本琉璃香〜中部战线异常！〜",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
-      "url": "https://chii.in/subject/33118",
-      "createdAt": "2026-11-09T14:41:53.000Z"
-    },
-    {
-      "id": 74338687,
-      "action": "追番进度",
-      "title": "青涩宝贝",
-      "detail": "第 6 话 · 绫崎若菜〜莫烦恼〜",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
-      "url": "https://chii.in/subject/33118",
-      "createdAt": "2026-11-09T14:09:29.000Z"
     }
   ]
 }

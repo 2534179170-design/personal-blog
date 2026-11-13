@@ -99,18 +99,13 @@ img { max-width: 100%; }
 
 .welcome {
   position: relative; isolation: isolate; overflow: hidden;
-  display: grid; align-items: center; justify-items: end;
+  display: grid; align-items: center; justify-items: start;
   min-height: clamp(300px,32vw,395px); margin: 24px 0 42px; padding: clamp(22px,3.3vw,46px);
   border-radius: 20px; background: #e1ddf0; box-shadow: var(--shadow);
 }
 .welcome-art { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
 .welcome-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 40%; opacity: 0; }
 .welcome-art img[data-active="true"] { opacity: 1; }
-.welcome-controls { position: absolute; z-index: 1; left: 18px; bottom: 18px; display: flex; align-items: center; gap: 5px; padding: 5px; border: 1px solid #ffffff9c; border-radius: 24px; background: #24243470; color: #fff; backdrop-filter: blur(12px); }
-.welcome-controls button { display: grid; place-items: center; width: 28px; height: 28px; border: 0; border-radius: 50%; color: inherit; background: transparent; font-size: 21px; line-height: 1; }
-.welcome-controls button:hover, .welcome-controls button:focus-visible { background: #ffffff38; }
-.welcome-controls [data-slide="pause"] { font-size: 11px; }
-.welcome-counter { min-width: 44px; text-align: center; font-size: 11px; font-variant-numeric: tabular-nums; }
 .welcome-copy {
   max-width: 100%; width: max-content; padding: clamp(22px,3vw,38px);
   background: var(--frost); border: 1px solid var(--edge); border-radius: 15px;
@@ -373,7 +368,6 @@ summary:focus-visible { outline-offset: 2px; }
 @media (max-width: 480px) {
   .welcome { align-items: end; justify-items: stretch; padding: 9px; padding-top: 136px; min-height: 282px; }
   .welcome-art img { object-position: 33% top; }
-  .welcome-controls { top: 12px; bottom: auto; left: 12px; }
   .welcome-copy { padding: 13px 16px; width: 100%; }
   .album-grid { grid-template-columns: minmax(0,1fr); }
   .album-cover img { min-height: 0; }
