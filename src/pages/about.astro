@@ -4,13 +4,22 @@ import Collection from '../components/Collection.astro';
 import {href,profile,markdown} from '../lib/blog.mjs';
 ---
 <Layout active="关于我" title="关于我">
-  <section class="paper about">
+  <section class="paper about profile-hero">
     <img class="avatar" src={href(profile.avatar||'art/avatar-mingxue.webp')} alt="站主头像" />
-    <p class="tag">关于我</p>
-    <h1>{profile.nickname}</h1>
-    {profile.signature && <p>{profile.signature}</p>}
-    <div class="prose" set:html={markdown(profile.bio)} />
-    <div class="about-social">{profile.links.map(l=><a class="button" href={l.url} target="_blank" rel="me noopener noreferrer">{l.label} ↗</a>)}</div>
+    <div class="profile-copy">
+      <p class="tag">关于我</p>
+      <h1>{profile.nickname}</h1>
+      {profile.signature && <p class="profile-signature">{profile.signature}</p>}
+      <div class="prose" set:html={markdown(profile.bio)} />
+      <div class="about-social">{profile.links.map(l=><a class="button" href={l.url} target="_blank" rel="me noopener noreferrer">{l.label} ↗</a>)}</div>
+    </div>
   </section>
   <Collection />
 </Layout>
+<style>
+  .profile-hero{max-width:none;display:grid;grid-template-columns:160px minmax(0,1fr);align-items:center;gap:34px;min-height:235px;margin:28px 0 20px;padding:clamp(24px,3vw,36px);border-radius:24px;background:linear-gradient(115deg,#f8f4f9,#fff 48%,#f7f8fc);box-shadow:0 18px 40px -32px #1e1926}
+  .profile-hero .avatar{width:144px;height:144px;border-radius:18px;object-fit:cover;box-shadow:0 16px 28px -22px #271b2b}
+  .profile-copy{min-width:0}.profile-copy .tag{margin:0 0 8px}.profile-copy h1{margin:0 0 8px;font-size:clamp(25px,3vw,34px)}.profile-signature{margin:0 0 11px;color:var(--muted);line-height:1.6}.profile-copy .prose{max-width:70ch;font-size:13px;line-height:1.7}.profile-copy .prose :global(p){margin:0 0 10px}.profile-copy .about-social{margin-top:16px;gap:9px}.profile-copy .about-social :global(.button){margin-right:0}
+  @media(max-width:640px){.profile-hero{grid-template-columns:72px minmax(0,1fr);align-items:start;gap:14px;margin:18px 0;padding:19px;border-radius:18px;min-height:0}.profile-hero .avatar{width:72px;height:72px;border-radius:12px}.profile-copy .tag{margin:0 0 5px}.profile-copy h1{font-size:23px}.profile-signature{font-size:12px}.profile-copy .about-social{grid-column:1/-1}.profile-copy .prose{font-size:12px}}
+  @media(max-width:400px){.profile-hero{grid-template-columns:60px minmax(0,1fr);gap:11px}.profile-hero .avatar{width:60px;height:60px}.profile-copy .about-social{gap:5px}}
+</style>

@@ -29,8 +29,6 @@ function makeImageCard(item) {
   const img = document.createElement('img');
   img.src = item.url;
   img.alt = '';
-  const name = document.createElement('span');
-  name.textContent = item.name;
   const remove = document.createElement('button');
   remove.type = 'button';
   remove.className = 'remove-card';
@@ -44,7 +42,7 @@ function makeImageCard(item) {
     if (selectedImage === item.id) selectedImage = null;
     updatePoolCount();
   });
-  card.append(img, name, remove);
+  card.append(img, remove);
   card.addEventListener('click', () => selectImage(item.id));
   card.addEventListener('keydown', event => {
     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectImage(item.id); }
@@ -274,8 +272,6 @@ document.querySelector('#tier-export').addEventListener('click', async () => {
         const item = tierImages.get(card.dataset.id);
         try { crop(ctx, await imageFrom(item.url), x, itemY, imageWidth, imageWidth); }
         catch { rounded(ctx, x, itemY, imageWidth, imageWidth, 5, '#eee6ef'); }
-        ctx.fillStyle = '#342c36'; ctx.font = '12px sans-serif';
-        ctx.fillText(fitText(ctx, item.name, imageWidth), x, itemY + imageWidth + 13);
       }
       y += layout.height;
     }
