@@ -433,3 +433,52 @@ html { scroll-padding-top: 105px; }
   .archive .no-avatar .post-image, .archive .no-avatar .post-image img { width: 82px; }
   .archive .no-avatar .post-image img { height: 76px; }
 }
+.archive-head { display:flex; align-items:end; justify-content:space-between; gap:18px; padding-block:36px 22px; }
+.archive-head h1 { margin:0 0 5px; font-size:clamp(30px,3vw,42px); }
+.archive-total { flex:none; font:500 17px var(--headline); color:var(--pink); }
+.archive-toolbar { display:flex; align-items:start; justify-content:space-between; gap:12px; margin:0 0 23px; }
+.archive-toolbar .filters { margin:0; }
+.archive-toolbar .filters button { display:inline-flex; align-items:center; gap:7px; padding:8px 12px; border:1px solid var(--rule); border-radius:999px; background:#ffffffc9; color:var(--ink); }
+.archive-toolbar .filters button[aria-pressed=true] { background:#f5ebf0; color:var(--pink); border-color:#dcb9c8; }
+.archive-toolbar .filters button span { color:var(--muted); font-size:11px; }
+.archive-toolbar #archive-count { flex:none; margin:8px 0; font-size:12px; color:var(--muted); }
+.archive { max-width:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; align-items:stretch; }
+.archive .post-row.no-avatar { display:flex; flex-direction:column; align-items:stretch; gap:0; min-width:0; padding:0; border:1px solid var(--rule); border-radius:14px; overflow:hidden; background:#ffffffec; box-shadow:0 12px 38px -34px #24223880; }
+.archive .no-avatar .post-image { display:block; order:-1; width:100%; height:205px; margin:0; border-radius:0; background:linear-gradient(135deg,#f0edf5,#faf7fb); }
+.archive .no-avatar .post-image img { display:block; width:100%; height:100%; object-fit:contain; border-radius:0; }
+.archive .no-avatar .post-copy, .archive .no-avatar:not(:has(.post-image)) .post-copy { display:flex; flex-direction:column; flex:1; padding:18px 18px 8px; min-width:0; }
+.archive .post-copy h3 { font:600 20px/1.45 var(--headline); margin:0 0 9px; overflow-wrap:anywhere; }
+.archive .post-copy p { color:#625f6c; font-size:13px; line-height:1.7; margin:0 0 16px; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; }
+.archive .post-meta { margin-top:auto; gap:5px; }
+.archive .post-meta .author-name { display:none; }
+.archive .tag { color:#744e6a; background:#f5edf2; font-size:11px; padding:3px 7px; }
+.archive .no-avatar > time { display:block; margin:0; padding:0 18px 16px; color:var(--muted); font-size:12px; }
+.archive-pages { display:flex; justify-content:center; align-items:center; gap:15px; margin:30px 0 55px; }
+.archive-pages button { border:1px solid var(--rule); border-radius:8px; background:#fff; padding:9px 15px; }
+.archive-pages span { color:var(--muted); font-size:13px; }
+.detail { max-width:900px; padding:clamp(22px,4.2vw,52px); }
+.detail h1 { font-size:clamp(27px,3vw,40px); line-height:1.35; }
+.detail .post-meta { margin:20px 0 14px; }
+.detail .prose { font-size:16px; line-height:1.95; color:#34323b; }
+.detail-cover[src*="/art/anime-cover-"] { display:block; width:min(100%,230px); height:auto; max-height:330px; object-fit:contain; float:right; margin:0 0 22px 30px; border-radius:10px; }
+@media (max-width:950px) { .archive { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:620px) {
+  .archive { grid-template-columns:minmax(0,1fr); gap:13px; }
+  .archive .post-row.no-avatar { display:grid; grid-template-columns:94px minmax(0,1fr); min-height:132px; }
+  .archive .no-avatar .post-image { grid-column:1; grid-row:1/3; width:94px; height:100%; min-height:132px; }
+  .archive .no-avatar .post-image img { width:100%; height:100%; object-fit:cover; }
+  .archive .no-avatar .post-copy { grid-column:2; grid-row:1; padding:13px 14px 2px; }
+  .archive .post-copy h3 { font-size:17px; margin-bottom:6px; }
+  .archive .post-copy p { font-size:12px; -webkit-line-clamp:2; margin:0 0 8px; }
+  .archive .no-avatar > time { grid-column:2; grid-row:2; padding:0 14px 10px; margin:0; font-size:11px; }
+  .archive-toolbar { display:block; }
+  .archive-toolbar .filters { max-width:100%; flex-wrap:nowrap; overflow-x:auto; padding-bottom:8px; scroll-snap-type:x proximity; }
+  .archive-toolbar .filters button { flex:none; scroll-snap-align:start; }
+  .archive-toolbar #archive-count { margin:3px 0 0; }
+  .detail-cover[src*="/art/anime-cover-"] { float:none; margin:0 auto 22px; width:min(72%,230px); }
+  .detail .prose { font-size:15px; }
+}
+@media (prefers-reduced-motion:no-preference) and (hover:hover) {
+  .archive .post-row { transition:box-shadow .22s ease,transform .22s ease,border-color .22s ease; }
+  .archive .post-row:hover { transform:translateY(-3px); border-color:#d7c5d1; box-shadow:0 20px 38px -30px #31273d66; }
+}

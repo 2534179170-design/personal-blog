@@ -5,29 +5,54 @@ import { posts } from '../../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
 ---
 <Layout active="空间" title="空间">
-  <div class="page-head"><h1>空间</h1><p>共 {posts.length} 篇记录</p></div>
-  <div class="filters" aria-label="按标签筛选">
-    {['全部', ...tags].map((tag, index) => <button aria-pressed={index === 0} data-filter={index ? tag : ''}>{tag}</button>)}
+  <header class="page-head archive-head">
+    <div><h1>空间</h1><p>动画短评、日志与日常记录</p></div>
+    <span class="archive-total">{posts.length} 篇</span>
+  </header>
+  <div class="archive-toolbar">
+    <div class="filters" aria-label="按标签筛选">
+      {['全部', ...tags].map((tag, index) => <button aria-pressed={index === 0} data-filter={index ? tag : ''}>{tag}<span>{index ? posts.filter(post => post.tags.includes(tag)).length : posts.length}</span></button>)}
+    </div>
+    <p id="archive-count" role="status"></p>
   </div>
   <div class="post-list archive">{posts.map(post => <PostRow post={post} showAvatar={false} />)}</div>
+  <nav class="archive-pages" aria-label="空间分页" hidden>
+    <button id="previous-page" type="button">上一页</button><span id="page-count"></span><button id="next-page" type="button">下一页</button>
+  </nav>
   {!posts.length && <p class="empty">暂时没有公开的空间内容。</p>}
   <script>
     const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
-    function filter(tag: string) {
+    const rows = [...document.querySelectorAll<HTMLElement>('.archive [data-tags]')];
+    const pageSize = 12;
+    let currentTag = '';
+    let currentPage = 1;
+    function filter(tag: string, page = 1) {
+      currentTag = tag;
+      const matching = rows.filter(element => !tag || JSON.parse(element.dataset.tags || '[]').includes(tag));
+      currentPage = Math.min(Math.max(page, 1), Math.max(1, Math.ceil(matching.length / pageSize)));
       buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === tag)));
-      document.querySelectorAll<HTMLElement>('[data-tags]').forEach(element => {
-        element.hidden = Boolean(tag) && !JSON.parse(element.dataset.tags || '[]').includes(tag);
-      });
+      rows.forEach(element => element.hidden = true);
+      matching.slice((currentPage - 1) * pageSize, currentPage * pageSize).forEach(element => element.hidden = false);
+      document.querySelector('#archive-count')!.textContent = '找到 ' + matching.length + ' 篇';
+      const pager = document.querySelector<HTMLElement>('.archive-pages')!;
+      pager.hidden = matching.length <= pageSize;
+      document.querySelector('#page-count')!.textContent = currentPage + ' / ' + Math.ceil(matching.length / pageSize);
+      (document.querySelector('#previous-page') as HTMLButtonElement).disabled = currentPage === 1;
+      (document.querySelector('#next-page') as HTMLButtonElement).disabled = currentPage * pageSize >= matching.length;
+      const url = new URL(location.href);
+      if (tag) url.searchParams.set('tag', tag); else url.searchParams.delete('tag');
+      if (currentPage > 1) url.searchParams.set('page', String(currentPage)); else url.searchParams.delete('page');
+      history.replaceState(null, '', url);
     }
     buttons.forEach(button => button.addEventListener('click', () => {
       const tag = button.dataset.filter || '';
       filter(tag);
-      const url = new URL(location.href);
-      if (tag) url.searchParams.set('tag', tag);
-      else url.searchParams.delete('tag');
-      history.replaceState(null, '', url);
     }));
-    const initial = new URLSearchParams(location.search).get('tag') || '';
-    filter(buttons.some(button => button.dataset.filter === initial) ? initial : '');
+    document.querySelector('#previous-page')!.addEventListener('click', () => { filter(currentTag, currentPage - 1); document.querySelector('.archive-head')!.scrollIntoView(); });
+    document.querySelector('#next-page')!.addEventListener('click', () => { filter(currentTag, currentPage + 1); document.querySelector('.archive-head')!.scrollIntoView(); });
+    const params = new URLSearchParams(location.search);
+    const initial = params.get('tag') || '';
+    const initialPage = Number(params.get('page')) || 1;
+    filter(buttons.some(button => button.dataset.filter === initial) ? initial : '', initialPage);
   </script>
 </Layout>
