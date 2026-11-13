@@ -1,0 +1,74 @@
+name: 同步番组计划日志与短评
+on:
+  schedule:
+    - cron: '23 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: blog-bangumi-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'Pillow>=11,<13'
+      - name: 同步公开内容
+        run: python scripts/sync-bangumi.py
+      - name: 提交变更
+        run: |
+          if [ -n "$(git status --porcelain -- content/posts public/art)" ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add content/posts public/art
+            git commit -m '同步番组计划公开日志与动画短评'
+            git push
+          fi
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+        env:
+          BLOG_BASE: /${{ github.event.repository.name }}/
+          SITE_ORIGIN: https://${{ github.repository_owner }}.github.io
+          PRIMARY_ORIGIN: ${{ vars.PRIMARY_ORIGIN }}
+          BLOG_REVISION: ${{ github.sha }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - id: cloudflare
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          PROJECT: ${{ vars.CLOUDFLARE_PROJECT }}
+        run: |
+          if [ -n "$TOKEN" ] && [ -n "$ACCOUNT" ] && [ -n "$PROJECT" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: 构建主站
+        if: steps.cloudflare.outputs.enabled == 'true'
+        run: pnpm build
+        env:
+          SITE_ORIGIN: ${{ vars.PRIMARY_ORIGIN }}
+      - name: 更新主站
+        if: steps.cloudflare.outputs.enabled == 'true'
+        run: pnpm dlx wrangler@4.160.0 pages deploy dist --project-name "$PROJECT" --branch main
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PROJECT: ${{ vars.CLOUDFLARE_PROJECT }}

@@ -47,6 +47,8 @@ python scripts/setup-login.py --origin https://wind-journal-25341.pages.dev --ow
 
 ## 设置主站自动部署
 
+「同步番组计划日志与短评」自动任务每天检查账号 `828732` 的公开日志和超过 300 字的动画短评。新增或修改的内容会写进仓库并发布到备用站。收藏状态和集数在网页打开时读取。主站的定时发布需要下文的 `CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID` 和 `CLOUDFLARE_PROJECT`，配置后同一自动任务也会更新主站。
+
 GitHub Pages（备用网页托管）通过仓库自动任务发布。Cloudflare 主站使用同一仓库的「更新主站」自动任务直接上传，两个站的资源各自托管。
 
 1. 打开 [Cloudflare 令牌管理页](https://dash.cloudflare.com/profile/api-tokens)，选择「Create Token（创建令牌）」及自定义令牌，权限仅选「Account → Cloudflare Pages → Edit（账号 → 网页托管 → 编辑）」，资源仅选当前账号。
