@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T04:37:38.529Z",
+  "updatedAt": "2026-11-13T07:01:08.030Z",
   "events": [
     {
       "id": 74395298,
@@ -38,22 +38,40 @@
       "createdAt": "2026-11-11T15:16:16.000Z"
     },
     {
-      "id": 74313061,
+      "id": 74391980,
       "action": "追番进度",
-      "title": "学生会也有洞！",
-      "detail": "第 6 话 · 玩完了／梅与老师／驹絽的世界",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/17/c7/554779_oPitO.jpg",
-      "url": "https://chii.in/subject/554779",
-      "createdAt": "2026-11-08T15:08:53.000Z"
+      "title": "青涩宝贝",
+      "detail": "更新了 11 话",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
+      "url": "https://chii.in/subject/33118",
+      "createdAt": "2026-11-11T14:26:00.000Z"
     },
     {
-      "id": 74311230,
+      "id": 74369216,
       "action": "追番进度",
-      "title": "魔法姐妹露露特莉莉 第2部分",
-      "detail": "第 18 话 · 不可思议的岛上暴风雨",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/44/ed/634210_O7aNK.jpg",
-      "url": "https://chii.in/subject/634210",
-      "createdAt": "2026-11-08T14:26:43.000Z"
+      "title": "青涩宝贝",
+      "detail": "第 9 话 · 保坂美由纪〜迈向更像自己的明天〜",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
+      "url": "https://chii.in/subject/33118",
+      "createdAt": "2026-11-10T15:39:53.000Z"
+    },
+    {
+      "id": 74339912,
+      "action": "追番进度",
+      "title": "青涩宝贝",
+      "detail": "第 7 话 · 山本琉璃香〜中部战线异常！〜",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
+      "url": "https://chii.in/subject/33118",
+      "createdAt": "2026-11-09T14:41:53.000Z"
+    },
+    {
+      "id": 74338687,
+      "action": "追番进度",
+      "title": "青涩宝贝",
+      "detail": "第 6 话 · 绫崎若菜〜莫烦恼〜",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/12/c3/33118_w44b7.jpg",
+      "url": "https://chii.in/subject/33118",
+      "createdAt": "2026-11-09T14:09:29.000Z"
     }
   ]
 }

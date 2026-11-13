@@ -65,17 +65,15 @@ function describe(row) {
   return null;
 }
 
-export function normalizeTimeline(rows, limit = 6) {
+export function normalizeTimeline(rows, limit = 8) {
   if (!Array.isArray(rows)) throw new Error('番组计划动态格式无效。');
   const events = [];
-  const seen = new Set();
   for (const row of rows) {
     if (Number(row?.uid) !== 828732 || !validId(row.id) || !Number.isFinite(row.createdAt)) continue;
     const item = describe(row);
-    if (!item?.title || seen.has(item.group)) continue;
+    if (!item?.title) continue;
     const timestamp = new Date(row.createdAt * 1000);
     if (Number.isNaN(timestamp.valueOf())) continue;
-    seen.add(item.group);
     events.push({
       id: row.id,
       action: item.action,

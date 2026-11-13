@@ -16,10 +16,11 @@ test('动态只展示站主公开记录，并保留作品链接和追番进度',
     row(5),
   ];
   const events=normalizeTimeline(records);
-  assert.equal(events.length,2);
+  assert.equal(events.length,3);
   assert.equal(events[0].url,'https://chii.in/subject/123');
   assert.equal(events[0].cover,subject.images.small);
   assert.equal(events[1].detail,'第 3 话 · 第三话');
+  assert.equal(events[2].id,5);
 });
 
 test('公开动态接口不依赖站主登录配置',async()=>{
