@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import { href, profile, posts, albums, adminUrl } from '../lib/blog.mjs';
 import '../styles/site.css';
 import '../styles/enhancements.css';
+import '../styles/editorial.css';
 const { title, active = '首页', description = profile.signature || profile.siteName } = Astro.props;
 const nav = [['首页', '', 'home'], ['空间', 'posts/', 'book'], ['相册', 'albums/', 'image'], ['工具', 'tools/', 'sun'], ['关于我', 'about/', 'user']];
 const items = [

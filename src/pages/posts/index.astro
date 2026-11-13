@@ -6,7 +6,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
 ---
 <Layout active="空间" title="空间">
   <header class="page-head archive-head">
-    <div><h1>空间</h1><p>动画短评、日志与日常记录</p></div>
+    <div><span class="archive-eyebrow">凉宫洺雪 / 个人存档</span><h1>空间</h1><p>动画短评、日志与日常记录</p></div>
     <span class="archive-total">{posts.length} 篇</span>
   </header>
   <div class="archive-toolbar">
@@ -15,7 +15,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
     </div>
     <p id="archive-count" role="status"></p>
   </div>
-  <div class="post-list archive">{posts.map(post => <PostRow post={post} showAvatar={false} />)}</div>
+  <div class="post-list archive">{posts.map((post,index) => <PostRow post={post} showAvatar={false} featured={index===0} />)}</div>
   <nav class="archive-pages" aria-label="空间分页" hidden>
     <button id="previous-page" type="button">上一页</button><span id="page-count"></span><button id="next-page" type="button">下一页</button>
   </nav>
@@ -31,8 +31,10 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
       const matching = rows.filter(element => !tag || JSON.parse(element.dataset.tags || '[]').includes(tag));
       currentPage = Math.min(Math.max(page, 1), Math.max(1, Math.ceil(matching.length / pageSize)));
       buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === tag)));
-      rows.forEach(element => element.hidden = true);
-      matching.slice((currentPage - 1) * pageSize, currentPage * pageSize).forEach(element => element.hidden = false);
+      rows.forEach(element => { element.hidden = true; element.classList.remove('featured'); });
+      const visible = matching.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+      visible.forEach(element => element.hidden = false);
+      visible[0]?.classList.add('featured');
       document.querySelector('#archive-count')!.textContent = '找到 ' + matching.length + ' 篇';
       const pager = document.querySelector<HTMLElement>('.archive-pages')!;
       pager.hidden = matching.length <= pageSize;

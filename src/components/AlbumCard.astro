@@ -1,8 +1,8 @@
 ---
 import { href, albumCover } from '../lib/blog.mjs';
-const { album } = Astro.props;
+const { album, featured = false } = Astro.props;
 ---
-<a data-category={album.category || "未分类"} class="album-card" href={href('albums/' + album.id + '/')}>
+<a data-category={album.category || "未分类"} data-featured={featured} class:list={['album-card',{'album-featured':featured}]} href={href('albums/' + album.id + '/')}>
   <div class="album-cover"><img src={href(albumCover(album))} alt="" loading="lazy" /></div>
   <div class="album-label"><strong>{album.title}</strong>
     <span class="album-info">{album.photos.length} 张照片<span>·</span>{album.date.replaceAll('-', '.')}</span>

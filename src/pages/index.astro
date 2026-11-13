@@ -15,12 +15,14 @@ const slides = winterPhotos.length ? winterPhotos.map(photo => photo.src) : [pro
   <section class="welcome">
     <div class="welcome-art">{slides.map((src, index) => <img class="welcome-slide" src={href(src)} alt="" aria-hidden="true" data-active={index === 0} fetchpriority={index === 0 ? 'high' : 'auto'} loading={index === 0 ? 'eager' : 'lazy'}/>)}</div>
     <div class="welcome-copy">
+      <p class="hero-kicker">个人空间 · 动画与游戏</p>
       <h1>{profile.siteName}</h1>
       <div class="hero-bio" set:html={markdown(profile.bio)} />
       {profile.signature && <p>{profile.signature}</p>}
       {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
       <div class="hero-actions"><a class="welcome-link" href={href('about/#collection')}>查看追番记录 <Icon name="arrow" size={15}/></a><a href={href('posts/')}>浏览空间</a></div>
     </div>
+    <span class="hero-caption">白色相簿 · 图集</span>
   </section>
   <Watching/>
   <div class="home-panels">

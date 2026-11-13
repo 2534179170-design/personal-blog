@@ -1,8 +1,8 @@
 ---
 import { href, profile, publicSummary } from '../lib/blog.mjs';
-const { post, showAvatar = true } = Astro.props;
+const { post, showAvatar = true, featured = false } = Astro.props;
 ---
-<article class:list={['post-row', { 'no-avatar': !showAvatar }]} data-tags={JSON.stringify(post.tags)}>
+<article class:list={['post-row', { 'no-avatar': !showAvatar, featured }]} data-tags={JSON.stringify(post.tags)}>
   {showAvatar && <a class="post-author" href={href('about/')} aria-label={profile.nickname + '的个人资料'}>
     <img src={href(profile.avatar || 'art/avatar-mingxue.webp')} alt="" loading="lazy" />
   </a>}
