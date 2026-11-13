@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import { href, profile, posts, albums, adminUrl } from '../lib/blog.mjs';
 import '../styles/site.css';
+import '../styles/enhancements.css';
 const { title, active = '首页', description = profile.signature || profile.siteName } = Astro.props;
 const nav = [['首页', '', 'home'], ['空间', 'posts/', 'book'], ['相册', 'albums/', 'image'], ['工具', 'tools/', 'sun'], ['关于我', 'about/', 'user']];
 const items = [
@@ -27,12 +28,14 @@ const items = [
           {nav.map(([label, route, icon]) => <a class:list={['nav-item', { active: active === label }]} aria-current={active === label ? 'page' : undefined} href={href(route)}><Icon name={icon} size={15} />{label}</a>)}
         </nav>
         <div class="header-tools">
-          <button class="search-toggle" aria-label="搜索本站" title="搜索本站"><Icon name="search" size={18} /></button>
+          <button class="search-toggle" aria-label="搜索本站" title="搜索本站"><Icon name="search" size={18} /><span>搜索</span></button>
           <a class="header-avatar" href={href('about/')} aria-label="查看站主资料"><img src={href(profile.avatar || 'art/avatar-mingxue.webp')} alt="" width="30" height="30" /></a>
         </div>
       </div>
+      <div class="reading-progress" aria-hidden="true"></div>
     </header>
     <main class="shell"><slot /></main>
+    <button class="back-to-top" type="button" aria-label="回到页面顶部" title="回到顶部">↑</button>
     <footer><span>© {new Date().getFullYear()} {profile.siteName}</span><div><a href={href('yearbook/')}>年度回顾</a><a href={href('friends/')}>同好友链</a><a href="#top">回到顶部 ↑</a><a href={adminUrl}>站主管理</a></div></footer>
     <dialog id="search-dialog">
       <div class="split"><h2>搜索小站</h2><button data-close aria-label="关闭搜索">×</button></div>
@@ -46,6 +49,13 @@ const items = [
       document.querySelector('.search-toggle')?.addEventListener('click', () => {
         dialog.showModal();
         field.focus();
+      });
+      document.addEventListener('keydown', event => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+          event.preventDefault();
+          if (!dialog.open) dialog.showModal();
+          field.focus();
+        }
       });
       dialog.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
       dialog.addEventListener('keydown', event => {
@@ -63,5 +73,6 @@ const items = [
         (document.querySelector('#no-results') as HTMLElement).hidden = count > 0;
       });
     </script>
+    <script>import '../scripts/ui.js';</script>
   </body>
 </html>
