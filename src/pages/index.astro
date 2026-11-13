@@ -5,6 +5,7 @@ import PostRow from '../components/PostRow.astro';
 import Icon from '../components/Icon.astro';
 import { href, profile, posts, albums, markdown } from '../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
+const featuredPosts = [...posts.filter(post => post.tags.includes('番组计划短评')), ...posts.filter(post => !post.tags.includes('番组计划短评'))];
 const cover = profile.cover || 'art/winter-piano.webp';
 ---
 <Layout>
@@ -26,7 +27,7 @@ const cover = profile.cover || 'art/winter-piano.webp';
           <h2>空间<span>最近更新</span></h2>
           <a href={href('posts/')}>全部空间 <Icon name="arrow" size={13} /></a>
         </div>
-        <div class="post-list">{posts.slice(0, 5).map(post => <PostRow post={post} showAvatar={false} />)}</div>
+        <div class="post-list">{featuredPosts.slice(0, 5).map(post => <PostRow post={post} showAvatar={false} />)}</div>
         {!posts.length && <p class="empty">还没有公开的空间内容。</p>}
       </section>
     </div>
@@ -36,6 +37,9 @@ const cover = profile.cover || 'art/winter-piano.webp';
         <div class="profile-identity">
           <a href={href('about/')}><img class="avatar" src={href(profile.avatar || 'art/avatar-mingxue.webp')} alt="站主头像" /></a>
           <div><h2><a href={href('about/')}>{profile.nickname}</a></h2><span class="owner-label">站主</span></div>
+        </div>
+        <div class="profile-social" aria-label="站主的其他主页">
+          {profile.links.map(link => <a href={link.url} target="_blank" rel="me noopener noreferrer">{link.label} ↗</a>)}
         </div>
 
         <div class="stats">

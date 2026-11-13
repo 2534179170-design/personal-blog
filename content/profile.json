@@ -1,11 +1,24 @@
 {
   "id": "profile",
-  "version": "4c0cf72d-1091-4f6d-8aef-110793418fdc",
+  "version": "fed47ccc-bcc6-488b-bfd2-51e916753ea7",
   "siteName": "凉宫洺雪的小站",
   "nickname": "凉宫洺雪",
   "signature": "",
   "bio": "一个普通的 **动画**，**Galagame** 双修爱好者",
   "avatar": "art/avatar-mingxue.webp",
   "cover": "art/winter-piano.webp",
-  "links": []
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/2534179170-design"
+    },
+    {
+      "label": "哔哩哔哩",
+      "url": "https://space.bilibili.com/388821566"
+    },
+    {
+      "label": "Bangumi",
+      "url": "https://chii.in/user/828732"
+    }
+  ]
 }
