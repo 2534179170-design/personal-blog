@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-11-13T08:24:11.004Z",
+  "updatedAt": "2026-11-13T16:28:00.290Z",
   "events": [
+    {
+      "id": "collection-639938-1794585993000",
+      "action": "在看",
+      "title": "飙马野郎 JOJO的奇妙冒险 第二&第三赛段",
+      "detail": "已看 8 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/ab/4f/639938_2JKQ7.jpg",
+      "url": "https://chii.in/subject/639938",
+      "createdAt": "2026-11-13T16:06:33.000Z"
+    },
+    {
+      "id": "collection-218712-1794567567000",
+      "action": "想看",
+      "title": "SSSS.古立特",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/d1/78/218712_c2Db6.jpg",
+      "url": "https://chii.in/subject/218712",
+      "createdAt": "2026-11-13T10:59:27.000Z"
+    },
+    {
+      "id": "collection-362335-1794560470000",
+      "action": "在看",
+      "title": "古立特宇宙",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/76/b8/362335_VhtRE.jpg",
+      "url": "https://chii.in/subject/362335",
+      "createdAt": "2026-11-13T09:01:10.000Z"
+    },
     {
       "id": "collection-56846-1794558049000",
       "action": "在看",
@@ -18,15 +45,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e4/41/665390_UCHPM.jpg",
       "url": "https://chii.in/subject/665390",
       "createdAt": "2026-11-13T05:13:19.000Z"
-    },
-    {
-      "id": "collection-362335-1794546050000",
-      "action": "想看",
-      "title": "古立特宇宙",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/76/b8/362335_VhtRE.jpg",
-      "url": "https://chii.in/subject/362335",
-      "createdAt": "2026-11-13T05:00:50.000Z"
     },
     {
       "id": "collection-26825-1794538562000",
@@ -54,24 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/d3/99/622288_nmbC3.jpg",
       "url": "https://chii.in/subject/622288",
       "createdAt": "2026-11-12T14:40:08.000Z"
-    },
-    {
-      "id": 74395298,
-      "action": "想看",
-      "title": "夏色奇迹",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/20/ab/26825_5W8p6.jpg",
-      "url": "https://chii.in/subject/26825",
-      "createdAt": "2026-11-11T15:51:42.000Z"
-    },
-    {
-      "id": "collection-75702-1794412037000",
-      "action": "在看",
-      "title": "归宅部活动记录",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/12/e0/75702_1RxLZ.jpg",
-      "url": "https://chii.in/subject/75702",
-      "createdAt": "2026-11-11T15:47:17.000Z"
     }
   ]
 }
