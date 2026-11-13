@@ -265,7 +265,7 @@ dialog small { color: #aaa; font-size: 11px; margin-right: 8px; }
   .header-tools { gap: 10px; }
   .header-avatar { display: none; }
   .top nav { justify-content: space-between; gap: 0; }
-  .nav-item { padding: 7px 13px; }
+  .nav-item { padding: 7px 6px; }
   .welcome { min-height: 160px; padding: 19px 17px; gap: 12px; margin-top: 18px; }
   .welcome-copy { min-width: 0; }
   .welcome-label { font-size: 10px; }

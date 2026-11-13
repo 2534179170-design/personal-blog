@@ -1,0 +1,38 @@
+---
+import Layout from '../components/Layout.astro';
+---
+<Layout active="收藏" title="追番与游戏">
+  <header class="page-head">
+    <h1>追番与游戏</h1>
+    <p>来自<a href="https://chii.in/user/828732">凉宫洺雪的 Bangumi（番组计划）</a>公开收藏。浏览时每分钟检查更新。</p>
+  </header>
+  <div class="controls">
+    <div class="filters" aria-label="作品类型" role="group">
+      <button data-kind="2" aria-pressed="true">动画</button>
+      <button data-kind="4" aria-pressed="false">游戏</button>
+    </div>
+    <label>收藏状态 <select id="collection-state">
+      <option value="3">在看</option><option value="2">看过</option><option value="1">想看</option>
+      <option value="4">搁置</option><option value="5">抛弃</option><option value="">全部</option>
+    </select></label>
+  </div>
+  <noscript>请启用浏览器脚本，或通过上方账号链接查看收藏。</noscript>
+  <p id="sync-status" class="muted" role="status"></p>
+  <ul id="collection-list" aria-label="作品列表"></ul>
+  <div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button><button id="refresh">刷新记录</button></div>
+</Layout>
+<style>
+  .controls, .pager {display:flex; align-items:center; gap:16px; flex-wrap:wrap}
+  .controls .filters {margin:0}
+  .controls label, .pager {font-size:13px;color:#666}
+  select, .pager button {border:1px solid var(--rule);border-radius:5px;background:white;padding:6px 10px}
+  #collection-list {list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:10px 24px}
+  #collection-list :global(li) {display:flex;align-items:center;gap:13px;min-width:0;border-top:1px solid var(--rule);padding:12px 0}
+  #collection-list :global(img) {width:50px;height:68px;object-fit:cover;border-radius:4px;background:#faf6f8}
+  #collection-list :global(a) {font-size:14px;font-weight:600;overflow-wrap:anywhere}
+  #collection-list :global(small) {display:block;color:#777;margin-top:5px}
+  .pager {margin:16px 0 32px}
+</style>
+<script>
+  import '../scripts/bangumi.js';
+</script>
