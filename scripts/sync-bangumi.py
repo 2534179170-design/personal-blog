@@ -121,7 +121,8 @@ def sync_logs():
             'id': f'bangumi-{blog_id}', 'date': date, 'title': entry['title'],
             'tags': ['番组计划日志', *entry['tags']],
             'works': [{'id': str(subject['id']), 'title': subject['nameCN'] or subject['name']} for subject in subjects],
-            'cover': '', 'summary': item['summary'].rstrip('。') + '…'
+            'cover': 'art/bangumi-log-' + str(blog_id) + '.webp' if pictures else '',
+            'summary': item['summary'].rstrip('。') + '…'
         }
         content = entry['content'].strip().replace('\r\n', '\n').replace('\r', '\n')
         if pictures:
