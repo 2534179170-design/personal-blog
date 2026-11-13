@@ -27,7 +27,7 @@ const formatTime = value => new Intl.DateTimeFormat('zh-CN', {
       </a>
     </li>)}
   </ul>
-  <p class="activity-status" id="activity-status" role="status">最近同步：{formatTime(snapshot.updatedAt)}</p>
+  <p class="activity-status" id="activity-status" role="status">最新公开动态：{formatTime(snapshot.events[0]?.createdAt || snapshot.updatedAt)} · 最近同步：{formatTime(snapshot.updatedAt)}</p>
 </section>
 <script>
   const root = document.querySelector('#bangumi-activity');
@@ -85,12 +85,12 @@ const formatTime = value => new Intl.DateTimeFormat('zh-CN', {
       const data = await response.json();
       if (!Array.isArray(data.events) || !data.events.length) throw new Error('没有公开动态');
       list?.replaceChildren(...data.events.map(card));
-      if (status) status.textContent = `最近同步：${formatter.format(new Date(data.updatedAt))}`;
+      if (status) status.textContent = `最新公开动态：${formatter.format(new Date(data.events[0].createdAt))} · 最近同步：${formatter.format(new Date(data.updatedAt))}`;
     } catch {
       if (status) status.textContent = '暂时无法刷新，正在显示最近一次同步的动态。';
     } finally { pending = false; }
   }
   refresh();
   document.addEventListener('visibilitychange', refresh);
-  setInterval(refresh, 300000);
+  setInterval(refresh, 60000);
 </script>

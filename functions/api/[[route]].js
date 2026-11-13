@@ -80,7 +80,7 @@ export async function onRequest({request,env,waitUntil}){
       if(!upstream.ok)throw new Problem(502,'番组计划动态暂时不可用。');
       const events=normalizeTimeline(await upstream.json());
       if(!events.length)throw new Problem(502,'番组计划动态暂时不可用。');
-      const response=Response.json({updatedAt:new Date().toISOString(),events},{headers:{'Cache-Control':'public, max-age=300, stale-while-revalidate=600'}});
+      const response=Response.json({updatedAt:new Date().toISOString(),events},{headers:{'Cache-Control':'public, max-age=60, stale-while-revalidate=120'}});
       if(cache&&waitUntil)waitUntil(cache.put(key,response.clone()).catch(()=>{}));
       return response;
     }
