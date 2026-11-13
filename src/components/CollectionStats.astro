@@ -1,12 +1,13 @@
 ---
 import snapshot from '../../public/data/bangumi-stats.json';
+const {compact=false}=Astro.props;
 const labels=[['all','全部'],['book','书籍'],['anime','动画'],['game','游戏'],['real','电视剧']];
 const all=snapshot.groups.all;
 const cards=[['total','收藏'],['completed','完成'],['completionRate','完成率'],['average','平均分'],['deviation','标准差'],['rated','评分数']];
 const value=(key,data)=>key==='completionRate'?`${data[key].toFixed(1)}%`:['average','deviation'].includes(key)?data[key].toFixed(2):data[key].toLocaleString('zh-CN');
 const peak=Math.max(...all.histogram,1);
 ---
-<section class="collection-stats" id="collection-stats" data-live={import.meta.env.BASE_URL === '/'} data-groups={JSON.stringify(snapshot.groups)} aria-labelledby="stats-heading">
+<section class:list={['collection-stats',{compact}]} id="collection-stats" data-live={import.meta.env.BASE_URL === '/'} data-groups={JSON.stringify(snapshot.groups)} aria-labelledby="stats-heading">
   <div class="section-head"><h2 id="stats-heading">收藏统计 <span>我的 Bangumi 记录</span></h2><a href="https://chii.in/user/828732" target="_blank" rel="noopener noreferrer">查看我的时光机 ↗</a></div>
   <div class="stats-tabs" role="group" aria-label="收藏类型">{labels.map(([key,label],index)=><button type="button" data-stat-kind={key} aria-pressed={index===0}>{label}</button>)}</div>
   <div class="stats-cards">{cards.map(([key,label])=><div class:list={['stats-tile',`stats-${key}`]}><strong data-stat-value={key}>{value(key,all)}</strong><span>{label}</span></div>)}</div>
@@ -59,6 +60,14 @@ const peak=Math.max(...all.histogram,1);
   .stats-bar { width:min(100%,34px); min-height:2px; border-radius:5px 5px 1px 1px; background:linear-gradient(#90b8da,#6d99c3); transition:height .3s ease; }
   .stats-bin span { font-size:10px; color:#85808b; font-variant-numeric:tabular-nums; }
   .stats-updated { margin:15px 0 0; text-align:right; color:#98929d; font-size:11px; }
+  .collection-stats.compact { margin:0; padding:18px; border-radius:22px; }
+  .compact .stats-tabs { margin:12px 0 10px; }
+  .compact .stats-tabs button { padding:5px 10px; }
+  .compact .stats-cards { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+  .compact .stats-tile { padding:9px 10px; border-radius:10px; }
+  .compact .stats-tile strong { font-size:19px; }
+  .compact .stats-chart { height:100px; margin-top:12px; }
+  .compact .stats-updated { margin-top:10px; }
   @media(max-width:760px){.stats-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.collection-stats{border-radius:22px}}
   @media(max-width:420px){.stats-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(prefers-reduced-motion:reduce){.stats-bar{transition:none}}

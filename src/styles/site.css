@@ -129,6 +129,13 @@ img { max-width: 100%; }
 .section-head > a { font-size: 12px; display: inline-flex; align-items: center; gap: 5px; color: #888; white-space: nowrap; }
 
 .activity { margin-bottom: clamp(30px,4vw,52px); }
+.home-panels { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items:stretch; gap:16px; margin-bottom:clamp(30px,4vw,52px); }
+.home-panels > * { min-width:0; }
+.home-panels .activity.compact { margin:0; padding:18px; border-radius:22px; }
+.home-panels .activity.compact .activity-card { min-height:51px; padding:5px 3px; }
+.home-panels .activity.compact .activity-cover { width:30px; height:40px; }
+.home-panels .activity.compact .activity-card { grid-template-columns:30px minmax(0,1fr); }
+@media(max-width:850px){.home-panels{grid-template-columns:minmax(0,1fr)}}
 .activity-list { list-style: none; display: grid; grid-template-columns: minmax(0,1fr); margin: 13px 0 0; padding: 0; border-top: 1px solid #ebe6ed; }
 .activity-list li { min-width: 0; }
 .activity-card {

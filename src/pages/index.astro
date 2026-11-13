@@ -23,8 +23,10 @@ const slides = winterPhotos.length ? winterPhotos.map(photo => photo.src) : [pro
     </div>
   </section>
   <Watching/>
-  <CollectionStats/>
-  <Activity/>
+  <div class="home-panels">
+    <CollectionStats compact/>
+    <Activity compact/>
+  </div>
   <div class="home-grid">
     <div class="main-column">
       <section class="home-space">
