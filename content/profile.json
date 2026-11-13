@@ -1,6 +1,6 @@
 {
   "id": "profile",
-  "version": "fed47ccc-bcc6-488b-bfd2-51e916753ea7",
+  "version": "4676d256-04d1-457f-b8dc-45ee8caeba82",
   "siteName": "凉宫洺雪的小站",
   "nickname": "凉宫洺雪",
   "signature": "",
@@ -19,6 +19,12 @@
     {
       "label": "Bangumi",
       "url": "https://chii.in/user/828732"
+    }
+  ],
+  "friends": [
+    {
+      "label": "小小的我与大千世界",
+      "url": "https://www.diaiv.xin/"
     }
   ]
 }
