@@ -3,7 +3,7 @@ import Icon from './Icon.astro';
 import { href, profile, posts, albums, adminUrl } from '../lib/blog.mjs';
 import '../styles/site.css';
 const { title, active = '首页', description = profile.signature || profile.siteName } = Astro.props;
-const nav = [['首页', '', 'home'], ['空间', 'posts/', 'book'], ['相册', 'albums/', 'image'], ['收藏', 'bangumi/', 'folder'], ['关于我', 'about/', 'user']];
+const nav = [['首页', '', 'home'], ['空间', 'posts/', 'book'], ['相册', 'albums/', 'image'], ['收藏', 'bangumi/', 'folder'], ['工具', 'tools/', 'sun'], ['关于我', 'about/', 'user']];
 const items = [
   ...posts.map(post => ({ title: post.title, kind: '空间', path: href('posts/' + post.id + '/') })),
   ...albums.map(album => ({ title: album.title, kind: '相册', path: href('albums/' + album.id + '/') }))

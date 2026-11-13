@@ -306,8 +306,9 @@ dialog small { color: #aaa; font-size: 11px; margin-right: 8px; }
   .brand-mark { width: 30px; height: 30px; }
   .header-tools { gap: 10px; }
   .header-avatar { display: none; }
-  .top nav { justify-content: space-between; gap: 0; }
-  .nav-item { padding: 7px 6px; }
+  .top nav { justify-content: flex-start; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+  .top nav::-webkit-scrollbar { display: none; }
+  .nav-item { flex: 0 0 auto; padding: 7px 6px; }
   .section-head h2 { font-size: 17px; gap: 10px; }
   .section-head h2 > span { font-size: 11px; }
 
