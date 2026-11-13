@@ -1,4 +1,6 @@
+import {collectionPage} from '../lib/bangumi.mjs';
 const list = document.querySelector('#collection-list');
+const linkedWorks = JSON.parse(list.dataset.works);
 const status = document.querySelector('#sync-status');
 const state = document.querySelector('#collection-state');
 const kinds = document.querySelectorAll('[data-kind]');
@@ -37,6 +39,12 @@ function card(entry) {
   const meta = document.createElement('small');
   meta.textContent = details.join(' · ');
   info.append(title, meta);
+  if (linkedWorks[entry.subject_id]) {
+    const link = document.createElement('a');
+    link.href = linkedWorks[entry.subject_id];
+    link.textContent = '相关空间与相册';
+    info.append(link);
+  }
   row.append(info);
   return row;
 }
@@ -56,14 +64,7 @@ async function update(reset = false) {
   next.disabled = true;
   refresh.disabled = true;
   try {
-    const url = new URL('https://api.bgm.tv/v0/users/828732/collections');
-    url.searchParams.set('subject_type', kind);
-    if (state.value) url.searchParams.set('type', state.value);
-    url.searchParams.set('limit', pageSize);
-    url.searchParams.set('offset', offset);
-    const response = await fetch(url, { credentials: 'omit', cache: 'no-store', signal: request.signal });
-    if (!response.ok) throw new Error('收藏读取失败');
-    const page = await response.json();
+    const page = await collectionPage(kind,state.value,pageSize,offset,request.signal);
     if (request !== activeRequest) return;
     total = page.total;
     if (offset && offset >= total) {

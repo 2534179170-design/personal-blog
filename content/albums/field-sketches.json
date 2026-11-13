@@ -1,6 +1,6 @@
 {
   "id": "field-sketches",
-  "version": "initial",
+  "version": "d0d184a1-e443-48e2-b22f-117b8812fd4c",
   "title": "原野的色彩",
   "date": "2026-11-12",
   "description": "为小站绘制的风景插画集。",
@@ -20,5 +20,6 @@
       "thumb": "art/sea.webp",
       "caption": "海岸的午后"
     }
-  ]
+  ],
+  "category": "风景插画"
 }

@@ -9,14 +9,13 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
 <Layout>
   <section class="welcome">
     <div class="welcome-copy">
-      <span class="welcome-label">{profile.nickname} 的个人主页</span>
       <h1>{profile.siteName}</h1>
+      <div class="hero-bio" set:html={markdown(profile.bio)} />
       {profile.signature && <p>{profile.signature}</p>}
-      <a href={href('about/')} class="welcome-link">认识一下站主 <Icon name="arrow" size={14} /></a>
+      {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
+      <div class="hero-actions"><a class="welcome-link" href={href('posts/')}>浏览空间 <Icon name="arrow" size={15}/></a><a href={href('bangumi/')}>追番与游戏</a></div>
     </div>
-    <a class="welcome-avatar" href={href('about/')} aria-label="查看站主资料">
-      <img src={href(profile.avatar || 'art/avatar.webp')} alt={profile.nickname + '的头像'} fetchpriority="high" />
-    </a>
+    <div class="welcome-art"><img src={href(profile.cover || 'art/meadow.webp')} alt="小站风景封面" fetchpriority="high"/></div>
   </section>
   <div class="home-grid">
     <div class="main-column">
@@ -25,14 +24,13 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
           <h2>空间<span>最近更新</span></h2>
           <a href={href('posts/')}>全部空间 <Icon name="arrow" size={13} /></a>
         </div>
-        <div class="feed-caption"><span>记录此刻，也收藏喜欢的日常。</span><span>发布时间</span></div>
         <div class="post-list">{posts.slice(0, 5).map(post => <PostRow post={post} showAvatar={false} />)}</div>
         {!posts.length && <p class="empty">还没有公开的空间内容。</p>}
         {posts.length > 0 && <a class="more-row" href={href('posts/')}>浏览全部 {posts.length} 篇空间 <Icon name="arrow" size={13} /></a>}
       </section>
       <section class="home-albums">
         <div class="section-head">
-          <h2>相册<span>一些画面，一些瞬间</span></h2>
+          <h2>相册</h2>
           <a href={href('albums/')}>全部相册 <Icon name="arrow" size={13} /></a>
         </div>
         <div class="album-grid">{albums.slice(0, 3).map(album => <AlbumCard album={album} />)}</div>
@@ -46,7 +44,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
           <a href={href('about/')}><img class="avatar" src={href(profile.avatar || 'art/avatar.webp')} alt="站主头像" /></a>
           <div><h2><a href={href('about/')}>{profile.nickname}</a></h2><span class="owner-label">站主</span></div>
         </div>
-        <div class="profile-bio" set:html={markdown(profile.bio)} />
+
         <div class="stats">
           <a href={href('posts/')}><b>{posts.length}</b><span>空间</span></a>
           <a href={href('albums/')}><b>{albums.length}</b><span>相册</span></a>
@@ -60,9 +58,28 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
         {!tags.length && <p class="muted">还没有分类。</p>}
       </section>
       <section class="side-section">
-        <h2>相册一览</h2>
-        <div class="side-albums">{albums.map(album => <a href={href('albums/' + album.id + '/')}><img src={href(album.photos[0]?.thumb || 'art/meadow.webp')} alt="" loading="lazy" /><span>{album.title}<small>{album.photos.length} 张照片</small></span></a>)}</div>
+        <h2>最近在追与在玩</h2>
+        <ul id="home-collection" class="activity-list"></ul>
+        <a class="back" href={href('bangumi/')}>查看番组计划收藏 →</a>
       </section>
     </aside>
   </div>
 </Layout>
+
+<script>
+  import {collectionPage} from '../lib/bangumi.mjs';
+  const list=document.querySelector('#home-collection')!;
+  async function recent(){
+    const groups=await Promise.allSettled([2,4].map(kind=>collectionPage(kind,3,3,0,AbortSignal.timeout(10000))));
+    const entries=groups.flatMap(group=>group.status==='fulfilled'?group.value.data:[]).filter(entry=>!entry.private).sort((a,b)=>Date.parse(b.updated_at)-Date.parse(a.updated_at)).slice(0,3);
+    if(!entries.length){list.replaceChildren();return;}
+    list.replaceChildren(...entries.map(entry=>{
+      const li=document.createElement('li'),link=document.createElement('a'),meta=document.createElement('small');
+      link.href='https://chii.in/subject/'+entry.subject_id;link.textContent=entry.subject.name_cn||entry.subject.name;
+      meta.textContent=entry.subject_type===2?'在看 · 已看 '+entry.ep_status+' 集':'在玩';
+      li.append(link,meta);return li;
+    }));
+  }
+  recent();
+  setInterval(()=>{if(!document.hidden)recent()},60000);
+</script>

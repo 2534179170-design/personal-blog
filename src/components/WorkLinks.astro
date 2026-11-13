@@ -1,0 +1,5 @@
+---
+import {href} from '../lib/blog.mjs';
+const {works=[]} = Astro.props;
+---
+{works.length>0 && <div class="work-links"><span>关联作品</span>{works.map(work=><a class="tag" href={href('works/'+work.id+'/')}>{work.title}</a>)}</div>}

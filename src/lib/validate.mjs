@@ -1,5 +1,5 @@
 const tokenPattern=/^[a-z0-9][a-z0-9-]{0,79}$/;
-const imagePattern=/^(?:media\/[a-f0-9-]{36}(?:-sm)?|art\/[a-z-]+)\.webp$/;
+const imagePattern=/^(?:media\/[a-f0-9-]{36}(?:-sm)?|art\/[a-z0-9-]+)\.webp$/;
 export class Problem extends Error {
   constructor(status,message){super(message);this.status=status;}
 }
@@ -10,6 +10,20 @@ function string(value,max,required=false){
 }
 function photoPath(value,optional=false){requireValue((optional&&!value)||typeof value==='string'&&imagePattern.test(value),'图片路径无效。');return value||'';}
 function day(value){requireValue(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&Number.isFinite(Date.parse(value)),'请选择有效日期。');return value;}
+function entries(value, max, normalize) {
+  const rows = value ?? [];
+  requireValue(Array.isArray(rows) && rows.length <= max, '填写的条目过多。');
+  return rows.map(row => {
+    requireValue(row && typeof row === 'object', '请检查条目格式。');
+    return normalize(row);
+  });
+}
+function webLink(row) {
+  let url;
+  try { url = new URL(row.url); } catch {}
+  requireValue(url && /^https?:$/.test(url.protocol), '请输入完整的网址。');
+  return {label:string(row.label,48,true),url:url.href};
+}
 export function recordPath(type,id){
   requireValue(tokenPattern.test(id)&&typeof id==='string','内容编号无效。');
   if(type==='profile'&&id==='profile')return 'content/profile.json';
@@ -22,16 +36,26 @@ export function validateRecord(type,id,version,data){
   const common={id,version};
   if(type==='profile'){
     requireValue(Array.isArray(data.links)&&data.links.length<=12,'链接数量过多。');
-    const links=data.links.map(x=>{let url;try{url=new URL(x.url)}catch{}requireValue(url&&/^https?:$/.test(url.protocol),'请输入完整的网址。');return {label:string(x.label,48,true),url:url.href}});
-    return {...common,siteName:string(data.siteName,40,true),nickname:string(data.nickname,40,true),signature:string(data.signature,160),bio:string(data.bio,6000),avatar:photoPath(data.avatar,true),cover:photoPath(data.cover,true),links};
+    const links=data.links.map(webLink);
+    const friends=entries(data.friends,40,row=>({...webLink(row),note:string(row.note??'',160)}));
+    const favorites=entries(data.favorites,100,row=>{
+      requireValue(/^\d{4}$/.test(row.year),'年度最爱请填写四位年份。');
+      return {year:row.year,title:string(row.title,120,true),note:string(row.note??'',300)};
+    });
+    return {...common,siteName:string(data.siteName,40,true),nickname:string(data.nickname,40,true),signature:string(data.signature,160),bio:string(data.bio,6000),avatar:photoPath(data.avatar,true),cover:photoPath(data.cover,true),links,now:string(data.now??'',160),friends,favorites};
   }
   const title=string(data.title,120,true),date=day(data.date);
+  const works=entries(data.works,12,row=>{
+    requireValue(typeof row.id==='string' && /^[1-9]\d{0,8}$/.test(row.id),'作品编号应为番组计划条目网址末尾的数字。');
+    return {id:row.id,title:string(row.title,120,true)};
+  });
+  requireValue(new Set(works.map(work=>work.id)).size===works.length,'同一作品只需关联一次。');
   if(type==='posts'){
     requireValue(Array.isArray(data.tags)&&data.tags.length<=8,'标签最多 8 个。');
-    return {...common,title,date,tags:[...new Set(data.tags.map(t=>string(t,24,true)))],summary:string(data.summary,300),cover:photoPath(data.cover,true),body:string(data.body,120000,true)};
+    return {...common,title,date,works,tags:[...new Set(data.tags.map(t=>string(t,24,true)))],summary:string(data.summary,300),cover:photoPath(data.cover,true),body:string(data.body,120000,true)};
   }
   requireValue(Array.isArray(data.photos)&&data.photos.length>0&&data.photos.length<=100,'每本相册应包含 1 到 100 张照片。');
-  return {...common,title,date,description:string(data.description,600),photos:data.photos.map(p=>({src:photoPath(p.src),thumb:photoPath(p.thumb),caption:string(p.caption,200)}))};
+  return {...common,title,date,works,category:string(data.category??'',36),description:string(data.description,600),photos:data.photos.map(p=>({src:photoPath(p.src),thumb:photoPath(p.thumb),caption:string(p.caption,200),spoiler:string(p.spoiler??'',100)}))};
 }
 export function serialize(type,record){
   if(type!=='posts')return JSON.stringify(record,null,2)+'\n';

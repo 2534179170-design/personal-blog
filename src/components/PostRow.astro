@@ -1,5 +1,5 @@
 ---
-import { href, profile } from '../lib/blog.mjs';
+import { href, profile, publicSummary } from '../lib/blog.mjs';
 const { post, showAvatar = true } = Astro.props;
 ---
 <article class:list={['post-row', { 'no-avatar': !showAvatar }]} data-tags={JSON.stringify(post.tags)}>
@@ -8,7 +8,7 @@ const { post, showAvatar = true } = Astro.props;
   </a>}
   <div class="post-copy">
     <h3><a href={href('posts/' + post.id + '/')}>{post.title}</a></h3>
-    <p>{post.summary}</p>
+    <p>{publicSummary(post.summary)}</p>
     <div class="post-meta">
       <a class="author-name" href={href('about/')}>{profile.nickname}</a>
       {post.tags.map(tag => <span class="tag">{tag}</span>)}

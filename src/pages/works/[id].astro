@@ -1,0 +1,12 @@
+---
+import Layout from '../../components/Layout.astro';
+import {workIndex} from '../../lib/blog.mjs';
+export function getStaticPaths() {
+  return [...workIndex.values()].map(work=>({params:{id:work.id},props:{work}}));
+}
+const {work}=Astro.props;
+---
+<Layout title={work.title} active="收藏">
+  <header class="page-head"><h1>{work.title}</h1><a href={'https://chii.in/subject/'+work.id}>在番组计划查看作品 ↗</a></header>
+  <ul class="journal-list">{work.items.map(item=><li><time>{item.date}</time><span class="tag">{item.kind==='posts'?'空间':'相册'}</span><a href={item.path}>{item.title}</a></li>)}</ul>
+</Layout>

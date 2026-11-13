@@ -2,5 +2,16 @@
 import Layout from '../../components/Layout.astro';
 import AlbumCard from '../../components/AlbumCard.astro';
 import {albums} from '../../lib/blog.mjs';
+const categories=[...new Set(albums.map(album=>album.category || '未分类'))];
 ---
-<Layout active="相册" title="照片相册"><div class="page-head"><h1>照片相册</h1><p>共 {albums.length} 本相册</p></div><div class="album-grid">{albums.map(album=><AlbumCard album={album}/>)}{!albums.length&&<p>暂时没有公开的相册。</p>}</div></Layout>
+<Layout active="相册" title="照片相册"><div class="page-head"><h1>照片相册</h1><p>共 {albums.length} 本相册</p></div>
+  <div class="filters" aria-label="相册分类">{['',...categories].map(category=><button data-filter={category} aria-pressed={!category?'true':'false'}>{category||'全部相册'}</button>)}</div>
+  <div class="album-grid">{albums.map(album=><AlbumCard album={album}/>)}{!albums.length&&<p>暂时没有公开的相册。</p>}</div>
+  <script>
+    const filters=document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    for(const filter of filters)filter.onclick=()=>{
+      for(const button of filters)button.setAttribute('aria-pressed',String(button===filter));
+      for(const card of document.querySelectorAll<HTMLElement>('[data-category]'))card.hidden=!!filter.dataset.filter&&card.dataset.category!==filter.dataset.filter;
+    };
+  </script>
+</Layout>

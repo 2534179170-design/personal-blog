@@ -1,10 +1,11 @@
 ---
 import Layout from '../../components/Layout.astro';
+import WorkLinks from '../../components/WorkLinks.astro';
 import Share from '../../components/Share.astro';
-import {posts,href,markdown} from '../../lib/blog.mjs';
+import {posts,href,markdown,publicSummary} from '../../lib/blog.mjs';
 export function getStaticPaths() {
   return posts.map(post => ({ params: { id: post.id }, props: { post } }));
 }
 const {post}=Astro.props;
 ---
-<Layout active="空间" title={post.title} description={post.summary}><article class="paper detail"><a class="back" href={href('posts/')}>← 空间</a><div class="post-meta"><span class="tag">{post.tags.join(' · ')||'手记'}</span><time>{post.date}</time></div><h1>{post.title}</h1>{post.cover&&<img class="detail-cover" src={href(post.cover)} alt="空间封面"/>}<div class="prose" set:html={markdown(post.body)}/><Share/></article></Layout>
+<Layout active="空间" title={post.title} description={publicSummary(post.summary)}><article class="paper detail"><a class="back" href={href('posts/')}>← 空间</a><div class="post-meta"><span class="tag">{post.tags.join(' · ')||'手记'}</span><time>{post.date}</time></div><h1>{post.title}</h1>{post.cover&&<img class="detail-cover" src={href(post.cover)} alt="空间封面"/>}<div class="prose" set:html={markdown(post.body)}/><WorkLinks works={post.works}/><Share/></article></Layout>

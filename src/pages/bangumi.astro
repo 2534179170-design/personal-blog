@@ -1,5 +1,6 @@
 ---
 import Layout from '../components/Layout.astro';
+import {href,workIndex} from '../lib/blog.mjs';
 ---
 <Layout active="收藏" title="追番与游戏">
   <header class="page-head">
@@ -18,7 +19,7 @@ import Layout from '../components/Layout.astro';
   </div>
   <noscript>请启用浏览器脚本，或通过上方账号链接查看收藏。</noscript>
   <p id="sync-status" class="muted" role="status"></p>
-  <ul id="collection-list" aria-label="作品列表"></ul>
+  <ul id="collection-list" data-works={JSON.stringify(Object.fromEntries([...workIndex.keys()].map(id=>[id,href('works/'+id+'/')])))} aria-label="作品列表"></ul>
   <div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button><button id="refresh">刷新记录</button></div>
 </Layout>
 <style>

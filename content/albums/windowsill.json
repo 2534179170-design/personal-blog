@@ -1,6 +1,6 @@
 {
   "id": "windowsill",
-  "version": "initial",
+  "version": "3ebd4fb3-8d02-43ab-9043-2935bdfe3e03",
   "title": "窗边拾光",
   "date": "2026-11-12",
   "description": "两幅关于阳光和植物的原创静物插画。",
@@ -15,5 +15,6 @@
       "thumb": "art/oranges.webp",
       "caption": "橘子熟了"
     }
-  ]
+  ],
+  "category": "静物插画"
 }

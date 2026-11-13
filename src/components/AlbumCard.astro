@@ -1,9 +1,9 @@
 ---
-import { href } from '../lib/blog.mjs';
+import { href, albumCover } from '../lib/blog.mjs';
 const { album } = Astro.props;
 ---
-<a class="album-card" href={href('albums/' + album.id + '/')}>
-  <div class="album-cover"><img src={href(album.photos[0]?.thumb || 'art/meadow.webp')} alt="" loading="lazy" /></div>
+<a data-category={album.category || "未分类"} class="album-card" href={href('albums/' + album.id + '/')}>
+  <div class="album-cover"><img src={href(albumCover(album))} alt="" loading="lazy" /></div>
   <strong>{album.title}</strong>
-  <span class="album-info">{album.photos.length} 张照片<span>·</span>{album.date.replaceAll('-', '.')}</span>
+  <span class="album-info">{album.category && <>{album.category} · </>}{album.photos.length} 张照片<span>·</span>{album.date.replaceAll('-', '.')}</span>
 </a>
