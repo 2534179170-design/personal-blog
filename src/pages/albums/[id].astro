@@ -26,12 +26,24 @@ const {album}=Astro.props;
   const full=dlg.querySelector('#full') as HTMLImageElement;
   const reveal=dlg.querySelector('#reveal-photo') as HTMLButtonElement;
   let index=0;
+  let change=0;
   function show(i:number, consent=false){
+    const revision=++change;
+    const direction=Math.sign(i-index);
     index=(i+pics.length)%pics.length;
     const {src,caption,warning}=pics[index].dataset;
     const hidden=Boolean(warning)&&!consent;
     full.hidden=hidden; reveal.hidden=!hidden;
-    if(hidden)full.removeAttribute('src'); else full.src=src!;
+    full.getAnimations().forEach(animation=>animation.cancel());
+    if(hidden)full.removeAttribute('src');
+    else {
+      full.src=src!;
+      full.decode().then(()=>{
+        if(revision===change && dlg.open && matchMedia('(prefers-reduced-motion: no-preference)').matches){
+          full.animate([{opacity:.35,transform:'translateX('+direction*12+'px) scale(.994)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});
+        }
+      }).catch(()=>{});
+    }
     full.alt=hidden?'':caption||'相片';
     reveal.textContent=warning+' · 展开剧透照片';
     dlg.querySelector('#caption')!.textContent=hidden?'':caption||'';

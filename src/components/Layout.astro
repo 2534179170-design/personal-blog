@@ -48,6 +48,12 @@ const items = [
         field.focus();
       });
       dialog.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          dialog.close();
+        }
+      });
       field.addEventListener('input', () => {
         let count = 0;
         dialog.querySelectorAll<HTMLElement>('[data-search]').forEach(element => {

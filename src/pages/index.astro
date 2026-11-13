@@ -5,9 +5,12 @@ import AlbumCard from '../components/AlbumCard.astro';
 import Icon from '../components/Icon.astro';
 import { href, profile, posts, albums, markdown } from '../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
+const cover = profile.cover || 'art/winter-piano.webp';
+const coverAlbum = albums.find(album => album.photos.some(photo => photo.src === cover && !photo.spoiler));
 ---
 <Layout>
   <section class="welcome">
+    <div class="welcome-art"><img src={href(cover)} alt="小站首页封面" fetchpriority="high"/></div>
     <div class="welcome-copy">
       <h1>{profile.siteName}</h1>
       <div class="hero-bio" set:html={markdown(profile.bio)} />
@@ -15,7 +18,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
       {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
       <div class="hero-actions"><a class="welcome-link" href={href('posts/')}>浏览空间 <Icon name="arrow" size={15}/></a><a href={href('bangumi/')}>追番与游戏</a></div>
     </div>
-    <div class="welcome-art"><img src={href(profile.cover || 'art/winter-piano.webp')} alt="小站首页封面" fetchpriority="high"/></div>
+    {coverAlbum && <a class="cover-credit" href={href('albums/'+coverAlbum.id+'/')}><Icon name="image" size={15}/>{coverAlbum.title}<Icon name="arrow" size={13}/></a>}
   </section>
   <div class="home-grid">
     <div class="main-column">
@@ -26,7 +29,6 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
         </div>
         <div class="post-list">{posts.slice(0, 5).map(post => <PostRow post={post} showAvatar={false} />)}</div>
         {!posts.length && <p class="empty">还没有公开的空间内容。</p>}
-        {posts.length > 0 && <a class="more-row" href={href('posts/')}>浏览全部 {posts.length} 篇空间 <Icon name="arrow" size={13} /></a>}
       </section>
       <section class="home-albums">
         <div class="section-head">

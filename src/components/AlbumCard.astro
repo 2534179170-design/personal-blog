@@ -4,6 +4,7 @@ const { album } = Astro.props;
 ---
 <a data-category={album.category || "未分类"} class="album-card" href={href('albums/' + album.id + '/')}>
   <div class="album-cover"><img src={href(albumCover(album))} alt="" loading="lazy" /></div>
-  <strong>{album.title}</strong>
-  <span class="album-info">{album.category && <>{album.category} · </>}{album.photos.length} 张照片<span>·</span>{album.date.replaceAll('-', '.')}</span>
+  <div class="album-label"><strong>{album.title}</strong>
+    <span class="album-info">{album.photos.length} 张照片<span>·</span>{album.date.replaceAll('-', '.')}</span>
+  </div>
 </a>
