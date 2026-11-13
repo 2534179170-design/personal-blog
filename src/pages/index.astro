@@ -19,7 +19,7 @@ const slides = winterPhotos.length ? winterPhotos.map(photo => photo.src) : [pro
       <div class="hero-bio" set:html={markdown(profile.bio)} />
       {profile.signature && <p>{profile.signature}</p>}
       {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
-      <div class="hero-actions"><a class="welcome-link" href={href('bangumi/')}>查看追番记录 <Icon name="arrow" size={15}/></a><a href={href('posts/')}>浏览空间</a></div>
+      <div class="hero-actions"><a class="welcome-link" href={href('about/#collection')}>查看追番记录 <Icon name="arrow" size={15}/></a><a href={href('posts/')}>浏览空间</a></div>
     </div>
   </section>
   <Watching/>

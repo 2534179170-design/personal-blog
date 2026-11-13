@@ -1,5 +1,16 @@
 ---
 import Layout from '../components/Layout.astro';
+import Collection from '../components/Collection.astro';
 import {href,profile,markdown} from '../lib/blog.mjs';
 ---
-<Layout active="关于我" title="关于我"><section class="paper about"><img class="avatar" src={href(profile.avatar||'art/avatar-mingxue.webp')} alt="站主头像"/><p class="tag">关于我</p><h1>{profile.nickname}</h1>{profile.signature && <p>{profile.signature}</p>}<div class="prose" set:html={markdown(profile.bio)} /><div class="about-social">{profile.links.map(l=><a class="button" href={l.url} target="_blank" rel="me noopener noreferrer">{l.label} ↗</a>)}</div></section></Layout>
+<Layout active="关于我" title="关于我">
+  <section class="paper about">
+    <img class="avatar" src={href(profile.avatar||'art/avatar-mingxue.webp')} alt="站主头像" />
+    <p class="tag">关于我</p>
+    <h1>{profile.nickname}</h1>
+    {profile.signature && <p>{profile.signature}</p>}
+    <div class="prose" set:html={markdown(profile.bio)} />
+    <div class="about-social">{profile.links.map(l=><a class="button" href={l.url} target="_blank" rel="me noopener noreferrer">{l.label} ↗</a>)}</div>
+  </section>
+  <Collection />
+</Layout>
