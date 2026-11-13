@@ -1,12 +1,11 @@
 ---
 import Layout from '../components/Layout.astro';
+import Watching from '../components/Watching.astro';
 import PostRow from '../components/PostRow.astro';
-import AlbumCard from '../components/AlbumCard.astro';
 import Icon from '../components/Icon.astro';
 import { href, profile, posts, albums, markdown } from '../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
 const cover = profile.cover || 'art/winter-piano.webp';
-const coverAlbum = albums.find(album => album.photos.some(photo => photo.src === cover && !photo.spoiler));
 ---
 <Layout>
   <section class="welcome">
@@ -16,10 +15,10 @@ const coverAlbum = albums.find(album => album.photos.some(photo => photo.src ===
       <div class="hero-bio" set:html={markdown(profile.bio)} />
       {profile.signature && <p>{profile.signature}</p>}
       {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
-      <div class="hero-actions"><a class="welcome-link" href={href('posts/')}>浏览空间 <Icon name="arrow" size={15}/></a><a href={href('bangumi/')}>追番与游戏</a></div>
+      <div class="hero-actions"><a class="welcome-link" href={href('bangumi/')}>查看追番记录 <Icon name="arrow" size={15}/></a><a href={href('posts/')}>浏览空间</a></div>
     </div>
-    {coverAlbum && <a class="cover-credit" href={href('albums/'+coverAlbum.id+'/')}><Icon name="image" size={15}/>{coverAlbum.title}<Icon name="arrow" size={13}/></a>}
   </section>
+  <Watching/>
   <div class="home-grid">
     <div class="main-column">
       <section>
@@ -29,14 +28,6 @@ const coverAlbum = albums.find(album => album.photos.some(photo => photo.src ===
         </div>
         <div class="post-list">{posts.slice(0, 5).map(post => <PostRow post={post} showAvatar={false} />)}</div>
         {!posts.length && <p class="empty">还没有公开的空间内容。</p>}
-      </section>
-      <section class="home-albums">
-        <div class="section-head">
-          <h2>相册</h2>
-          <a href={href('albums/')}>全部相册 <Icon name="arrow" size={13} /></a>
-        </div>
-        <div class="album-grid">{albums.slice(0, 3).map(album => <AlbumCard album={album} />)}</div>
-        {!albums.length && <p class="empty">第一本相册正在准备中。</p>}
       </section>
     </div>
     <aside class="sidebar">
@@ -59,29 +50,6 @@ const coverAlbum = albums.find(album => album.photos.some(photo => photo.src ===
         <div class="tag-cloud">{tags.map(tag => <a href={href('posts/') + '?tag=' + encodeURIComponent(tag)}>{tag}<small>{posts.filter(post => post.tags.includes(tag)).length}</small></a>)}</div>
         {!tags.length && <p class="muted">还没有分类。</p>}
       </section>
-      <section class="side-section">
-        <h2>最近在追与在玩</h2>
-        <ul id="home-collection" class="activity-list"></ul>
-        <a class="back" href={href('bangumi/')}>查看番组计划收藏 →</a>
-      </section>
     </aside>
   </div>
 </Layout>
-
-<script>
-  import {collectionPage} from '../lib/bangumi.mjs';
-  const list=document.querySelector('#home-collection')!;
-  async function recent(){
-    const groups=await Promise.allSettled([2,4].map(kind=>collectionPage(kind,3,3,0,AbortSignal.timeout(10000))));
-    const entries=groups.flatMap(group=>group.status==='fulfilled'?group.value.data:[]).filter(entry=>!entry.private).sort((a,b)=>Date.parse(b.updated_at)-Date.parse(a.updated_at)).slice(0,3);
-    if(!entries.length){list.replaceChildren();return;}
-    list.replaceChildren(...entries.map(entry=>{
-      const li=document.createElement('li'),link=document.createElement('a'),meta=document.createElement('small');
-      link.href='https://chii.in/subject/'+entry.subject_id;link.textContent=entry.subject.name_cn||entry.subject.name;
-      meta.textContent=entry.subject_type===2?'在看 · 已看 '+entry.ep_status+' 集':'在玩';
-      li.append(link,meta);return li;
-    }));
-  }
-  recent();
-  setInterval(()=>{if(!document.hidden)recent()},60000);
-</script>

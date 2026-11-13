@@ -1,0 +1,80 @@
+---
+import Icon from './Icon.astro';
+import {href} from '../lib/blog.mjs';
+---
+<section class="watching" aria-labelledby="watch-heading">
+  <div class="section-head">
+    <h2 id="watch-heading">正在追的动画 <span id="watch-count"></span></h2>
+    <a href={href('bangumi/')}>全部追番记录 <Icon name="arrow" size={13}/></a>
+  </div>
+  <ul id="watch-list" aria-label="最近更新的在看动画"></ul>
+  <p id="watch-status" class="muted" role="status">正在读取番组计划记录…</p>
+  <noscript><a href="https://chii.in/anime/list/828732/do">在番组计划查看在看清单</a></noscript>
+</section>
+<script>
+  import {collectionPage} from '../lib/bangumi.mjs';
+  const list = document.querySelector('#watch-list')!;
+  const count = document.querySelector('#watch-count')!;
+  const status = document.querySelector('#watch-status') as HTMLElement;
+  let pending = false;
+  let lastSnapshot = '';
+  async function refresh() {
+    if (pending || document.hidden) return;
+    pending = true;
+    try {
+      const page = await collectionPage(2,3,6,0,AbortSignal.timeout(12000));
+      const entries = page.data.filter(entry=>!entry.private);
+      count.textContent = page.total ? page.total+' 部在看' : '';
+      const snapshot = JSON.stringify(entries);
+      if (snapshot !== lastSnapshot) {
+        list.replaceChildren(...entries.map(entry=>{
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          const cover = document.createElement('span');
+          cover.className = 'watch-cover';
+          const subject = entry.subject;
+          const url = subject.images?.common || subject.images?.grid;
+          if (url?.startsWith('https://')) {
+            const img = document.createElement('img');
+            img.alt = ''; img.loading = 'lazy'; img.referrerPolicy = 'no-referrer';
+            img.onerror = ()=>img.remove();
+            img.src = url; cover.append(img);
+          }
+          const title = document.createElement('strong');
+          title.textContent = subject.name_cn || subject.name;
+          const progress = document.createElement('small');
+          progress.textContent = '已看 '+entry.ep_status+' 集'+(subject.eps>0?' / 共 '+subject.eps+' 集':'');
+          link.href = 'https://chii.in/subject/'+Number(entry.subject_id);
+          link.append(cover,title,progress); li.append(link);
+          return li;
+        }));
+        lastSnapshot = snapshot;
+      }
+      status.hidden = Boolean(entries.length);
+      status.textContent = entries.length ? '' : '暂时没有公开的在看记录。';
+    } catch {
+      status.hidden = false;
+      status.textContent = list.childElementCount ? '暂时无法刷新，当前显示上次读取的进度。' : '暂时无法读取番组计划记录。';
+    } finally { pending = false; }
+  }
+  refresh();
+  document.addEventListener('visibilitychange',refresh);
+  setInterval(refresh,60000);
+</script>
+<style>
+  .watching { margin-bottom: clamp(28px,4vw,52px); }
+  #watch-list { list-style:none; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:clamp(10px,1.7vw,22px); padding:0; margin:18px 0 0; }
+  #watch-list :global(a) { display:grid; gap:6px; }
+  #watch-list :global(.watch-cover) { display:block; overflow:hidden; aspect-ratio:4/5; border-radius:10px; background:linear-gradient(135deg,#ebe6f3,#faf3f7); }
+  #watch-list :global(img) { display:block; width:100%; height:100%; object-fit:cover; }
+  #watch-list :global(strong) { font-size:14px; line-height:1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  #watch-list :global(small) { color:var(--muted); font-size:12px; }
+  @media(max-width:760px) {
+    #watch-list { display:flex; overflow-x:auto; scroll-snap-type:x proximity; padding:2px 2px 9px; }
+    #watch-list :global(li) { flex:0 0 clamp(116px,32vw,166px); scroll-snap-align:start; }
+  }
+  @media(prefers-reduced-motion:no-preference) and (hover:hover) {
+    #watch-list :global(img) { transition:transform .28s ease-out; }
+    #watch-list :global(a:hover img) { transform:scale(1.035); }
+  }
+</style>

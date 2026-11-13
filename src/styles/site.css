@@ -121,15 +121,9 @@ img { max-width: 100%; }
 .welcome p.now { margin-top: 10px; }
 .now strong { color: var(--pink); margin-right: 5px; }
 .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 22px; font-size: 13px; }
-.welcome-link, .cover-credit { display: inline-flex; align-items: center; gap: 9px; }
+.welcome-link { display: inline-flex; align-items: center; gap: 9px; }
 .welcome-link { padding: 10px 16px; border-radius: 20px; background: #343044; color: white; }
 .welcome-link:hover { background: #54465e; color: white; text-decoration: none; }
-.cover-credit {
-  position: absolute; bottom: 15px; left: 18px; border-radius: 20px;
-  padding: 6px 11px; color: #fff; background: #232037b8;
-  border: 1px solid #ffffff68; font-size: 12px;
-}
-.cover-credit:hover { color: white; background: #272337; }
 .home-grid { display: grid; grid-template-columns: minmax(0, 1fr) 268px; gap: 38px; }
 .main-column, .sidebar { min-width: 0; }
 .section-head, .split { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -158,8 +152,6 @@ img { max-width: 100%; }
 .post-image img { width: 88px; height: 66px; border-radius: 5px; object-fit: cover; display: block; }
 .post-row > time { font-size: 11px; color: #999; line-height: 24px; white-space: nowrap; }
 .more-row { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: #fafafa; color: #999; font-size: 12px; border-radius: 5px; margin-top: 14px; }
-.home-albums { margin-top: 33px; }
-.home-albums .album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 20px; }
 .profile-card { background: linear-gradient(135deg,#f4f2fbde,#fff 70%); border: 1px solid var(--rule); border-radius: 16px; padding: 20px 20px 0; box-shadow: var(--shadow); }
 .profile-heading { display: flex; justify-content: space-between; align-items: center; color: #999; font-size: 11px; margin-bottom: 17px; }
 .profile-identity { display: flex; align-items: center; gap: 13px; }
@@ -338,8 +330,7 @@ summary:focus-visible { outline-offset: 2px; }
   .welcome { align-items: end; justify-items: stretch; padding: 9px; padding-top: 136px; min-height: 282px; }
   .welcome-art img { object-position: 33% top; }
   .welcome-copy { padding: 13px 16px; width: 100%; }
-  .cover-credit { inset: 9px 9px auto auto; font-size: 10px; }
-  .album-grid, .home-albums .album-grid { grid-template-columns: minmax(0,1fr); }
+  .album-grid { grid-template-columns: minmax(0,1fr); }
   .album-cover img { min-height: 0; }
   .album-card strong { font-size: 15px; }
   .album-info { font-size: 11px; }
@@ -407,7 +398,7 @@ html { scroll-padding-top: 105px; }
     .welcome-link:hover svg { transform: translateX(4px); }
   }
   @supports (animation-timeline: view()) {
-    .home-albums, .sidebar .side-section, .photo-grid > button {
+    .sidebar .side-section, .photo-grid > button {
       animation: glass-enter linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 65%;
