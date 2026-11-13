@@ -281,6 +281,9 @@ dialog small { color: #aaa; font-size: 11px; margin-right: 8px; }
   .page-head h1, .detail h1, .about h1, .admin h1 { font-size: 23px; }
   .prose { font-size: 14px; }
 }
+/* 收藏图保留完整构图与原有题字。 */
+.detail-cover[src*="/art/white-album-"] { height: auto; max-height: 490px; object-fit: contain; background: #f8f7fa; }
+.welcome-art img[src$="/winter-piano.webp"] { object-position: 41% 36%; }
 .activity-list, .journal-list { list-style: none; padding: 0; }
 .activity-list li { margin-bottom: 14px; }
 .activity-list small { display: block; margin-top: 4px; color: var(--muted); }

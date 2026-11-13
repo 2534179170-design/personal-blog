@@ -15,7 +15,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
       {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
       <div class="hero-actions"><a class="welcome-link" href={href('posts/')}>浏览空间 <Icon name="arrow" size={15}/></a><a href={href('bangumi/')}>追番与游戏</a></div>
     </div>
-    <div class="welcome-art"><img src={href(profile.cover || 'art/meadow.webp')} alt="小站风景封面" fetchpriority="high"/></div>
+    <div class="welcome-art"><img src={href(profile.cover || 'art/winter-piano.webp')} alt="小站首页封面" fetchpriority="high"/></div>
   </section>
   <div class="home-grid">
     <div class="main-column">
@@ -41,7 +41,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
       <section class="profile-card">
         <div class="profile-heading"><span>这里的主人</span><Icon name="user" size={15} /></div>
         <div class="profile-identity">
-          <a href={href('about/')}><img class="avatar" src={href(profile.avatar || 'art/avatar.webp')} alt="站主头像" /></a>
+          <a href={href('about/')}><img class="avatar" src={href(profile.avatar || 'art/avatar-mingxue.webp')} alt="站主头像" /></a>
           <div><h2><a href={href('about/')}>{profile.nickname}</a></h2><span class="owner-label">站主</span></div>
         </div>
 

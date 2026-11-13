@@ -13,7 +13,7 @@ export const profile = JSON.parse(fs.readFileSync(path.join(root,'profile.json')
 export const posts = readGroup('posts', text => { const {data,content}=matter(text); return {...data,body:content.trim()}; });
 export const albums = readGroup('albums', JSON.parse);
 export function albumCover(album) {
-  return album.photos.find(photo=>!photo.spoiler)?.thumb || 'art/meadow.webp';
+  return album.photos.find(photo=>!photo.spoiler)?.thumb || 'art/winter-piano.webp';
 }
 export const workIndex = new Map();
 for (const [kind, records] of [['posts',posts],['albums',albums]]) {

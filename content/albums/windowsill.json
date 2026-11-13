@@ -1,20 +1,15 @@
 {
   "id": "windowsill",
-  "version": "3ebd4fb3-8d02-43ab-9043-2935bdfe3e03",
-  "title": "窗边拾光",
+  "version": "bacbce57-f97b-4d41-be0d-fb9d2cc0af3b",
+  "title": "白色相簿 · 冬日琴房",
   "date": "2026-11-12",
-  "description": "两幅关于阳光和植物的原创静物插画。",
+  "description": "以《白色相簿》收藏图为灵感，用人工智能生成的主题衍生插画。",
   "photos": [
     {
-      "src": "art/desk.webp",
-      "thumb": "art/desk.webp",
-      "caption": "窗前的一束野花"
-    },
-    {
-      "src": "art/oranges.webp",
-      "thumb": "art/oranges.webp",
-      "caption": "橘子熟了"
+      "src": "art/winter-piano.webp",
+      "thumb": "art/winter-piano-sm.webp",
+      "caption": "冬日琴房 · 雪光落在琴键与乐谱上"
     }
   ],
-  "category": "静物插画"
+  "category": "主题衍生插画"
 }

@@ -1,25 +1,25 @@
 {
   "id": "field-sketches",
-  "version": "d0d184a1-e443-48e2-b22f-117b8812fd4c",
-  "title": "原野的色彩",
+  "version": "8f78056a-9384-4d1c-8902-1bbdabb5942c",
+  "title": "白色相簿 · 图集",
   "date": "2026-11-12",
-  "description": "为小站绘制的风景插画集。",
+  "description": "三张来自《白色相簿》系列的收藏图。点开可看完整构图。",
   "photos": [
     {
-      "src": "art/meadow.webp",
-      "thumb": "art/meadow.webp",
-      "caption": "草坡尽头的小屋"
+      "src": "art/white-album-ensemble.webp",
+      "thumb": "art/white-album-ensemble-sm.webp",
+      "caption": "冬日窗前，四人与一架钢琴"
     },
     {
-      "src": "art/railway.webp",
-      "thumb": "art/railway.webp",
-      "caption": "树影里的小站"
+      "src": "art/white-album-watercolor.webp",
+      "thumb": "art/white-album-watercolor-sm.webp",
+      "caption": "麦克风与红色缎带，水彩里的几个瞬间"
     },
     {
-      "src": "art/sea.webp",
-      "thumb": "art/sea.webp",
-      "caption": "海岸的午后"
+      "src": "art/white-album-closing.webp",
+      "thumb": "art/white-album-closing-sm.webp",
+      "caption": "《白色相簿2》终章 · 雪蓝色群像"
     }
   ],
-  "category": "风景插画"
+  "category": "作品图集"
 }
