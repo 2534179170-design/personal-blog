@@ -333,6 +333,19 @@ dialog small { color: #aaa; font-size: 11px; margin-right: 8px; }
 .activity-list li { margin-bottom: 14px; }
 .activity-list small { display: block; margin-top: 4px; color: var(--muted); }
 .activity-list a { font-weight: 600; }
+/* 首页用不同弧度和内边距分开追番、时间胶囊与空间。 */
+.watching, .home-space { border: 1px solid #e9e4ee; border-radius: 30px; background: linear-gradient(145deg,#fffefa,#faf8fc); box-shadow: 0 18px 45px -38px #56495d80; }
+.watching { padding: clamp(18px,2.5vw,30px); margin-bottom: 20px; }
+.activity { padding: clamp(15px,2vw,23px); border: 1px solid #eae3ec; border-radius: 22px; background: linear-gradient(135deg,#f9f6fbdb,#fffdfde8); }
+.activity-list li { margin-bottom: 0; }
+.activity-list small { margin-top: 0; }
+.home-space { padding: clamp(18px,2.5vw,30px); }
+.sidebar .profile-card { border-radius: 24px; }
+.sidebar .side-section { padding: 18px; border: 1px solid #eee8ef; border-radius: 19px; background: #fffdfdea; }
+@media (max-width: 760px) {
+  .watching, .home-space { border-radius: 23px; padding: 17px; }
+  .activity { border-radius: 18px; padding: 14px; }
+}
 .journal-list li { padding: 14px 0; border-bottom: 1px solid var(--rule); display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; overflow-wrap: anywhere; }
 .journal-list time, .journal-list p { font-size: 13px; color: var(--muted); }
 .journal-list p { margin: 6px 0 0; }
