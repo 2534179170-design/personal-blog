@@ -28,7 +28,6 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
         <a href={href('posts/')}>浏览空间 <Icon name="arrow" size={15}/></a>
       </div>
     </div>
-    {album && photos.length > 0 && <a class="cover-credit" href={href('albums/' + album.id + '/')}><Icon name="image" size={14}/>{album.title} <span aria-hidden="true">↗</span></a>}
   </div>
 </section>
 <script>
@@ -87,15 +86,14 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
   .cover-type p, .cover-bio :global(p) { margin:6px 0; color:#405168; font-size:clamp(13px,1.1vw,16px); line-height:1.7; }
   .cover-bio :global(strong) { color:var(--ink); }
   .cover-actions { display:flex; align-items:center; gap:clamp(15px,2vw,28px); margin-top:clamp(17px,2vw,29px); }
-  .cover-actions a, .cover-credit { display:inline-flex; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:650; }
+  .cover-actions a { display:inline-flex; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:650; }
   .cover-actions a { min-height:44px; color:var(--ink); }
   .cover-actions .cover-primary { border-radius:30px; padding:0 19px; color:white; background:var(--ink); }
   .cover-primary span { color:#c5e9ff; font-size:19px; }
-  .cover-credit { position:absolute; right:16px; bottom:16px; padding:8px 13px; border:1px solid #ffffff8c; border-radius:20px; color:#fff; background:#192642db; }
   .winter-cover a:focus-visible { outline:3px solid #b73560; outline-offset:3px; }
   @media(hover:hover) {
     .cover-actions a:hover { color:var(--wine); }
-    .cover-actions .cover-primary:hover,.cover-credit:hover { background:#87324e; color:white; }
+    .cover-actions .cover-primary:hover { background:#87324e; color:white; }
   }
   @media(max-width:720px) {
     .cover-stage { min-height:0; border-radius:5px 18px 5px 18px; grid-template-rows:clamp(175px,49vw,285px) auto; }
@@ -107,7 +105,6 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
     .cover-type h1 small { display:inline; font-size:clamp(24px,5.2vw,35px); }
     .cover-bio { margin-top:8px; }
     .cover-actions { margin-top:12px; }
-    .cover-credit { top:calc(clamp(200px,54vw,315px) * .8 - 37px); right:9px; bottom:auto; font-size:12px; padding:6px 10px; }
     .cover-orbit { bottom:-53%; left:-42%; width:115%; }
   }
   @media(prefers-reduced-motion:no-preference) {
