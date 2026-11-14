@@ -1,0 +1,86 @@
+/* 蓝色斜切节奏与轻粉留白，用于个人博客而非游戏宣传页。 */
+:root { --chapter-blue:#0b80bd; --chapter-cyan:#43c9df; --chapter-pink:#d78fae; --chapter-navy:#153e64; }
+body { background:radial-gradient(ellipse 35% 25rem at 100% 8rem,#f6e9f1 0,transparent 80%),radial-gradient(ellipse 38% 32rem at -10% 47rem,#eaf7fc 0,transparent 75%),#fdfdff; }
+.top-inner { border-color:rgba(255,255,255,.94); background:linear-gradient(102deg,rgba(245,251,255,.83),rgba(255,255,255,.79) 52%,rgba(255,246,251,.78)); box-shadow:inset 0 1px #fff,0 13px 34px -23px rgba(20,91,139,.28); }
+.nav-item.active { color:#175f8d; }
+.nav-item.active::after { background:linear-gradient(90deg,var(--chapter-cyan),var(--chapter-blue)); }
+.nav-item:hover { color:#176d9e; }
+
+/* 首屏：左侧阅读区、右侧完整画面，斜线形成翻页感。 */
+.welcome { min-height:clamp(440px,43vw,540px); overflow:hidden; border:1px solid #e7eef5; border-radius:18px; background:linear-gradient(120deg,#fff 0%,#f3faff 48%,#f8eff6 100%); box-shadow:0 25px 60px -45px rgba(22,70,113,.28); }
+.welcome-art { left:43%; clip-path:polygon(8% 0,100% 0,100% 100%,0 100%); }
+.welcome-art img { object-position:58% center; }
+.welcome::before { background:linear-gradient(110deg,transparent 49%,rgba(17,170,218,.15) 49.2%,transparent 52%),linear-gradient(0deg,rgba(51,111,166,.11),transparent 40%); }
+.welcome-copy { max-width:510px; padding:clamp(24px,3.5vw,45px); border:0; border-radius:0; background:transparent; box-shadow:none; -webkit-backdrop-filter:none; backdrop-filter:none; }
+.welcome-copy::after { color:rgba(33,148,195,.1); right:12px; top:-10px; }
+.welcome-copy .hero-kicker { color:#2d8cac; font-size:12px; letter-spacing:.18em; }
+.welcome-copy h1 { color:#173e63; font-size:clamp(40px,3.55vw,50px); font-weight:800; letter-spacing:-.075em; }
+.welcome-copy p { color:#42546a; }
+.welcome-link { border-radius:5px; background:#087fbd; clip-path:polygon(0 0,calc(100% - 11px) 0,100% 50%,calc(100% - 11px) 100%,0 100%); }
+.welcome-link:hover { background:#086b9f; }
+.hero-actions > a:not(.welcome-link) { color:#116f9f; }
+.hero-caption { border-radius:5px; background:rgba(18,47,76,.61); }
+
+/* 章节编号维持阅读次序，替代多余的导航条。 */
+.section-head h2 { gap:12px; }
+.section-head h2::before { display:inline-grid; place-items:center; flex:none; width:34px; height:31px; border-radius:3px 9px 3px 9px; background:#e9f8fd; color:var(--chapter-blue); font:800 13px/1 var(--serif); letter-spacing:0; }
+.watching .section-head h2::before { content:"01"; }
+.home-panels .collection-stats .section-head h2::before { content:"02"; }
+.home-panels .activity .section-head h2::before { content:"03"; background:#f9ebf2; color:#a95f83; }
+.home-space .section-head h2::before { content:"04"; background:#f9ebf2; color:#a95f83; }
+.section-head > a { color:#1671a2; }
+.section-head > a:hover { color:#084b74; }
+.watching #watch-list .watch-cover { border-radius:4px 14px 4px 14px; }
+.watching #watch-list a:hover .watch-cover { border-color:#92d3ed; }
+.home-panels { border-color:#e0eaf1; border-radius:8px 26px 8px 26px; background:linear-gradient(115deg,#f0f9fd 0%,#f9fbfd 47%,#fdf4f8 100%); }
+.home-panels .collection-stats .stats-tabs button[aria-pressed=true] { background:#dceff7; color:#145e86; }
+.home-panels .activity .activity-action { color:#a35c7a; }
+.home-space .post-row:first-child { border-left:4px solid #69bedf; border-radius:4px 18px 4px 18px; background:linear-gradient(105deg,#f0f8fb,#fff 65%); }
+.sidebar .profile-card { border-color:#e1e9f1; border-radius:7px 22px 7px 22px; background:linear-gradient(150deg,#eff8fd,#faf6fb); }
+
+/* 内页使用不同章节色，保留统一的导航与内容功能。 */
+.archive-head,.album-head,.friend-head { position:relative; overflow:hidden; padding:47px 34px 34px; border:0; border-left:5px solid #6cc3e0; border-radius:5px 22px 5px 22px; background:linear-gradient(105deg,#ecf8fd,#fff 72%); }
+.archive-head::after,.album-head::after,.friend-head::after { content:""; position:absolute; right:-30px; top:-70px; width:260px; height:260px; border:1px solid rgba(63,166,210,.12); border-radius:50%; box-shadow:0 0 0 35px rgba(81,184,221,.035),0 0 0 70px rgba(81,184,221,.025); pointer-events:none; }
+.archive-head h1,.album-head h1,.friend-head h1 { color:#183f63; }
+.archive-eyebrow { color:#2889b3; }
+.album-head,.friend-head { border-left-color:#dfa1bb; background:linear-gradient(105deg,#fff1f7,#fff 72%); }
+.album-head h1,.friend-head h1 { color:#66435d; }
+.album-head .archive-eyebrow,.friend-head .archive-eyebrow { color:#ad688c; }
+.archive-toolbar,.album-filters { margin-top:22px; }
+.archive-toolbar .filters button[aria-pressed=true],.album-filters button[aria-pressed=true] { border-bottom-color:#1684bb; color:#12658f; }
+.album-filters button[aria-pressed=true] { border-bottom-color:#c67d9d; color:#9b5777; }
+.archive .post-row.no-avatar.featured { border-radius:5px 22px 5px 22px; background:linear-gradient(110deg,#eef8fd,#fff 68%); }
+.archive .post-row.featured .post-image { background:#e9f5fb; }
+.album-grid .album-card { border-radius:5px 19px 5px 19px; }
+.album-grid .album-label { border-radius:4px 13px 4px 13px; }
+.profile-hero { border-radius:5px 24px 5px 24px; background:linear-gradient(110deg,#f3faff,#fff 58%,#fff1f7); }
+.shell .tool-switch button,.shell .tool-panel,.friend-grid a { border-radius:5px 18px 5px 18px; }
+.paper.detail { border-radius:6px 24px 6px 24px; }
+
+@media (prefers-reduced-motion:no-preference) {
+  .welcome-art img[data-active="true"] { animation:hero-drift 9s ease-out both; }
+  @keyframes hero-drift { from { transform:scale(1.025) translateX(-.5%); } to { transform:scale(1) translateX(0); } }
+  ::view-transition-old(root) { animation:page-away .18s ease both; }
+  ::view-transition-new(root) { animation:page-arrive .25s ease both; }
+  @keyframes page-away { to { opacity:.65; transform:translateY(-5px); } }
+  @keyframes page-arrive { from { opacity:.65; transform:translateY(6px); } }
+}
+@media(max-width:760px) {
+  .welcome { min-height:340px; }
+  .welcome-art { inset:0; clip-path:none; }
+  .welcome-art img { object-position:50% center; }
+  .welcome::before { background:linear-gradient(90deg,rgba(239,247,253,.3),transparent 80%); }
+  .welcome-copy { max-width:min(370px,100%); border:1px solid rgba(255,255,255,.9); border-radius:15px; background:rgba(255,255,255,.8); box-shadow:0 16px 38px -28px rgba(21,63,101,.35); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px); }
+  .welcome-copy h1 { font-size:clamp(30px,5.5vw,38px); }
+  .archive-head,.album-head,.friend-head { padding:31px 22px 25px; }
+}
+@media(max-width:480px) {
+  .welcome { min-height:320px; }
+  .welcome-copy { padding:20px; }
+  .welcome-copy h1 { font-size:29px; }
+  .section-head h2::before { width:27px; height:27px; font-size:11px; }
+  .home-panels { padding:18px; }
+  .archive-head,.album-head,.friend-head { padding:26px 18px 20px; }
+  .archive-head h1,.album-head h1,.friend-head h1 { font-size:39px; }
+}
+@media (prefers-reduced-transparency:reduce),(forced-colors:active) { .top-inner,.welcome-copy { background:#fff; -webkit-backdrop-filter:none; backdrop-filter:none; } }
