@@ -233,3 +233,16 @@ body { background: #fcfdff; }
 @media(max-width:720px) {
   .top .top-inner { border-radius:27px; }
 }
+@media(prefers-reduced-motion:no-preference) {
+  .home-page .home-reveal {
+    transition:opacity .76s ease,transform .76s cubic-bezier(.2,.78,.18,1);
+  }
+  .home-page .home-reveal[data-reveal="pending"] {
+    opacity:0;
+    transform:translateY(42px) scale(.975);
+  }
+  .home-page .home-reveal[data-reveal="visible"] {
+    opacity:1;
+    transform:none;
+  }
+}
