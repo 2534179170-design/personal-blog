@@ -8,7 +8,7 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
 <section class="winter-cover" aria-labelledby="cover-heading">
   <div class="cover-stage">
     <div class="cover-art">
-      <img src={href('art/white-album-fullscreen-2x.webp')} alt="" fetchpriority="high" loading="eager" />
+      <img src={href('art/white-album-fullscreen-ai-2x.webp')} alt="" fetchpriority="high" loading="eager" />
     </div>
     <div class="cover-type">
       <h1 id="cover-heading"><span>{name}</span>{hasSuffix && <small>的小站</small>}</h1>
@@ -30,10 +30,6 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
     min-height:100vh; min-height:100svh;
     display:flex; align-items:flex-start;
     background:#dce5f2;
-  }
-  .cover-stage::after {
-    content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
-    background:linear-gradient(180deg,transparent 36%,#0e183633 70%,#0a173466 100%);
   }
   .cover-art, .cover-art img { position:absolute; inset:0; width:100%; height:100%; }
   .cover-art img {
