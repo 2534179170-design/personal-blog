@@ -7,7 +7,7 @@ import '../styles/editorial.css';
 import '../styles/refinement.css';
 import '../styles/winter-details.css';
 import '../styles/fusion.css';
-const { title, active = '首页', description = profile.signature || profile.siteName } = Astro.props;
+const { title, active = '首页', description = profile.signature || profile.siteName, home = false } = Astro.props;
 const nav = [['首页', '', 'home'], ['空间', 'posts/', 'book'], ['相册', 'albums/', 'image'], ['工具', 'tools/', 'sun'], ['关于我', 'about/', 'user']];
 const items = [
   ...posts.map(post => ({ title: post.title, kind: '空间', path: href('posts/' + post.id + '/') })),
@@ -24,7 +24,7 @@ const items = [
     <link rel="icon" href={href('album-snowflake.svg')} />
     <title>{title ? title + ' · ' + profile.siteName : profile.siteName}</title>
   </head>
-  <body id="top">
+  <body id="top" class:list={[{ 'home-page': home }]}>
     <header class="top">
       <div class="top-inner">
         <a class="brand" href={href('')} aria-label="返回首页"><img class="brand-mark" src={href('album-snowflake.svg')} width="35" height="35" alt="" /></a>

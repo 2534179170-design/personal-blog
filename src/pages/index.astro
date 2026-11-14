@@ -10,7 +10,7 @@ import { href, profile, posts, albums } from '../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
 const featuredPosts = [...posts.filter(post => post.tags.includes('番组计划短评')), ...posts.filter(post => !post.tags.includes('番组计划短评'))];
 ---
-<Layout>
+<Layout home>
   <AlbumCover/>
   <div id="watching" class="featured-watching"><Watching/></div>
   <div class="home-edition">

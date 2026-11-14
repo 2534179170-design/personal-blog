@@ -190,3 +190,10 @@ body { background: #fcfdff; }
   .top .nav-item { padding-inline: 2px; }
   .top .top-inner { padding-inline: 5px; gap: 2px; }
 }
+.home-page { overflow-x:clip; }
+.home-page .top { position:fixed; inset:0 0 auto; z-index:10; border:0; background:transparent; box-shadow:none; pointer-events:none; }
+.home-page .top-inner { pointer-events:auto; }
+.home-page .shell > .winter-cover {
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+}
