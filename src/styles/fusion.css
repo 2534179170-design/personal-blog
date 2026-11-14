@@ -197,3 +197,39 @@ body { background: #fcfdff; }
   width:100vw;
   margin-left:calc(50% - 50vw);
 }
+/* 将背景模糊限制在导航胶囊内，避免整条页眉两端出现光晕。 */
+.top, .home-page .top {
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+  background:transparent;
+  box-shadow:none;
+}
+.top .top-inner {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:999px;
+  background:linear-gradient(115deg,rgba(255,255,255,.55),rgba(236,245,255,.34) 48%,rgba(255,244,250,.52));
+  -webkit-backdrop-filter:blur(26px) saturate(1.6);
+  backdrop-filter:blur(26px) saturate(1.6);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.96),inset 0 -1px 2px rgba(120,148,177,.22),0 8px 22px -18px rgba(32,52,80,.4);
+}
+.top .top-inner::before {
+  content:"";
+  position:absolute;
+  inset:1px;
+  z-index:-1;
+  border-radius:inherit;
+  background:radial-gradient(ellipse at 24% -45%,rgba(255,255,255,.85),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.2),transparent 60%);
+  pointer-events:none;
+}
+.top .nav-item.active {
+  color:#263b58;
+  border-color:rgba(255,255,255,.66);
+  background:rgba(255,255,255,.5);
+  box-shadow:inset 0 1px 1px #fff,inset 0 -1px 1px rgba(126,154,182,.18),0 3px 10px -8px #1c335c80;
+}
+@media(max-width:720px) {
+  .top .top-inner { border-radius:27px; }
+}
