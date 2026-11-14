@@ -75,3 +75,14 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
     homeObserver.observe(section);
   });
 }
+
+const footer = document.querySelector('.site-footer');
+if (footer && 'IntersectionObserver' in window && !reducedMotion.matches) {
+  footer.dataset.reveal = 'pending';
+  const footerObserver = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) return;
+    footer.dataset.reveal = 'visible';
+    footerObserver.disconnect();
+  }, { threshold: 0.55 });
+  footerObserver.observe(footer);
+}
