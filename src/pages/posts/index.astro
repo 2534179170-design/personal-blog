@@ -1,15 +1,13 @@
 ---
+import BrowseLayout from '../../components/BrowseLayout.astro';
 import Layout from '../../components/Layout.astro';
 import PostRow from '../../components/PostRow.astro';
 import { posts } from '../../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
 ---
 <Layout active="空间" title="空间">
-  <header class="page-head archive-head">
-    <div><span class="archive-eyebrow">凉宫洺雪 / 个人存档</span><h1>空间</h1><p>动画短评、日志与日常记录</p></div>
-    <span class="archive-total">{posts.length} 篇</span>
-  </header>
-  <div class="archive-toolbar">
+  <BrowseLayout title="空间" note={`共 ${posts.length} 篇空间记录`}>
+    <div slot="filters" class="archive-toolbar">
     <div class="filters" aria-label="按标签筛选">
       {['全部', ...tags].map((tag, index) => <button aria-pressed={index === 0} data-filter={index ? tag : ''}>{tag}<span>{index ? posts.filter(post => post.tags.includes(tag)).length : posts.length}</span></button>)}
     </div>
@@ -20,6 +18,7 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
     <button id="previous-page" type="button">上一页</button><span id="page-count"></span><button id="next-page" type="button">下一页</button>
   </nav>
   {!posts.length && <p class="empty">暂时没有公开的空间内容。</p>}
+  </BrowseLayout>
   <script>
     const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
     const rows = [...document.querySelectorAll<HTMLElement>('.archive [data-tags]')];
@@ -50,8 +49,8 @@ const tags = [...new Set(posts.flatMap(post => post.tags))];
       const tag = button.dataset.filter || '';
       filter(tag);
     }));
-    document.querySelector('#previous-page')!.addEventListener('click', () => { filter(currentTag, currentPage - 1); document.querySelector('.archive-head')!.scrollIntoView(); });
-    document.querySelector('#next-page')!.addEventListener('click', () => { filter(currentTag, currentPage + 1); document.querySelector('.archive-head')!.scrollIntoView(); });
+    document.querySelector('#previous-page')!.addEventListener('click', () => { filter(currentTag, currentPage - 1); document.querySelector('.browse-content')!.scrollIntoView(); });
+    document.querySelector('#next-page')!.addEventListener('click', () => { filter(currentTag, currentPage + 1); document.querySelector('.browse-content')!.scrollIntoView(); });
     const params = new URLSearchParams(location.search);
     const initial = params.get('tag') || '';
     const initialPage = Number(params.get('page')) || 1;

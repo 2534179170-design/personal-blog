@@ -10,7 +10,7 @@ const {album}=Astro.props;
 ---
 <Layout active="相册" title={album.title}>
   <header class:list={['page-head',{'winter-album-head':album.id==='field-sketches'}]}><a class="back" href={href('albums/')}>← 全部相册</a><h1>{album.title}</h1><p>{album.category && <span class="tag">{album.category}</span>} {album.description}</p><WorkLinks works={album.works}/><Share/>{album.id==='field-sketches' && <div class="winter-head-art" aria-hidden="true"><img class="winter-head-quote" src={href('art/wa2-provided-mark.png')} width="46" height="213" alt=""/><img class="winter-head-logo" src={href('art/wa2-provided-logo.png')} width="511" height="320" alt=""/></div>}</header>
-  <div class="photo-grid">{album.photos.map((p,i)=>
+  <div class="photo-grid gallery-wall">{album.photos.map((p,i)=>
     <button type="button" data-photo data-src={href(p.src)} data-caption={p.caption} data-warning={p.spoiler||''}>
       {p.spoiler ? <><strong>含剧透 · 点击查看</strong><span>{p.spoiler}</span></> : <><img loading="lazy" src={href(p.thumb)} alt={p.caption||'相片 '+(i+1)}/><span>{p.caption}</span></>}
     </button>)}

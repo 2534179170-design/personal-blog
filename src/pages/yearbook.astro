@@ -1,4 +1,5 @@
 ---
+import BrowseLayout from '../components/BrowseLayout.astro';
 import Layout from '../components/Layout.astro';
 import {profile,posts,albums,href} from '../lib/blog.mjs';
 const favorites=profile.favorites||[];
@@ -7,7 +8,8 @@ const current=new Intl.DateTimeFormat('en',{timeZone:'Asia/Shanghai',year:'numer
 const years=[...new Set([current,...entries.map(e=>e.date.slice(0,4)),...favorites.map(f=>f.year)])].sort().reverse();
 ---
 <Layout active="" title="年度回顾">
-  <header class="page-head"><h1>年度回顾</h1><label>查看年份 <select id="year">{years.map(y=><option selected={y===current}>{y}</option>)}</select></label></header>
+  <BrowseLayout title="年度回顾" note="按年份浏览空间、相册与收藏">
+    <label slot="filters">查看年份 <select id="year">{years.map(y=><option selected={y===current}>{y}</option>)}</select></label>
   <div class="year-grid">
     <section><h2>空间与相册</h2><ul class="journal-list" id="year-entries">{entries.map(e=><li data-year={e.date.slice(0,4)} hidden={e.date.slice(0,4)!==current}><time>{e.date}</time><span class="tag">{e.kind}</span><a href={e.path}>{e.title}</a></li>)}</ul><p id="entry-count" class="muted"></p></section>
     <section><h2>年度最爱</h2>{favorites.map(f=><div data-year={f.year} hidden={f.year!==current}><strong>{f.title}</strong><p>{f.note}</p></div>)}<p class="muted" id="no-favorite">这一年的最爱尚未填写。</p></section>
@@ -15,6 +17,7 @@ const years=[...new Set([current,...entries.map(e=>e.date.slice(0,4)),...favorit
   <section><h2>看过与玩过</h2><p class="muted">按番组计划公开收藏的最后更新时间归年。后续修改评分或短评，作品可能移到修改当年。</p>
     <button class="button" id="read-year">读取番组计划记录</button><p role="status" id="year-status"></p><div class="year-grid" id="year-works"></div>
   </section>
+  </BrowseLayout>
 </Layout>
 <script>
   import '../scripts/yearbook.js';

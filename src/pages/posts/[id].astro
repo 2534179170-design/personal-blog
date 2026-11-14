@@ -7,5 +7,25 @@ export function getStaticPaths() {
   return posts.map(post => ({ params: { id: post.id }, props: { post } }));
 }
 const {post}=Astro.props;
+const index = posts.findIndex(item => item.id === post.id);
+const newer = posts[index - 1];
+const older = posts[index + 1];
 ---
-<Layout active="空间" title={post.title} description={publicSummary(post.summary)}><article class="paper detail"><a class="back" href={href('posts/')}>← 空间</a><div class="post-meta"><span class="tag">{post.tags.join(' · ')||'手记'}</span><time>{post.date}</time></div><h1>{post.title}</h1>{post.cover&&<img class="detail-cover" src={href(post.cover)} alt="空间封面"/>}<div class="prose" set:html={markdown(post.body)}/><WorkLinks works={post.works}/><Share/></article></Layout>
+<Layout active="空间" title={post.title} description={publicSummary(post.summary)}>
+  <article class="reading-room">
+    <header class="reading-head">
+      <a class="back" href={href('posts/')}>← 全部空间</a>
+      <h1>{post.title}</h1>
+      <p>{post.date} · {post.tags.join(' / ') || '手记'}</p>
+      {post.cover && <img src={href(post.cover)} alt="" />}
+    </header>
+    <div class="reading-body">
+      <div class="prose" set:html={markdown(post.body)} />
+      <WorkLinks works={post.works}/><Share/>
+      <nav class="reading-next" aria-label="相邻空间">
+        {newer && <a href={href('posts/' + newer.id + '/')}>← 上一篇<strong>{newer.title}</strong></a>}
+        {older && <a href={href('posts/' + older.id + '/')}>下一篇 →<strong>{older.title}</strong></a>}
+      </nav>
+    </div>
+  </article>
+</Layout>

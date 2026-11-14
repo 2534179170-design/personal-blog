@@ -15,23 +15,28 @@ const slides = winterPhotos.length ? winterPhotos.map(photo => photo.src) : [pro
   <section class="welcome">
     <div class="welcome-art">{slides.map((src, index) => <img class="welcome-slide" src={href(src)} alt="" aria-hidden="true" data-active={index === 0} fetchpriority={index === 0 ? 'high' : 'auto'} loading={index === 0 ? 'eager' : 'lazy'}/>)}</div>
     <div class="welcome-copy">
-      <p class="hero-kicker">个人空间 · 动画与游戏</p>
+      
       <h1>{profile.siteName}</h1>
       <div class="hero-bio" set:html={markdown(profile.bio)} />
       {profile.signature && <p>{profile.signature}</p>}
       {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
-      <div class="hero-actions"><a class="welcome-link" href={href('about/#collection')}>查看追番记录 <Icon name="arrow" size={15}/></a><a href={href('posts/')}>浏览空间</a></div>
+      <div class="hero-actions"><a class="welcome-link" href="#watching">正在追的动画 <Icon name="arrow" size={15}/></a><a href={href('posts/')}>浏览空间</a></div>
     </div>
-    <span class="hero-caption">白色相簿 · 图集</span>
+    <a class="hero-caption" href={href('albums/field-sketches/')}>白色相簿 · 图集 ↗</a>
   </section>
-  <Watching/>
-  <div class="home-panels">
+  <div class="home-edition">
+  <nav class="home-contents" aria-label="首页章节">
+    <a href="#watching">追番记录</a><a href="#updates">统计与动态</a><a href="#recent-space">最近空间</a>
+  </nav>
+  <div class="home-sections">
+  <div id="watching"><Watching/></div>
+  <div id="updates" class="home-panels">
     <CollectionStats compact/>
     <Activity compact/>
   </div>
   <div class="home-grid">
     <div class="main-column">
-      <section class="home-space">
+      <section id="recent-space" class="home-space">
         <div class="section-head">
           <h2>空间<span>最近更新</span></h2>
           <a href={href('posts/')}>全部空间 <Icon name="arrow" size={13} /></a>
@@ -65,6 +70,7 @@ const slides = winterPhotos.length ? winterPhotos.map(photo => photo.src) : [pro
       </section>
     </aside>
   </div>
+  </div></div>
 </Layout>
 <script>
   const hero = document.querySelector('.welcome');

@@ -1,9 +1,11 @@
 ---
+import BrowseLayout from '../components/BrowseLayout.astro';
 import Layout from '../components/Layout.astro';
 import {profile} from '../lib/blog.mjs';
 const friends=profile.friends||[];
 ---
 <Layout title="同好友链" active="">
-  <header class="page-head friend-head"><span class="archive-eyebrow">凉宫洺雪 / 友站</span><h1>同好友链</h1><p>从这里去看看朋友们的世界。</p></header>
+  <BrowseLayout title="同好友链" note={`共 ${friends.length} 个友站`}>
   {friends.length ? <ul class="friend-grid">{friends.map(friend=><li><a href={friend.url} target="_blank" rel="friend noopener noreferrer"><span class="friend-mark" aria-hidden="true">↗</span><span class="friend-copy"><strong>{friend.label}</strong><small>{friend.note||new URL(friend.url).hostname}</small></span><span class="friend-arrow" aria-hidden="true">→</span></a></li>)}</ul> : <p class="empty">站主还没有添加友链。</p>}
+  </BrowseLayout>
 </Layout>

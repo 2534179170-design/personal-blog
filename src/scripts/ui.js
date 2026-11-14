@@ -18,20 +18,45 @@ addEventListener('resize', updateScroll);
 backToTop?.addEventListener('click', () => scrollTo({top:0, behavior:reducedMotion.matches ? 'auto' : 'smooth'}));
 updateScroll();
 
-if (!reducedMotion.matches && 'IntersectionObserver' in window) {
-  const targets = document.querySelectorAll(
-    '.welcome, .watching, .home-panels, .home-space, .profile-card, .side-section, .archive .post-row, .album-card, .profile-hero, .collection-panel, .tool-panel'
-  );
+
+const chapterLinks = [...document.querySelectorAll('.home-contents a')];
+const chapters = chapterLinks.map(link => document.getElementById(link.hash.slice(1)));
+
+function highlightChapter() {
+  const marker = Math.min(innerHeight * 0.4, 280);
+  const active = chapters.filter(section => section && section.getBoundingClientRect().top <= marker).at(-1);
+  chapterLinks.forEach(link => {
+    if (active && link.hash === '#' + active.id) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+}
+
+if (chapters.length) {
+  let queued = false;
+  const scheduleChapter = () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => { highlightChapter(); queued = false; });
+  };
+  addEventListener('scroll', scheduleChapter, {passive:true});
+  addEventListener('resize', scheduleChapter);
+  highlightChapter();
+}
+
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
-      entry.target.classList.remove('reveal-pending');
       observer.unobserve(entry.target);
+      if (reducedMotion.matches) continue;
+      const section = entry.target;
+      const parts = section.querySelectorAll('.section-head, #watch-list, .post-list, .stats-cards, .activity-list, .photo-grid');
+      const layers = parts.length ? [...parts] : [section];
+      layers.forEach((layer, index) => layer.animate(
+        [{ opacity: .25, transform: 'translateY(14px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 380, delay: index * 65, easing: 'ease-out', fill: 'backwards' }
+      ));
     }
-  }, {rootMargin:'0px 0px 80px 0px', threshold:0.01});
-  for (const target of targets) {
-    if (target.hidden || target.getBoundingClientRect().top < innerHeight + 80) continue;
-    target.classList.add('reveal-item', 'reveal-pending');
-    observer.observe(target);
-  }
+  }, { threshold: 0.04 });
+  document.querySelectorAll('.watching, .collection-stats, .activity, .home-space, .gallery-wall').forEach(section => observer.observe(section));
 }

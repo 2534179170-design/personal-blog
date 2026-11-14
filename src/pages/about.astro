@@ -11,8 +11,8 @@ import {href,profile,markdown} from '../lib/blog.mjs';
       <h1>{profile.nickname}</h1>
       {profile.signature && <p class="profile-signature">{profile.signature}</p>}
       <div class="prose" set:html={markdown(profile.bio)} />
-      <div class="about-social">{profile.links.map(l=><a class="button" href={l.url} target="_blank" rel="me noopener noreferrer">{l.label} ↗</a>)}</div>
     </div>
+    <nav aria-label="个人主页" class="about-social">{profile.links.map(l=><a class="button" href={l.url} target="_blank" rel="me noopener noreferrer">{l.label} ↗</a>)}</nav>
   </section>
   <Collection />
 </Layout>

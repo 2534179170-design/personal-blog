@@ -1,0 +1,11 @@
+---
+const { title, note } = Astro.props;
+---
+<div class="browse-layout">
+  <aside class="browse-rail">
+    <h1>{title}</h1>
+    <p>{note}</p>
+    <slot name="filters" />
+  </aside>
+  <section class="browse-content" aria-label={title}><slot /></section>
+</div>

@@ -4,6 +4,8 @@ import {href,workIndex} from '../lib/blog.mjs';
 const statusItems=[['','全部','total'],['1','想看','want'],['3','在看','doing'],['2','看过','completed'],['4','搁置','onHold'],['5','抛弃','dropped']];
 ---
 <section id="collection" class="collection-panel"><div class="section-head"><h2>我的收藏 <span>按最近更新排序</span></h2><a class="collection-source" href="https://chii.in/user/828732" target="_blank" rel="noopener noreferrer">Bangumi 主页 ↗</a></div>
+  <div class="collection-browser">
+  <div class="collection-filters">
   <div class="controls">
     <div class="filters" aria-label="作品类型" role="group">
       <button data-kind="2" aria-pressed="true">动画</button>
@@ -13,10 +15,13 @@ const statusItems=[['','全部','total'],['1','想看','want'],['3','在看','do
   <div class="status-grid" id="status-grid" data-groups={JSON.stringify(stats.groups)} role="group" aria-label="按收藏状态筛选">
     {statusItems.map(([value,label,key])=><button type="button" data-status={value} data-count-key={key} aria-pressed={value==='3'}><strong>{(key==='total'?stats.groups.anime.total:stats.groups.anime.states[key]).toLocaleString('zh-CN')}</strong><span>{label}</span></button>)}
   </div>
+  </div>
+  <div class="collection-results">
   <noscript>请启用浏览器脚本，或通过上方账号链接查看收藏。</noscript>
   <p id="sync-status" class="muted" role="status"></p>
   <ul id="collection-list" data-works={JSON.stringify(Object.fromEntries([...workIndex.keys()].map(id=>[id,href('works/'+id+'/')])))} aria-label="作品列表"></ul>
   <div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button><button id="refresh">刷新记录</button></div>
+  </div></div>
   </section>
 <style>
   .collection-panel { border:1px solid var(--rule); border-radius:22px; padding:clamp(17px,3vw,30px); background:#fff; margin:18px 0 42px; scroll-margin-top:105px; }

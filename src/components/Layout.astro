@@ -39,7 +39,7 @@ const items = [
     </header>
     <main class="shell"><slot /></main>
     <button class="back-to-top" type="button" aria-label="回到页面顶部" title="回到顶部">↑</button>
-    <footer><span>© {new Date().getFullYear()} {profile.siteName}</span><div><a href={href('yearbook/')}>年度回顾</a><a href={href('friends/')}>同好友链</a><a href="#top">回到顶部 ↑</a><a href={adminUrl}>站主管理</a></div></footer>
+    <footer class="site-footer"><span>© {new Date().getFullYear()} {profile.siteName}</span><nav aria-label="页脚导航">{nav.map(([label, route]) => <a href={href(route)}>{label}</a>)}</nav><div><a href={href('yearbook/')}>年度回顾</a><a href={href('friends/')}>同好友链</a><a href="#top">回到顶部 ↑</a><a href={adminUrl}>站主管理</a></div></footer>
     <dialog id="search-dialog">
       <div class="split"><h2>搜索小站</h2><button data-close aria-label="关闭搜索">×</button></div>
       <input type="search" id="site-search" placeholder="搜索空间或相册" aria-label="搜索空间或相册" />
