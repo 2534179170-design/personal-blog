@@ -101,7 +101,7 @@ function renderFields(){
   $('withdraw').hidden=!auth||!draft.expected||section==='profile';$('publish').disabled=!auth;
   if(section==='profile'){
     field('站名','siteName');field('昵称','nickname');field('首页一句话近况（最多 160 字）','now');field('签名','signature');field('个人介绍','bio','textarea');imageField('avatar','更换头像');imageField('cover','更换首页封面');field('社交链接（每行填写 名称 | 完整网址）','links','textarea');
-    editRows('friends','同好友链',[['label','站名'],['url','完整网址'],['note','推荐语']]);
+    editRows('friends','同好友链',[['label','站名'],['url','完整网址'],['note','推荐语'],['avatar','头像图片路径']]);
     editRows('favorites','年度最爱',[['year','年份'],['title','作品名'],['note','推荐理由']]);
     return;
   }

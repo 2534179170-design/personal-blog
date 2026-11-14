@@ -184,6 +184,14 @@ body { background: #fcfdff; }
   .site-footer nav { grid-column:1; justify-content:flex-start; }
   .site-footer > div { grid-column:1; }
 }
+.friend-grid .friend-avatar {
+  flex:none;
+  width:54px;
+  height:54px;
+  border-radius:12px;
+  object-fit:cover;
+  box-shadow:0 5px 14px -10px #152b47a3;
+}
 @media(prefers-reduced-motion:reduce) {
   @view-transition { navigation: none; }
   .shell *, .shell *::before, .shell *::after { animation: none !important; transition: none !important; }

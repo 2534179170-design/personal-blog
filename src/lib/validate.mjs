@@ -37,7 +37,7 @@ export function validateRecord(type,id,version,data){
   if(type==='profile'){
     requireValue(Array.isArray(data.links)&&data.links.length<=12,'链接数量过多。');
     const links=data.links.map(webLink);
-    const friends=entries(data.friends,40,row=>({...webLink(row),note:string(row.note??'',160)}));
+    const friends=entries(data.friends,40,row=>({...webLink(row),note:string(row.note??'',160),avatar:photoPath(row.avatar,true)}));
     const favorites=entries(data.favorites,100,row=>{
       requireValue(/^\d{4}$/.test(row.year),'年度最爱请填写四位年份。');
       return {year:row.year,title:string(row.title,120,true),note:string(row.note??'',300)};
