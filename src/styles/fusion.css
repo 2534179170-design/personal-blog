@@ -172,3 +172,21 @@ body { background: #fcfdff; }
     .shell { animation: copy-in 260ms ease-out both; }
   }
 }
+@media (max-width: 720px) {
+  .top .top-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0,1fr) auto;
+    min-height: 50px;
+    padding: 3px 8px;
+    gap: 4px;
+  }
+  .top .brand-mark { width: 27px; height: 27px; }
+  .top nav { order: 0; justify-content: space-evenly; gap: 0; }
+  .top .nav-item { padding-inline: 5px; white-space: nowrap; }
+  .top .nav-item svg, .top .header-avatar, .top .search-toggle span { display: none; }
+  .top .search-toggle { width: 34px; height: 42px; }
+}
+@media (max-width: 360px) {
+  .top .nav-item { padding-inline: 2px; }
+  .top .top-inner { padding-inline: 5px; gap: 2px; }
+}

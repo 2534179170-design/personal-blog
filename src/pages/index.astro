@@ -1,35 +1,23 @@
 ---
 import Layout from '../components/Layout.astro';
+import AlbumCover from '../components/AlbumCover.astro';
 import Watching from '../components/Watching.astro';
 import Activity from '../components/Activity.astro';
 import CollectionStats from '../components/CollectionStats.astro';
 import PostRow from '../components/PostRow.astro';
 import Icon from '../components/Icon.astro';
-import { href, profile, posts, albums, markdown } from '../lib/blog.mjs';
+import { href, profile, posts, albums } from '../lib/blog.mjs';
 const tags = [...new Set(posts.flatMap(post => post.tags))];
 const featuredPosts = [...posts.filter(post => post.tags.includes('番组计划短评')), ...posts.filter(post => !post.tags.includes('番组计划短评'))];
-const winterPhotos = albums.find(album => album.id === 'field-sketches')?.photos.filter(photo => !photo.spoiler) || [];
-const slides = winterPhotos.length ? winterPhotos.map(photo => photo.src) : [profile.cover || 'art/winter-piano.webp'];
 ---
 <Layout>
-  <section class="welcome">
-    <div class="welcome-art">{slides.map((src, index) => <img class="welcome-slide" src={href(src)} alt="" aria-hidden="true" data-active={index === 0} fetchpriority={index === 0 ? 'high' : 'auto'} loading={index === 0 ? 'eager' : 'lazy'}/>)}</div>
-    <div class="welcome-copy">
-      
-      <h1>{profile.siteName}</h1>
-      <div class="hero-bio" set:html={markdown(profile.bio)} />
-      {profile.signature && <p>{profile.signature}</p>}
-      {profile.now && <p class="now"><strong>近况</strong> {profile.now}</p>}
-      <div class="hero-actions"><a class="welcome-link" href="#watching">正在追的动画 <Icon name="arrow" size={15}/></a><a href={href('posts/')}>浏览空间</a></div>
-    </div>
-    <a class="hero-caption" href={href('albums/field-sketches/')}>白色相簿 · 图集 ↗</a>
-  </section>
+  <AlbumCover/>
+  <div id="watching" class="featured-watching"><Watching/></div>
   <div class="home-edition">
   <nav class="home-contents" aria-label="首页章节">
     <a href="#watching">追番记录</a><a href="#updates">统计与动态</a><a href="#recent-space">最近空间</a>
   </nav>
   <div class="home-sections">
-  <div id="watching"><Watching/></div>
   <div id="updates" class="home-panels">
     <CollectionStats compact/>
     <Activity compact/>
@@ -72,27 +60,8 @@ const slides = winterPhotos.length ? winterPhotos.map(photo => photo.src) : [pro
   </div>
   </div></div>
 </Layout>
-<script>
-  const hero = document.querySelector('.welcome');
-  const slides = [...document.querySelectorAll<HTMLElement>('.welcome-slide')];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let current = 0;
-  let timer: ReturnType<typeof setInterval> | undefined;
-  function show(next: number) {
-    if (slides.length < 2) return;
-    slides[current].dataset.active = 'false';
-    current = (next + slides.length) % slides.length;
-    slides[current].dataset.active = 'true';
-  }
-  function schedule() {
-    clearInterval(timer);
-    if (!reduced.matches && !document.hidden && !hero?.matches(':hover, :focus-within') && slides.length > 1) timer = setInterval(() => show(current + 1), 9000);
-  }
-  hero?.addEventListener('mouseenter', () => clearInterval(timer));
-  hero?.addEventListener('mouseleave', schedule);
-  hero?.addEventListener('focusin', () => clearInterval(timer));
-  hero?.addEventListener('focusout', schedule);
-  document.addEventListener('visibilitychange', schedule);
-  reduced.addEventListener('change', schedule);
-  schedule();
-</script>
+<style>
+  .featured-watching { margin-top:clamp(24px,3.4vw,48px); scroll-margin-top:120px; }
+  .featured-watching :global(.section-head) { border-top:1px solid #cdd4df; padding-top:18px; }
+  .featured-watching :global(.section-head h2) { color:#152941; }
+</style>

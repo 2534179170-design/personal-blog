@@ -1,0 +1,119 @@
+---
+import Icon from './Icon.astro';
+import { albums, href, markdown, profile } from '../lib/blog.mjs';
+
+const album = albums.find(item => item.id === 'field-sketches');
+const photos = album?.photos.filter(photo => !photo.spoiler) ?? [];
+const opening = photos.find(photo => photo.src === 'art/wa2-provided-duo.png');
+const slides = opening ? [opening, ...photos.filter(photo => photo !== opening)] : [...photos];
+if (!slides.length) slides.push({ src: profile.cover || 'art/winter-piano.webp', caption: '' });
+const hasSuffix = profile.siteName.endsWith('的小站') && profile.siteName.length > 3;
+const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
+---
+<section class="winter-cover" aria-labelledby="cover-heading">
+  <div class="cover-stage">
+    <div class="cover-orbit" aria-hidden="true"></div>
+    <div class="cover-frame">
+      <div class="cover-art">
+        {slides.map((photo, index) => <img class:list={[{ portrait: photo === opening }]} src={href(photo.src)} alt="" data-slide data-active={String(index === 0)} fetchpriority={index === 0 ? 'high' : 'auto'} loading={index === 0 ? 'eager' : 'lazy'} />)}
+      </div>
+    </div>
+    <div class="cover-type">
+      <h1 id="cover-heading"><span>{name}</span>{hasSuffix && <small>的小站</small>}</h1>
+      <div class="cover-bio" set:html={markdown(profile.bio)} />
+      {profile.signature && <p>{profile.signature}</p>}
+      {profile.now && <p><b>近况</b> {profile.now}</p>}
+      <div class="cover-actions">
+        <a class="cover-primary" href="#watching">正在追的动画 <span aria-hidden="true">↓</span></a>
+        <a href={href('posts/')}>浏览空间 <Icon name="arrow" size={15}/></a>
+      </div>
+    </div>
+    {album && photos.length > 0 && <a class="cover-credit" href={href('albums/' + album.id + '/')}><Icon name="image" size={14}/>{album.title} <span aria-hidden="true">↗</span></a>}
+  </div>
+</section>
+<script>
+  const cover = document.querySelector('.winter-cover');
+  const slides = [...document.querySelectorAll<HTMLElement>('[data-slide]')];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let active = 0;
+  let timer: ReturnType<typeof setInterval> | undefined;
+  function schedule() {
+    clearInterval(timer);
+    if (reduced.matches || document.hidden || slides.length < 2 || cover?.matches(':hover, :focus-within')) return;
+    timer = setInterval(() => {
+      slides[active].dataset.active = 'false';
+      active = (active + 1) % slides.length;
+      slides[active].dataset.active = 'true';
+    }, 9000);
+  }
+  cover?.addEventListener('mouseenter', schedule);
+  cover?.addEventListener('mouseleave', schedule);
+  cover?.addEventListener('focusin', schedule);
+  cover?.addEventListener('focusout', () => requestAnimationFrame(schedule));
+  document.addEventListener('visibilitychange', schedule);
+  reduced.addEventListener('change', schedule);
+  schedule();
+</script>
+<style>
+  .winter-cover {
+    --ink:#172c48; --wine:#a12d50; color:var(--ink);
+    margin-top:clamp(12px,2.1vw,30px);
+  }
+  .cover-stage {
+    position:relative; isolation:isolate; overflow:hidden; display:grid; align-items:center;
+    min-height:clamp(395px,38vw,515px); border-radius:6px 26px 6px 26px;
+    border:1px solid #cbd7e2;
+    background:radial-gradient(ellipse at 26% 14%,#fff9fa,transparent 52%), linear-gradient(140deg,#fafcfe 13%,#eef5fb 58%,#d0d9e9);
+    box-shadow:0 18px 44px -33px #20325182;
+  }
+  .cover-stage::before {
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:radial-gradient(#7e9bb54a .8px,transparent .9px); background-size:6px 6px;
+    mask-image:linear-gradient(35deg,#000,transparent 38%);
+  }
+  .cover-orbit { position:absolute; left:-20%; bottom:-100%; width:87%; aspect-ratio:1; border:1px solid #b9cbdc; border-radius:50%; box-shadow:0 0 0 19px #f5f9fc88,0 0 0 20px #bac9d96b; }
+  .cover-frame, .cover-art { position:absolute; inset:0 0 0 35%; clip-path:polygon(18% 0,100% 0,100% 100%,0 100%); }
+  .cover-frame { background:linear-gradient(160deg,#b8556a 0%,#f0d7da 32%,#7895b8 78%); }
+  .cover-art { inset:0 0 0 7px; background:#dee9f5; }
+  .cover-art img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 33%; opacity:0; transition:opacity 1.1s ease; }
+  @media(min-width:721px) { .cover-art img.portrait { left:6%; width:94%; } }
+  .cover-art img[data-active="true"] { opacity:1; }
+  .cover-type { position:relative; width:45%; padding:clamp(30px,4.3vw,68px); padding-right:0; }
+  .cover-type h1 { margin:0; font-family:"Songti SC","STSong","SimSun","Noto Serif CJK SC",serif; font-weight:800; line-height:1.12; letter-spacing:-.055em; color:var(--ink); }
+  .cover-type h1 span { display:block; font-size:clamp(50px,6.6vw,91px); overflow-wrap:anywhere; }
+  .cover-type h1 small { display:flex; align-items:center; gap:.34em; margin-top:.14em; font-size:clamp(33px,3.7vw,53px); font-weight:500; letter-spacing:.055em; }
+  .cover-type h1 small::after { content:""; width:1.15em; height:1px; background:var(--wine); }
+  .cover-bio { margin-top:clamp(15px,2vw,26px); }
+  .cover-type p, .cover-bio :global(p) { margin:6px 0; color:#405168; font-size:clamp(13px,1.1vw,16px); line-height:1.7; }
+  .cover-bio :global(strong) { color:var(--ink); }
+  .cover-actions { display:flex; align-items:center; gap:clamp(15px,2vw,28px); margin-top:clamp(17px,2vw,29px); }
+  .cover-actions a, .cover-credit { display:inline-flex; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:650; }
+  .cover-actions a { min-height:44px; color:var(--ink); }
+  .cover-actions .cover-primary { border-radius:30px; padding:0 19px; color:white; background:var(--ink); }
+  .cover-primary span { color:#c5e9ff; font-size:19px; }
+  .cover-credit { position:absolute; right:16px; bottom:16px; padding:8px 13px; border:1px solid #ffffff8c; border-radius:20px; color:#fff; background:#192642db; }
+  .winter-cover a:focus-visible { outline:3px solid #b73560; outline-offset:3px; }
+  @media(hover:hover) {
+    .cover-actions a:hover { color:var(--wine); }
+    .cover-actions .cover-primary:hover,.cover-credit:hover { background:#87324e; color:white; }
+  }
+  @media(max-width:720px) {
+    .cover-stage { min-height:0; border-radius:5px 18px 5px 18px; grid-template-rows:clamp(175px,49vw,285px) auto; }
+    .cover-frame { inset:0 0 auto; height:clamp(200px,54vw,315px); clip-path:polygon(0 0,100% 0,100% 80%,0 100%); }
+    .cover-art { inset:0 0 4px; clip-path:inherit; }
+    .cover-type { grid-row:2; width:100%; padding:14px 22px 23px; }
+    .cover-type h1 { display:flex; align-items:baseline; flex-wrap:wrap; gap:.5em; }
+    .cover-type h1 span { font-size:clamp(43px,10.8vw,66px); }
+    .cover-type h1 small { display:inline; font-size:clamp(24px,5.2vw,35px); }
+    .cover-bio { margin-top:8px; }
+    .cover-actions { margin-top:12px; }
+    .cover-credit { top:calc(clamp(200px,54vw,315px) * .8 - 37px); right:9px; bottom:auto; font-size:12px; padding:6px 10px; }
+    .cover-orbit { bottom:-53%; left:-42%; width:115%; }
+  }
+  @media(prefers-reduced-motion:no-preference) {
+    .cover-type { animation:title-enter .7s cubic-bezier(.2,.72,.23,1) both; }
+    .cover-frame { animation:frame-enter .85s cubic-bezier(.16,.84,.25,1) both; }
+    @keyframes title-enter { from { opacity:0; transform:translateY(14px); } }
+    @keyframes frame-enter { from { opacity:.3; transform:translateX(4%); } }
+  }
+</style>
