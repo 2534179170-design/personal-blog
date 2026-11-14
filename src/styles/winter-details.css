@@ -6,8 +6,13 @@
 .welcome-copy > * { position:relative; z-index:1; }
 .hero-caption { padding:8px 13px; background:rgba(27,39,57,.55); }
 .winter-album-head { position:relative; overflow:hidden; padding:34px; border:1px solid #e3e9f1; border-radius:22px; background:radial-gradient(circle at 88% 8%,rgba(186,211,238,.56),transparent 35%),linear-gradient(115deg,#fbfcff,#f0f5fb 66%,#f7f5fb); }
-.winter-album-head::after { content:"❄"; position:absolute; right:25px; top:-45px; color:rgba(101,145,187,.13); font:400 clamp(120px,19vw,240px)/1 sans-serif; pointer-events:none; }
+.winter-album-head { min-height:270px; padding-right:440px; }
+.winter-album-head::after { content:"❄"; position:absolute; right:110px; top:-95px; color:rgba(101,145,187,.11); font:400 270px/1 sans-serif; pointer-events:none; }
 .winter-album-head > * { position:relative; z-index:1; }
 .winter-album-head h1 { font-family:var(--headline); font-size:clamp(30px,4vw,48px); font-weight:700; letter-spacing:-.05em; }
+.winter-album-head .winter-head-art { position:absolute; z-index:1; inset:12px 22px 12px auto; display:flex; align-items:center; justify-content:flex-end; gap:12px; width:390px; pointer-events:none; }
+.winter-head-quote { width:36px; height:auto; max-height:185px; object-fit:contain; }
+.winter-head-logo { width:min(100%,320px); height:auto; object-fit:contain; filter:drop-shadow(0 10px 15px rgba(70,103,145,.13)); }
+@media(max-width:900px) { .winter-album-head { padding-right:34px; } .winter-album-head .winter-head-art { position:relative; inset:auto; width:100%; justify-content:flex-start; margin-top:18px; } .winter-head-logo { max-width:260px; } }
 @media(max-width:760px) { .winter-album-head { padding:24px; border-radius:18px; } }
-@media(max-width:480px) { .winter-album-head { padding:20px; } .welcome-copy::after { font-size:90px; right:-9px; top:-18px; } }
+@media(max-width:480px) { .winter-album-head { padding:20px; } .winter-head-logo { max-width:200px; } .winter-head-quote { width:26px; } .welcome-copy::after { font-size:90px; right:-9px; top:-18px; } }

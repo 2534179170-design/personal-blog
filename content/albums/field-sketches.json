@@ -1,6 +1,6 @@
 {
   "id": "field-sketches",
-  "version": "8f78056a-9384-4d1c-8902-1bbdabb5942c",
+  "version": "829d641f-7d0e-4c54-96b8-89b2f4e4b58a",
   "title": "白色相簿 · 图集",
   "date": "2026-11-12",
   "description": "三张来自《白色相簿》系列的收藏图。点开可看完整构图。",
@@ -19,6 +19,11 @@
       "src": "art/white-album-closing.webp",
       "thumb": "art/white-album-closing-sm.webp",
       "caption": "《白色相簿2》终章 · 雪蓝色群像"
+    },
+    {
+      "src": "art/wa2-provided-duo.png",
+      "thumb": "art/wa2-provided-duo.png",
+      "caption": "雪中的两人"
     }
   ],
   "category": "作品图集"
