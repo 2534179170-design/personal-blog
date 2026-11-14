@@ -1,19 +1,14 @@
 ---
 import Icon from './Icon.astro';
-import { albums, href, markdown, profile } from '../lib/blog.mjs';
+import { href, markdown, profile } from '../lib/blog.mjs';
 
-const album = albums.find(item => item.id === 'field-sketches');
-const photos = album?.photos.filter(photo => !photo.spoiler) ?? [];
-const opening = photos.find(photo => photo.src === 'art/wa2-provided-duo.png');
-const slides = opening ? [opening, ...photos.filter(photo => photo !== opening)] : [...photos];
-if (!slides.length) slides.push({ src: profile.cover || 'art/winter-piano.webp', caption: '' });
 const hasSuffix = profile.siteName.endsWith('的小站') && profile.siteName.length > 3;
 const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
 ---
 <section class="winter-cover" aria-labelledby="cover-heading">
   <div class="cover-stage">
     <div class="cover-art">
-      {slides.map((photo, index) => <img src={href(photo.src)} alt="" data-slide data-active={String(index === 0)} fetchpriority={index === 0 ? 'high' : 'auto'} loading={index === 0 ? 'eager' : 'lazy'} />)}
+      <img src={href('art/white-album-fullscreen-2x.webp')} alt="" fetchpriority="high" loading="eager" />
     </div>
     <div class="cover-type">
       <h1 id="cover-heading"><span>{name}</span>{hasSuffix && <small>的小站</small>}</h1>
@@ -28,35 +23,12 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
     <a class="cover-scroll" href="#watching" aria-label="向下查看正在追的动画"><span aria-hidden="true">⌄</span></a>
   </div>
 </section>
-<script>
-  const cover = document.querySelector('.winter-cover');
-  const slides = [...document.querySelectorAll<HTMLElement>('[data-slide]')];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  let active = 0;
-  let timer: ReturnType<typeof setInterval> | undefined;
-  function schedule() {
-    clearInterval(timer);
-    if (reduced.matches || document.hidden || slides.length < 2 || cover?.matches(':hover, :focus-within')) return;
-    timer = setInterval(() => {
-      slides[active].dataset.active = 'false';
-      active = (active + 1) % slides.length;
-      slides[active].dataset.active = 'true';
-    }, 9000);
-  }
-  cover?.addEventListener('mouseenter', schedule);
-  cover?.addEventListener('mouseleave', schedule);
-  cover?.addEventListener('focusin', schedule);
-  cover?.addEventListener('focusout', () => requestAnimationFrame(schedule));
-  document.addEventListener('visibilitychange', schedule);
-  reduced.addEventListener('change', schedule);
-  schedule();
-</script>
 <style>
   .winter-cover { width:100%; color:#182842; }
   .cover-stage {
     position:relative; isolation:isolate; overflow:hidden;
     min-height:100vh; min-height:100svh;
-    display:flex; align-items:flex-end;
+    display:flex; align-items:flex-start;
     background:#dce5f2;
   }
   .cover-stage::after {
@@ -65,13 +37,11 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
   }
   .cover-art, .cover-art img { position:absolute; inset:0; width:100%; height:100%; }
   .cover-art img {
-    object-fit:cover; object-position:center 37%;
-    opacity:0; transition:opacity 1.2s ease;
+    object-fit:cover; object-position:center;
   }
-  .cover-art img[data-active="true"] { opacity:1; }
   .cover-type {
     position:relative; z-index:1; width:min(570px,calc(100% - 48px));
-    margin:0 0 clamp(70px,12vh,128px) clamp(24px,7vw,120px);
+    margin:clamp(120px,19vh,210px) 0 0 clamp(24px,7vw,120px);
     padding:clamp(23px,3.1vw,42px);
     border:1px solid #ffffff9c; border-radius:24px;
     background:#f7f9f8c7;
@@ -108,7 +78,8 @@ const name = hasSuffix ? profile.siteName.slice(0, -3) : profile.siteName;
     .cover-actions .cover-primary:hover, .cover-scroll:hover { background:#87324e; color:#fff; }
   }
   @media(max-width:720px) {
-    .cover-art img { object-position:right center; }
+    .cover-stage { align-items:flex-end; }
+    .cover-art img { object-position:72% center; }
     .cover-type {
       width:calc(100% - 32px); margin:0 16px 82px;
       padding:20px; border-radius:18px;
