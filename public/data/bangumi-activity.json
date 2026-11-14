@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-11-13T16:28:00.290Z",
+  "updatedAt": "2026-11-14T00:54:01.031Z",
   "events": [
+    {
+      "id": "collection-568244-1794588706000",
+      "action": "在看",
+      "title": "药屋少女的呢喃 第三季",
+      "detail": "已看 7 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/55/e2/568244_e64dA.jpg",
+      "url": "https://chii.in/subject/568244",
+      "createdAt": "2026-11-13T16:51:46.000Z"
+    },
     {
       "id": "collection-639938-1794585993000",
       "action": "在看",
@@ -21,7 +30,7 @@
     },
     {
       "id": "collection-362335-1794560470000",
-      "action": "在看",
+      "action": "想看",
       "title": "古立特宇宙",
       "detail": "",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/76/b8/362335_VhtRE.jpg",
@@ -30,7 +39,7 @@
     },
     {
       "id": "collection-56846-1794558049000",
-      "action": "在看",
+      "action": "想看",
       "title": "起风了",
       "detail": "",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/a0/2a/56846_9P9zW.jpg",
@@ -48,7 +57,7 @@
     },
     {
       "id": "collection-26825-1794538562000",
-      "action": "在看",
+      "action": "想看",
       "title": "夏色奇迹",
       "detail": "",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/20/ab/26825_5W8p6.jpg",
@@ -63,15 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/83/49/584847_5nM0F.jpg",
       "url": "https://chii.in/subject/584847",
       "createdAt": "2026-11-12T15:57:35.000Z"
-    },
-    {
-      "id": "collection-622288-1794494408000",
-      "action": "在看",
-      "title": "FX战士久留美",
-      "detail": "已看 7 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/d3/99/622288_nmbC3.jpg",
-      "url": "https://chii.in/subject/622288",
-      "createdAt": "2026-11-12T14:40:08.000Z"
     }
   ]
 }

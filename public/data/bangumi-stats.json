@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-13T12:06:16.843Z",
+  "updatedAt": "2026-11-14T00:54:02.273Z",
   "groups": {
     "all": {
       "total": 1541,
       "completed": 1179,
       "states": {
-        "want": 314,
+        "want": 317,
         "completed": 1179,
-        "doing": 30,
+        "doing": 27,
         "onHold": 5,
         "dropped": 13
       },
@@ -59,9 +59,9 @@
       "total": 1301,
       "completed": 1042,
       "states": {
-        "want": 227,
+        "want": 230,
         "completed": 1042,
-        "doing": 14,
+        "doing": 11,
         "onHold": 5,
         "dropped": 13
       },
