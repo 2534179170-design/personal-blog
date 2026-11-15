@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-11-15T15:40:40.897Z",
+  "updatedAt": "2026-11-15T21:03:54.916Z",
   "events": [
+    {
+      "id": "collection-634210-1794758652000",
+      "action": "在看",
+      "title": "魔法姐妹露露特莉莉 第2部分",
+      "detail": "已看 7 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/44/ed/634210_O7aNK.jpg",
+      "url": "https://chii.in/subject/634210",
+      "createdAt": "2026-11-15T16:04:12.000Z"
+    },
     {
       "id": "collection-77476-1794754912000",
       "action": "在看",
@@ -63,15 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/b7/75/217285_tE3D1.jpg",
       "url": "https://chii.in/subject/217285",
       "createdAt": "2026-11-14T12:58:13.000Z"
-    },
-    {
-      "id": "collection-105255-1794661087000",
-      "action": "在看",
-      "title": "希德尼娅的骑士 第九惑星战役",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e8/a6/105255_Ldl25.jpg",
-      "url": "https://chii.in/subject/105255",
-      "createdAt": "2026-11-14T12:58:07.000Z"
     }
   ]
 }
