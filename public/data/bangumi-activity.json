@@ -1,14 +1,41 @@
 {
-  "updatedAt": "2026-11-14T18:06:50.258Z",
+  "updatedAt": "2026-11-15T15:40:40.897Z",
   "events": [
     {
-      "id": "collection-77476-1794673658000",
+      "id": "collection-77476-1794754912000",
       "action": "在看",
       "title": "希德尼娅的骑士",
-      "detail": "已看 3 集",
+      "detail": "已看 6 集",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/57/23/77476_4TwHt.jpg",
       "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-14T16:27:38.000Z"
+      "createdAt": "2026-11-15T15:01:52.000Z"
+    },
+    {
+      "id": "collection-554779-1794748218000",
+      "action": "在看",
+      "title": "学生会也有洞！",
+      "detail": "已看 7 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/17/c7/554779_oPitO.jpg",
+      "url": "https://chii.in/subject/554779",
+      "createdAt": "2026-11-15T13:10:18.000Z"
+    },
+    {
+      "id": "collection-548156-1794746650000",
+      "action": "在看",
+      "title": "青之箱 第二季",
+      "detail": "已看 6 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/f1/6c/548156_n0qcY.jpg",
+      "url": "https://chii.in/subject/548156",
+      "createdAt": "2026-11-15T12:44:10.000Z"
+    },
+    {
+      "id": "collection-611077-1794744499000",
+      "action": "在看",
+      "title": "名侦探光之美少女！",
+      "detail": "已看 41 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/9a/85/611077_P5Pi5.jpg",
+      "url": "https://chii.in/subject/611077",
+      "createdAt": "2026-11-15T12:08:19.000Z"
     },
     {
       "id": "collection-617273-1794663707000",
@@ -45,33 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e8/a6/105255_Ldl25.jpg",
       "url": "https://chii.in/subject/105255",
       "createdAt": "2026-11-14T12:58:07.000Z"
-    },
-    {
-      "id": "collection-568244-1794588706000",
-      "action": "在看",
-      "title": "药屋少女的呢喃 第三季",
-      "detail": "已看 7 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/55/e2/568244_e64dA.jpg",
-      "url": "https://chii.in/subject/568244",
-      "createdAt": "2026-11-13T16:51:46.000Z"
-    },
-    {
-      "id": "collection-639938-1794585993000",
-      "action": "在看",
-      "title": "飙马野郎 JOJO的奇妙冒险 第二&第三赛段",
-      "detail": "已看 8 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/ab/4f/639938_2JKQ7.jpg",
-      "url": "https://chii.in/subject/639938",
-      "createdAt": "2026-11-13T16:06:33.000Z"
-    },
-    {
-      "id": "collection-218712-1794567567000",
-      "action": "想看",
-      "title": "SSSS.古立特",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/d1/78/218712_c2Db6.jpg",
-      "url": "https://chii.in/subject/218712",
-      "createdAt": "2026-11-13T10:59:27.000Z"
     }
   ]
 }
