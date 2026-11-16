@@ -1,6 +1,15 @@
 {
-  "updatedAt": "2026-11-15T21:03:54.916Z",
+  "updatedAt": "2026-11-16T18:35:46.259Z",
   "events": [
+    {
+      "id": "collection-77476-1794843441000",
+      "action": "在看",
+      "title": "希德尼娅的骑士",
+      "detail": "已看 9 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/57/23/77476_4TwHt.jpg",
+      "url": "https://chii.in/subject/77476",
+      "createdAt": "2026-11-16T15:37:21.000Z"
+    },
     {
       "id": "collection-634210-1794758652000",
       "action": "在看",
@@ -9,15 +18,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/44/ed/634210_O7aNK.jpg",
       "url": "https://chii.in/subject/634210",
       "createdAt": "2026-11-15T16:04:12.000Z"
-    },
-    {
-      "id": "collection-77476-1794754912000",
-      "action": "在看",
-      "title": "希德尼娅的骑士",
-      "detail": "已看 6 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/57/23/77476_4TwHt.jpg",
-      "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-15T15:01:52.000Z"
     },
     {
       "id": "collection-554779-1794748218000",
