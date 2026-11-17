@@ -1,14 +1,68 @@
 {
-  "updatedAt": "2026-11-16T18:35:46.259Z",
+  "updatedAt": "2026-11-17T23:31:45.014Z",
   "events": [
     {
-      "id": "collection-77476-1794843441000",
-      "action": "在看",
+      "id": "collection-77476-1794929201000",
+      "action": "看过",
       "title": "希德尼娅的骑士",
-      "detail": "已看 9 集",
+      "detail": "已看 12 集",
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/57/23/77476_4TwHt.jpg",
       "url": "https://chii.in/subject/77476",
+      "createdAt": "2026-11-17T15:26:41.000Z"
+    },
+    {
+      "id": 74562828,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士",
+      "detail": "第 12 话 · 归舰",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
+      "url": "https://chii.in/subject/77476",
+      "createdAt": "2026-11-17T15:17:28.000Z"
+    },
+    {
+      "id": 74560235,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士",
+      "detail": "第 11 话 · 冲突",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
+      "url": "https://chii.in/subject/77476",
+      "createdAt": "2026-11-17T14:11:44.000Z"
+    },
+    {
+      "id": 74559586,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士",
+      "detail": "第 10 话 · 决意",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
+      "url": "https://chii.in/subject/77476",
+      "createdAt": "2026-11-17T13:51:53.000Z"
+    },
+    {
+      "id": 74535015,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士",
+      "detail": "第 9 话 · 眼神",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
+      "url": "https://chii.in/subject/77476",
       "createdAt": "2026-11-16T15:37:21.000Z"
+    },
+    {
+      "id": 74531750,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士",
+      "detail": "第 8 话 · 不死",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
+      "url": "https://chii.in/subject/77476",
+      "createdAt": "2026-11-16T14:12:15.000Z"
+    },
+    {
+      "id": 74530295,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士",
+      "detail": "第 7 话 · 觉悟",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
+      "url": "https://chii.in/subject/77476",
+      "createdAt": "2026-11-16T13:30:07.000Z"
     },
     {
       "id": "collection-634210-1794758652000",
@@ -18,60 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/44/ed/634210_O7aNK.jpg",
       "url": "https://chii.in/subject/634210",
       "createdAt": "2026-11-15T16:04:12.000Z"
-    },
-    {
-      "id": "collection-554779-1794748218000",
-      "action": "在看",
-      "title": "学生会也有洞！",
-      "detail": "已看 7 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/17/c7/554779_oPitO.jpg",
-      "url": "https://chii.in/subject/554779",
-      "createdAt": "2026-11-15T13:10:18.000Z"
-    },
-    {
-      "id": "collection-548156-1794746650000",
-      "action": "在看",
-      "title": "青之箱 第二季",
-      "detail": "已看 6 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/f1/6c/548156_n0qcY.jpg",
-      "url": "https://chii.in/subject/548156",
-      "createdAt": "2026-11-15T12:44:10.000Z"
-    },
-    {
-      "id": "collection-611077-1794744499000",
-      "action": "在看",
-      "title": "名侦探光之美少女！",
-      "detail": "已看 41 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/9a/85/611077_P5Pi5.jpg",
-      "url": "https://chii.in/subject/611077",
-      "createdAt": "2026-11-15T12:08:19.000Z"
-    },
-    {
-      "id": "collection-617273-1794663707000",
-      "action": "在看",
-      "title": "Keroro军曹☆",
-      "detail": "已看 7 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/60/14/617273_dhFwZ.jpg",
-      "url": "https://chii.in/subject/617273",
-      "createdAt": "2026-11-14T13:41:47.000Z"
-    },
-    {
-      "id": "collection-720204-1794661192000",
-      "action": "想看",
-      "title": "Re：从零开始的异世界生活 第五季",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/84/e2/720204_FxN5g.jpg",
-      "url": "https://chii.in/subject/720204",
-      "createdAt": "2026-11-14T12:59:52.000Z"
-    },
-    {
-      "id": "collection-217285-1794661093000",
-      "action": "在看",
-      "title": "希德尼娅的骑士：织爱之星",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/b7/75/217285_tE3D1.jpg",
-      "url": "https://chii.in/subject/217285",
-      "createdAt": "2026-11-14T12:58:13.000Z"
     }
   ]
 }
