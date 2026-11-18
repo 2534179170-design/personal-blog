@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-11-17T23:31:45.014Z",
+  "updatedAt": "2026-11-18T17:17:03.789Z",
   "events": [
+    {
+      "id": "collection-584847-1795014854000",
+      "action": "在看",
+      "title": "弹珠汽水瓶里的千岁同学 第2部分",
+      "detail": "已看 6 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/83/49/584847_5nM0F.jpg",
+      "url": "https://chii.in/subject/584847",
+      "createdAt": "2026-11-18T15:14:14.000Z"
+    },
+    {
+      "id": 74600801,
+      "action": "追番进度",
+      "title": "弹珠汽水瓶里的千岁同学 第2部分",
+      "detail": "第 19 话 · 接近星空的地方、两人约定的秋千",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/83/49/584847_5nM0F.jpg",
+      "url": "https://chii.in/subject/584847",
+      "createdAt": "2026-11-18T15:14:14.000Z"
+    },
+    {
+      "id": "collection-514926-1795001328000",
+      "action": "想看",
+      "title": "狼与香辛料 行商邂逅贤狼 第二季",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/47/92/514926_P89P5.jpg",
+      "url": "https://chii.in/subject/514926",
+      "createdAt": "2026-11-18T11:28:48.000Z"
+    },
     {
       "id": "collection-77476-1794929201000",
       "action": "看过",
@@ -45,33 +72,6 @@
       "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
       "url": "https://chii.in/subject/77476",
       "createdAt": "2026-11-16T15:37:21.000Z"
-    },
-    {
-      "id": 74531750,
-      "action": "追番进度",
-      "title": "希德尼娅的骑士",
-      "detail": "第 8 话 · 不死",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
-      "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-16T14:12:15.000Z"
-    },
-    {
-      "id": 74530295,
-      "action": "追番进度",
-      "title": "希德尼娅的骑士",
-      "detail": "第 7 话 · 觉悟",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
-      "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-16T13:30:07.000Z"
-    },
-    {
-      "id": "collection-634210-1794758652000",
-      "action": "在看",
-      "title": "魔法姐妹露露特莉莉 第2部分",
-      "detail": "已看 7 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/44/ed/634210_O7aNK.jpg",
-      "url": "https://chii.in/subject/634210",
-      "createdAt": "2026-11-15T16:04:12.000Z"
     }
   ]
 }
