@@ -1,6 +1,42 @@
 {
-  "updatedAt": "2026-11-18T17:17:03.789Z",
+  "updatedAt": "2026-11-19T23:04:20.069Z",
   "events": [
+    {
+      "id": "collection-105255-1795102083000",
+      "action": "在看",
+      "title": "希德尼娅的骑士 第九惑星战役",
+      "detail": "已看 2 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e8/a6/105255_Ldl25.jpg",
+      "url": "https://chii.in/subject/105255",
+      "createdAt": "2026-11-19T15:28:03.000Z"
+    },
+    {
+      "id": 74629209,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士 第九惑星战役",
+      "detail": "第 2 话 · 能力",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/e8/a6/105255_Ldl25.jpg",
+      "url": "https://chii.in/subject/105255",
+      "createdAt": "2026-11-19T15:28:03.000Z"
+    },
+    {
+      "id": 74627898,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士 第九惑星战役",
+      "detail": "第 1 话 · 纠葛",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/e8/a6/105255_Ldl25.jpg",
+      "url": "https://chii.in/subject/105255",
+      "createdAt": "2026-11-19T14:53:10.000Z"
+    },
+    {
+      "id": "collection-622288-1795097861000",
+      "action": "在看",
+      "title": "FX战士久留美",
+      "detail": "已看 8 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/d3/99/622288_nmbC3.jpg",
+      "url": "https://chii.in/subject/622288",
+      "createdAt": "2026-11-19T14:17:41.000Z"
+    },
     {
       "id": "collection-584847-1795014854000",
       "action": "在看",
@@ -36,42 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/57/23/77476_4TwHt.jpg",
       "url": "https://chii.in/subject/77476",
       "createdAt": "2026-11-17T15:26:41.000Z"
-    },
-    {
-      "id": 74562828,
-      "action": "追番进度",
-      "title": "希德尼娅的骑士",
-      "detail": "第 12 话 · 归舰",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
-      "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-17T15:17:28.000Z"
-    },
-    {
-      "id": 74560235,
-      "action": "追番进度",
-      "title": "希德尼娅的骑士",
-      "detail": "第 11 话 · 冲突",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
-      "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-17T14:11:44.000Z"
-    },
-    {
-      "id": 74559586,
-      "action": "追番进度",
-      "title": "希德尼娅的骑士",
-      "detail": "第 10 话 · 决意",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
-      "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-17T13:51:53.000Z"
-    },
-    {
-      "id": 74535015,
-      "action": "追番进度",
-      "title": "希德尼娅的骑士",
-      "detail": "第 9 话 · 眼神",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/57/23/77476_4TwHt.jpg",
-      "url": "https://chii.in/subject/77476",
-      "createdAt": "2026-11-16T15:37:21.000Z"
     }
   ]
 }
