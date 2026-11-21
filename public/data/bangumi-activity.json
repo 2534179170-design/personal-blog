@@ -1,6 +1,24 @@
 {
-  "updatedAt": "2026-11-20T16:59:03.775Z",
+  "updatedAt": "2026-11-21T21:40:23.932Z",
   "events": [
+    {
+      "id": "collection-617273-1795270827000",
+      "action": "在看",
+      "title": "Keroro军曹☆",
+      "detail": "已看 8 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/60/14/617273_dhFwZ.jpg",
+      "url": "https://chii.in/subject/617273",
+      "createdAt": "2026-11-21T14:20:27.000Z"
+    },
+    {
+      "id": 74689676,
+      "action": "追番进度",
+      "title": "Keroro军曹☆",
+      "detail": "第 8 话 · 是蛀牙吗？不是，是龋齿战争／秋成为国中生",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/60/14/617273_dhFwZ.jpg",
+      "url": "https://chii.in/subject/617273",
+      "createdAt": "2026-11-21T14:20:27.000Z"
+    },
     {
       "id": "collection-568244-1795192964000",
       "action": "在看",
@@ -54,24 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/03/ff/728630_Q7B7O.jpg",
       "url": "https://chii.in/subject/728630",
       "createdAt": "2026-11-20T14:19:10.000Z"
-    },
-    {
-      "id": "collection-639938-1795183512000",
-      "action": "在看",
-      "title": "飙马野郎 JOJO的奇妙冒险 第二&第三赛段",
-      "detail": "已看 9 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/ab/4f/639938_2JKQ7.jpg",
-      "url": "https://chii.in/subject/639938",
-      "createdAt": "2026-11-20T14:05:12.000Z"
-    },
-    {
-      "id": 74659508,
-      "action": "追番进度",
-      "title": "飙马野郎 JOJO的奇妙冒险 第二&第三赛段",
-      "detail": "第 10 话 · 骇人恶兽 第二部",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/ab/4f/639938_2JKQ7.jpg",
-      "url": "https://chii.in/subject/639938",
-      "createdAt": "2026-11-20T14:05:12.000Z"
     }
   ]
 }
