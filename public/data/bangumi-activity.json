@@ -1,77 +1,77 @@
 {
-  "updatedAt": "2026-11-21T21:40:23.932Z",
+  "updatedAt": "2026-11-22T16:18:39.060Z",
   "events": [
     {
-      "id": "collection-617273-1795270827000",
+      "id": "collection-634210-1795362256000",
       "action": "在看",
-      "title": "Keroro军曹☆",
+      "title": "魔法姐妹露露特莉莉 第2部分",
       "detail": "已看 8 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/60/14/617273_dhFwZ.jpg",
-      "url": "https://chii.in/subject/617273",
-      "createdAt": "2026-11-21T14:20:27.000Z"
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/44/ed/634210_O7aNK.jpg",
+      "url": "https://chii.in/subject/634210",
+      "createdAt": "2026-11-22T15:44:16.000Z"
     },
     {
-      "id": 74689676,
+      "id": 74739073,
       "action": "追番进度",
-      "title": "Keroro军曹☆",
-      "detail": "第 8 话 · 是蛀牙吗？不是，是龋齿战争／秋成为国中生",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/60/14/617273_dhFwZ.jpg",
-      "url": "https://chii.in/subject/617273",
-      "createdAt": "2026-11-21T14:20:27.000Z"
+      "title": "魔法姐妹露露特莉莉 第2部分",
+      "detail": "第 20 话 · 莉莉，引退不当偶像了？",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/44/ed/634210_O7aNK.jpg",
+      "url": "https://chii.in/subject/634210",
+      "createdAt": "2026-11-22T15:44:16.000Z"
     },
     {
-      "id": "collection-568244-1795192964000",
+      "id": "collection-554779-1795360312000",
       "action": "在看",
-      "title": "药屋少女的呢喃 第三季",
+      "title": "学生会也有洞！",
       "detail": "已看 8 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/55/e2/568244_e64dA.jpg",
-      "url": "https://chii.in/subject/568244",
-      "createdAt": "2026-11-20T16:42:44.000Z"
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/17/c7/554779_oPitO.jpg",
+      "url": "https://chii.in/subject/554779",
+      "createdAt": "2026-11-22T15:11:52.000Z"
     },
     {
-      "id": 74664481,
+      "id": 74737517,
       "action": "追番进度",
-      "title": "药屋少女的呢喃 第三季",
-      "detail": "第 56 话 · 麻与民间信仰",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/55/e2/568244_e64dA.jpg",
-      "url": "https://chii.in/subject/568244",
-      "createdAt": "2026-11-20T16:42:44.000Z"
+      "title": "学生会也有洞！",
+      "detail": "第 8 话 · 敏深的世界／大扫除与大胸部／痛痛全部飞走吧！／梅的花心男疑云／绽的阴谋／大家聚在一起的话",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/17/c7/554779_oPitO.jpg",
+      "url": "https://chii.in/subject/554779",
+      "createdAt": "2026-11-22T15:11:52.000Z"
     },
     {
-      "id": 74663097,
-      "action": "收藏目录",
-      "title": "私选宝物的7分动画",
-      "detail": "",
-      "cover": "",
-      "url": "https://chii.in/index/106242",
-      "createdAt": "2026-11-20T15:57:11.000Z"
-    },
-    {
-      "id": "collection-665390-1795185308000",
+      "id": "collection-548156-1795358691000",
       "action": "在看",
-      "title": "冰之城墙 第二季",
-      "detail": "已看 8 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e4/41/665390_UCHPM.jpg",
-      "url": "https://chii.in/subject/665390",
-      "createdAt": "2026-11-20T14:35:08.000Z"
+      "title": "青之箱 第二季",
+      "detail": "已看 7 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/f1/6c/548156_n0qcY.jpg",
+      "url": "https://chii.in/subject/548156",
+      "createdAt": "2026-11-22T14:44:51.000Z"
     },
     {
-      "id": 74660421,
+      "id": 74736142,
       "action": "追番进度",
-      "title": "冰之城墙 第二季",
-      "detail": "第 22 话 · 转机",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/e4/41/665390_UCHPM.jpg",
-      "url": "https://chii.in/subject/665390",
-      "createdAt": "2026-11-20T14:35:08.000Z"
+      "title": "青之箱 第二季",
+      "detail": "第 32 话 · 我有话想对你说",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/f1/6c/548156_n0qcY.jpg",
+      "url": "https://chii.in/subject/548156",
+      "createdAt": "2026-11-22T14:44:51.000Z"
     },
     {
-      "id": "collection-728630-1795184350000",
-      "action": "想看",
-      "title": "バンドリ！ ゆめ∞みた 新作アニメーション",
-      "detail": "",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/03/ff/728630_Q7B7O.jpg",
-      "url": "https://chii.in/subject/728630",
-      "createdAt": "2026-11-20T14:19:10.000Z"
+      "id": "collection-611077-1795352201000",
+      "action": "在看",
+      "title": "名侦探光之美少女！",
+      "detail": "已看 42 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/9a/85/611077_P5Pi5.jpg",
+      "url": "https://chii.in/subject/611077",
+      "createdAt": "2026-11-22T12:56:41.000Z"
+    },
+    {
+      "id": 74731572,
+      "action": "追番进度",
+      "title": "名侦探光之美少女！",
+      "detail": "第 42 话 · 輝きのスターキラリングブローチ！",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/9a/85/611077_P5Pi5.jpg",
+      "url": "https://chii.in/subject/611077",
+      "createdAt": "2026-11-22T12:56:41.000Z"
     }
   ]
 }
