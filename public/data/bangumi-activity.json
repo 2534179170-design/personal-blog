@@ -1,6 +1,24 @@
 {
-  "updatedAt": "2026-11-22T16:18:39.060Z",
+  "updatedAt": "2026-11-23T14:43:02.175Z",
   "events": [
+    {
+      "id": "collection-105255-1795443704000",
+      "action": "在看",
+      "title": "希德尼娅的骑士 第九惑星战役",
+      "detail": "已看 3 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e8/a6/105255_Ldl25.jpg",
+      "url": "https://chii.in/subject/105255",
+      "createdAt": "2026-11-23T14:21:44.000Z"
+    },
+    {
+      "id": 74766477,
+      "action": "追番进度",
+      "title": "希德尼娅的骑士 第九惑星战役",
+      "detail": "第 3 话 · 航向",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/e8/a6/105255_Ldl25.jpg",
+      "url": "https://chii.in/subject/105255",
+      "createdAt": "2026-11-23T14:21:44.000Z"
+    },
     {
       "id": "collection-634210-1795362256000",
       "action": "在看",
@@ -54,24 +72,6 @@
       "cover": "https://lain.bgm.tv/r/100/pic/cover/l/f1/6c/548156_n0qcY.jpg",
       "url": "https://chii.in/subject/548156",
       "createdAt": "2026-11-22T14:44:51.000Z"
-    },
-    {
-      "id": "collection-611077-1795352201000",
-      "action": "在看",
-      "title": "名侦探光之美少女！",
-      "detail": "已看 42 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/9a/85/611077_P5Pi5.jpg",
-      "url": "https://chii.in/subject/611077",
-      "createdAt": "2026-11-22T12:56:41.000Z"
-    },
-    {
-      "id": 74731572,
-      "action": "追番进度",
-      "title": "名侦探光之美少女！",
-      "detail": "第 42 话 · 輝きのスターキラリングブローチ！",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/9a/85/611077_P5Pi5.jpg",
-      "url": "https://chii.in/subject/611077",
-      "createdAt": "2026-11-22T12:56:41.000Z"
     }
   ]
 }
