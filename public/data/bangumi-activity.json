@@ -1,6 +1,24 @@
 {
-  "updatedAt": "2026-11-26T00:22:57.907Z",
+  "updatedAt": "2026-11-26T13:55:38.471Z",
   "events": [
+    {
+      "id": 74837544,
+      "action": "在看",
+      "title": "愚者之夜",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/98/2b/661692_dhD8d.jpg",
+      "url": "https://chii.in/subject/661692",
+      "createdAt": "2026-11-26T04:53:33.000Z"
+    },
+    {
+      "id": 74834037,
+      "action": "收藏目录",
+      "title": "宫豚的自我修养",
+      "detail": "",
+      "cover": "",
+      "url": "https://chii.in/index/106383",
+      "createdAt": "2026-11-26T00:30:11.000Z"
+    },
     {
       "id": "collection-734326-1795620181000",
       "action": "想看",
@@ -54,24 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/44/ed/634210_O7aNK.jpg",
       "url": "https://chii.in/subject/634210",
       "createdAt": "2026-11-22T15:44:16.000Z"
-    },
-    {
-      "id": 74739073,
-      "action": "追番进度",
-      "title": "魔法姐妹露露特莉莉 第2部分",
-      "detail": "第 20 话 · 莉莉，引退不当偶像了？",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/44/ed/634210_O7aNK.jpg",
-      "url": "https://chii.in/subject/634210",
-      "createdAt": "2026-11-22T15:44:16.000Z"
-    },
-    {
-      "id": "collection-554779-1795360312000",
-      "action": "在看",
-      "title": "学生会也有洞！",
-      "detail": "已看 8 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/17/c7/554779_oPitO.jpg",
-      "url": "https://chii.in/subject/554779",
-      "createdAt": "2026-11-22T15:11:52.000Z"
     }
   ]
 }
