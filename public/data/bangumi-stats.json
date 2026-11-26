@@ -1,17 +1,17 @@
 {
-  "updatedAt": "2026-11-20T16:59:05.955Z",
+  "updatedAt": "2026-11-26T00:22:59.070Z",
   "groups": {
     "all": {
-      "total": 1547,
+      "total": 1548,
       "completed": 1180,
       "states": {
-        "want": 321,
+        "want": 322,
         "completed": 1180,
         "doing": 28,
         "onHold": 5,
         "dropped": 13
       },
-      "completionRate": 76.3,
+      "completionRate": 76.2,
       "average": 6.1,
       "deviation": 1.51,
       "rated": 992,
@@ -56,16 +56,16 @@
       ]
     },
     "anime": {
-      "total": 1307,
+      "total": 1308,
       "completed": 1043,
       "states": {
-        "want": 234,
+        "want": 235,
         "completed": 1043,
         "doing": 12,
         "onHold": 5,
         "dropped": 13
       },
-      "completionRate": 79.8,
+      "completionRate": 79.7,
       "average": 5.99,
       "deviation": 1.49,
       "rated": 895,

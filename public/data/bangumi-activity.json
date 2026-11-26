@@ -1,6 +1,33 @@
 {
-  "updatedAt": "2026-11-25T00:46:53.136Z",
+  "updatedAt": "2026-11-26T00:22:57.907Z",
   "events": [
+    {
+      "id": "collection-734326-1795620181000",
+      "action": "想看",
+      "title": "ファンたじっくプリキュア！",
+      "detail": "",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/81/3e/734326_BQ664.jpg",
+      "url": "https://chii.in/subject/734326",
+      "createdAt": "2026-11-25T15:23:01.000Z"
+    },
+    {
+      "id": "collection-584847-1795618695000",
+      "action": "在看",
+      "title": "弹珠汽水瓶里的千岁同学 第2部分",
+      "detail": "已看 7 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/83/49/584847_5nM0F.jpg",
+      "url": "https://chii.in/subject/584847",
+      "createdAt": "2026-11-25T14:58:15.000Z"
+    },
+    {
+      "id": 74823463,
+      "action": "追番进度",
+      "title": "弹珠汽水瓶里的千岁同学 第2部分",
+      "detail": "第 20 话 · 气噗噗的织女与哭哭啼啼的牛郎",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/83/49/584847_5nM0F.jpg",
+      "url": "https://chii.in/subject/584847",
+      "createdAt": "2026-11-25T14:58:15.000Z"
+    },
     {
       "id": "collection-105255-1795443704000",
       "action": "在看",
@@ -45,33 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/17/c7/554779_oPitO.jpg",
       "url": "https://chii.in/subject/554779",
       "createdAt": "2026-11-22T15:11:52.000Z"
-    },
-    {
-      "id": 74737517,
-      "action": "追番进度",
-      "title": "学生会也有洞！",
-      "detail": "第 8 话 · 敏深的世界／大扫除与大胸部／痛痛全部飞走吧！／梅的花心男疑云／绽的阴谋／大家聚在一起的话",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/17/c7/554779_oPitO.jpg",
-      "url": "https://chii.in/subject/554779",
-      "createdAt": "2026-11-22T15:11:52.000Z"
-    },
-    {
-      "id": "collection-548156-1795358691000",
-      "action": "在看",
-      "title": "青之箱 第二季",
-      "detail": "已看 7 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/f1/6c/548156_n0qcY.jpg",
-      "url": "https://chii.in/subject/548156",
-      "createdAt": "2026-11-22T14:44:51.000Z"
-    },
-    {
-      "id": 74736142,
-      "action": "追番进度",
-      "title": "青之箱 第二季",
-      "detail": "第 32 话 · 我有话想对你说",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/f1/6c/548156_n0qcY.jpg",
-      "url": "https://chii.in/subject/548156",
-      "createdAt": "2026-11-22T14:44:51.000Z"
     }
   ]
 }
