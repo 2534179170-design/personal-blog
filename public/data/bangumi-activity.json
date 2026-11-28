@@ -1,6 +1,42 @@
 {
-  "updatedAt": "2026-11-27T13:54:15.709Z",
+  "updatedAt": "2026-11-28T00:03:52.856Z",
   "events": [
+    {
+      "id": "collection-568244-1795795998000",
+      "action": "在看",
+      "title": "药屋少女的呢喃 第三季",
+      "detail": "已看 9 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/55/e2/568244_e64dA.jpg",
+      "url": "https://chii.in/subject/568244",
+      "createdAt": "2026-11-27T16:13:18.000Z"
+    },
+    {
+      "id": 74879357,
+      "action": "追番进度",
+      "title": "药屋少女的呢喃 第三季",
+      "detail": "第 57 话 · 堆积如山的问题",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/55/e2/568244_e64dA.jpg",
+      "url": "https://chii.in/subject/568244",
+      "createdAt": "2026-11-27T16:13:18.000Z"
+    },
+    {
+      "id": "collection-639938-1795793993000",
+      "action": "在看",
+      "title": "飙马野郎 JOJO的奇妙冒险 第二&第三赛段",
+      "detail": "已看 10 集",
+      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/ab/4f/639938_2JKQ7.jpg",
+      "url": "https://chii.in/subject/639938",
+      "createdAt": "2026-11-27T15:39:53.000Z"
+    },
+    {
+      "id": 74878119,
+      "action": "追番进度",
+      "title": "飙马野郎 JOJO的奇妙冒险 第二&第三赛段",
+      "detail": "第 11 话 · 骇人恶兽 其三",
+      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/ab/4f/639938_2JKQ7.jpg",
+      "url": "https://chii.in/subject/639938",
+      "createdAt": "2026-11-27T15:39:53.000Z"
+    },
     {
       "id": 74837544,
       "action": "在看",
@@ -36,42 +72,6 @@
       "cover": "https://lain.bgm.tv/r/200/pic/cover/l/83/49/584847_5nM0F.jpg",
       "url": "https://chii.in/subject/584847",
       "createdAt": "2026-11-25T14:58:15.000Z"
-    },
-    {
-      "id": 74823463,
-      "action": "追番进度",
-      "title": "弹珠汽水瓶里的千岁同学 第2部分",
-      "detail": "第 20 话 · 气噗噗的织女与哭哭啼啼的牛郎",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/83/49/584847_5nM0F.jpg",
-      "url": "https://chii.in/subject/584847",
-      "createdAt": "2026-11-25T14:58:15.000Z"
-    },
-    {
-      "id": "collection-105255-1795443704000",
-      "action": "在看",
-      "title": "希德尼娅的骑士 第九惑星战役",
-      "detail": "已看 3 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/e8/a6/105255_Ldl25.jpg",
-      "url": "https://chii.in/subject/105255",
-      "createdAt": "2026-11-23T14:21:44.000Z"
-    },
-    {
-      "id": 74766477,
-      "action": "追番进度",
-      "title": "希德尼娅的骑士 第九惑星战役",
-      "detail": "第 3 话 · 航向",
-      "cover": "https://lain.bgm.tv/r/100/pic/cover/l/e8/a6/105255_Ldl25.jpg",
-      "url": "https://chii.in/subject/105255",
-      "createdAt": "2026-11-23T14:21:44.000Z"
-    },
-    {
-      "id": "collection-634210-1795362256000",
-      "action": "在看",
-      "title": "魔法姐妹露露特莉莉 第2部分",
-      "detail": "已看 8 集",
-      "cover": "https://lain.bgm.tv/r/200/pic/cover/l/44/ed/634210_O7aNK.jpg",
-      "url": "https://chii.in/subject/634210",
-      "createdAt": "2026-11-22T15:44:16.000Z"
     }
   ]
 }
